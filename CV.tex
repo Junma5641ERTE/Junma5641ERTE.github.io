@@ -1,0 +1,140 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+\usepackage[margin=1.32cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{array}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{accent}{HTML}{0C7C59}
+\definecolor{textgray}{HTML}{444444}
+\definecolor{lightgray}{HTML}{777777}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  linkcolor=accent
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\arraystretch}{1.08}
+\urlstyle{same}
+
+\titleformat{\section}
+  {\normalsize\bfseries\color{accent}}
+  {}
+  {0pt}
+  {}
+  [\vspace{0.1em}\titlerule]
+\titlespacing*{\section}{0pt}{0.72em}{0.38em}
+
+\newcommand{\cvitem}[4]{%
+  \begin{tabularx}{\textwidth}{@{}p{2.18cm}X@{}}
+    {\color{lightgray}\small #1} &
+    \textbf{#2}{\color{lightgray}\small\quad #3}\\
+    & {\color{textgray}\small #4}
+  \end{tabularx}\vspace{0.26em}
+}
+
+\newcommand{\publication}[1]{%
+  \item \small #1
+}
+
+\newcommand{\compactlist}{%
+  \begin{itemize}[leftmargin=1.05em,itemsep=0.12em,topsep=0.1em]
+}
+\newcommand{\finishcompactlist}{\end{itemize}}
+
+\begin{document}
+
+{\LARGE\bfseries Jun Ma}\\[0.18em]
+{\normalsize PhD Candidate in Computational Mathematics}\\[0.25em]
+{\color{textgray}Universit\'e de Technologie de Compi\`egne (UTC), LMAC Laboratory}\\[0.4em]
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+  \href{mailto:majun2512@mail.nwpu.edu.cn}{majun2512@mail.nwpu.edu.cn} \quad
+  +86 18791196392 \quad
+  \href{https://orcid.org/0009-0003-1988-0730}{ORCID: 0009-0003-1988-0730}
+  &
+  \href{https://scholar.google.com/citations?user=Gzmt1REAAAAJ}{Google Scholar}
+\end{tabularx}
+
+\section{Research Profile}
+Doctoral researcher working at the interface of topology optimization, PDE analysis, and AI-assisted scientific computing. Current research focuses on nonlinear Kapitza interface laws, bifurcation and non-uniqueness in heat conduction problems, and physics-informed neural networks for discovering multiple solutions of nonlinear PDEs.
+
+\section{Education}
+\cvitem{2024--present}{PhD in Computational Mathematics}{Universit\'e de Technologie de Compi\`egne, France}{LMAC Laboratory. Supervisors: Prof. Faker Ben Belgacem and Prof. Faten Jelassi.}
+\cvitem{2021--2024}{MSc in Computational Mathematics}{Northwestern Polytechnical University, China}{School of Mathematics and Statistics. Supervisors: Academician Weihong Zhang, Prof. Manyu Xiao, and Prof. Piotr Breitkopf.}
+\cvitem{2017--2021}{BSc in Mathematics and Applied Mathematics}{Northwestern Polytechnical University, China}{School of Mathematics and Statistics.}
+
+\section{Research Interests}
+\compactlist
+  \item Topology and shape optimization; large-scale structural dynamics.
+  \item PDE analysis, bifurcation, nonlinear interface laws, and Kapitza contact resistance.
+  \item Reduced-order modeling, primal-dual POD, and adaptive model updating.
+  \item Physics-informed neural networks and AI-assisted scientific computing.
+  \item Thermal energy systems, phase change materials, and computational mechanics.
+\finishcompactlist
+
+\section{Selected Publications}
+\begin{enumerate}[leftmargin=1.25em,itemsep=0.2em,topsep=0.1em]
+  \publication{Bejaoui, E., Ben Belgacem, F., Jelassi, F., and \textbf{Ma, J.} (2026). ``\href{https://hal.science/hal-05659943/}{Semilinear Elliptic Problems with NonLinear Contact Resistance in Composite Domains}.'' \emph{HAL preprint}.}
+  \publication{Xiao, M., \textbf{Ma, J.}, Gao, X., et al. (2024). ``\href{https://www.sciencedirect.com/science/article/abs/pii/S0045782524003554}{Primal-dual on-the-fly reduced-order modeling for large-scale transient dynamic topology optimization}.'' \emph{Computer Methods in Applied Mechanics and Engineering}, 428: 117099.}
+  \publication{Bejaoui, E., Ben Belgacem, F., Jelassi, F., et al. (2026). ``\href{https://www.sciencedirect.com/science/article/abs/pii/S0378475426001412}{Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness}.'' \emph{Mathematics and Computers in Simulation}.}
+  \publication{Xiao, M., \textbf{Ma, J.}, Lu, D., et al. (2022). ``\href{https://link.springer.com/article/10.1186/s40323-022-00231-x}{Stress-constrained topology optimization using approximate reanalysis with on-the-fly reduced order modeling}.'' \emph{Advanced Modeling and Simulation in Engineering Sciences}, 9(1): 1--30.}
+  \publication{Ma, R., \textbf{Ma, J.}, and Xiao, M. (2022). ``\href{https://oversea.cnki.net/kcms2/article/abstract?v=LT90ZeEa8UwbksutCtpkiH8n2MicjbHp7UYFYuBYrLHTggjfv7ub-JIpMhSO9hROAk_nWyIonQfayeRYKh2LncloVAubuLFCe5kkkCw8erW2pL-yD0FmZ5tEcz8cvhd4ZjbXycvS32uSWVs54lZBiY7Li5mfpiygmzhNThPnBOjBgIBcWbGC-w==&uniplatform=OVERSEA&language=EN}{Several Computational Methods for Geodesic Equations on Surfaces}.'' \emph{College Mathematics}, 38(4).}
+\end{enumerate}
+
+\section{Current Doctoral Research}
+\cvitem{Kapitza laws}{Nonlinear contact resistance and bifurcation analysis}{}{Existence, non-uniqueness, bifurcation, and hysteresis phenomena in steady heat conduction across composite-domain interfaces with temperature-dependent contact resistance.}
+\cvitem{Numerics}{Galerkin and finite element approximation}{}{Finite element analysis for linear and nonlinear Kapitza interface models, with FreeFEM implementations and ongoing work on discrete maximum-principle and $L^\infty$ estimates.}
+\cvitem{AI for PDEs}{PINN-based multi-solution discovery}{}{Probabilistic framework where PINNs serve as randomized seed generators, followed by Newton/FEM refinement and certification of multiple nonlinear PDE solutions.}
+
+\newpage
+
+\section{Funded Research Projects}
+\cvitem{2023--2026}{Dynamic Multi-Fidelity Reduction Theory and Methods for Large-Scale Structural Dynamics Topology Optimization}{NSFC, Grant No. 12272302}{Contributed to reduced-order modeling strategies for transient structural dynamics topology optimization, including primal-dual model reduction and adaptive basis enrichment.}
+\cvitem{2021--2022}{Models, Theory and Methods for Scientific Computing}{High-end Foreign Expert Introduction Program, Grant No. G2021183022L}{Participated in international collaboration on computational mechanics, numerical optimization, reduced-order modeling, and machine-learning-assisted simulation.}
+\cvitem{2021--2022}{Large-Scale Stress-Constrained Topology Optimization Based on Reduced-Order Models}{Shaanxi Natural Science Basic Research Program, Grant No. 2021JM-043}{Worked on approximate reanalysis and on-the-fly reduced-order modeling for stress-constrained topology optimization.}
+\cvitem{2019--2022}{Integrated Design Methods for Functionally Graded Sandwich Structures for Lightweight Thermal Protection}{NSFC, Grant No. 11972166}{Studied topology and material-layout design methods connecting structural mechanics, heat transfer, and gradient-material modeling.}
+
+\section{Conference Presentations}
+\compactlist
+  \item Invited speaker, ``3D On-the-fly Reduced Order Model for Large Scale Dynamic Structure Topology Optimization,'' NPU-UTC Bilateral Symposium on Data-driven Simulation, Northwestern Polytechnical University, Xi'an, 2023.
+  \item Invited speaker, ``Research on Dynamic Topology Optimization Methods Based on Reduced Models,'' 13th National Conference on Random Vibration Theory and Applications and 11th National Conference on Random Dynamics, Dalian University of Technology, 2023.
+  \item Poster presentation, ``Primal-dual On-the-fly Reduced-Order Modeling for Large-Scale Transient Dynamic Topology Optimization,'' ACCM-2023, 6th Australasian Congress on Computational Mechanics.
+\finishcompactlist
+
+\section{Teaching and Academic Instruction}
+\cvitem{2022--2023}{Lecturer, Sino-Thai Program}{Xi'an International Studies University}{Delivered undergraduate instruction in Digital Economy, Statistics, Computer Design, and Digital Commerce; 256 credit hours.}
+\cvitem{2020--2023}{Teaching Assistant, Joint Undergraduate Program}{Northwestern Polytechnical University - Queen Mary University of London}{Assisted English-taught courses in Computational Methods, Numerical Analysis, and Mathematical Modeling.}
+\cvitem{2021}{Teaching Assistant, Graduate Course in Computational Methods}{Northwestern Polytechnical University}{Supported problem sessions, numerical exercises, and coursework feedback.}
+\cvitem{2020--2025}{Academic workshop and international program assistant}{Selected invited lecture series and short courses}{Supported workshops on topology optimization, reduced-order modeling, machine learning in computational mechanics, high-performance computing, probability, Fourier analysis, PDEs, and quantitative finance.}
+
+\section{Honors and Awards}
+\compactlist
+  \item Best Paper Award, ACCM-2023, 6th Australasian Congress on Computational Mechanics.
+  \item Outstanding Graduate, Northwestern Polytechnical University, Master's, 2024.
+  \item First-Class and Second-Class Graduate Scholarships, Northwestern Polytechnical University, 2021--2023.
+  \item Outstanding Graduate, Northwestern Polytechnical University, Bachelor's, 2021.
+  \item Second Prize, National Finals of Chinese Mathematics Competitions for College Students, 2021.
+  \item Meritorious Winner, Mathematical Contest in Modeling, USA, 2020.
+  \item First Prize, National Mathematical Modeling Competition, Shaanxi Province, 2019.
+  \item Third Prize, Huawei Cup Graduate Mathematical Modeling Competition, 2021.
+\finishcompactlist
+
+\section{Technical Skills}
+\compactlist
+  \item Numerical computing and scientific programming: finite element methods, topology optimization, reduced-order modeling, FreeFEM, MATLAB, Python, and LaTeX.
+  \item Research workflows: PDE modeling, numerical experiments, academic writing, presentation preparation, and reproducible computational studies.
+\finishcompactlist
+
+\end{document}
