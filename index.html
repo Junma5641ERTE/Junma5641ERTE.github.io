@@ -209,16 +209,16 @@
 
     /* Award Highlight */
     .award-highlight {
-      background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
-      border-left: 4px solid var(--accent);
+      background: var(--bg-gray);
+      border-left: 4px solid var(--primary);
       padding: 1rem 1.2rem;
       border-radius: 6px;
       margin: 1.5rem 0;
-      box-shadow: 0 2px 8px rgba(209, 67, 67, 0.1);
+      box-shadow: 0 2px 8px var(--shadow);
     }
 
     .award-highlight strong {
-      color: var(--accent);
+      color: var(--primary);
     }
 
     /* Section */
@@ -270,11 +270,6 @@
     .project:hover {
       transform: translateX(4px);
       box-shadow: 0 4px 12px var(--shadow);
-    }
-
-    .project-icon {
-      font-size: 1.5rem;
-      margin-right: 0.5rem;
     }
 
     .project-title {
@@ -335,13 +330,58 @@
     .pub-award {
       display: inline-block;
       padding: 0.3rem 0.8rem;
-      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-      color: #8b4513;
+      background: var(--bg-gray);
+      color: var(--secondary);
       font-size: 0.85rem;
       font-weight: 600;
       border-radius: 6px;
       margin-top: 0.5rem;
-      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    /* PhD Progress */
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .progress-item {
+      padding: 1.2rem;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .progress-meta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .progress-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-desc {
+      color: var(--text-gray);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .section-note {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
     }
 
     /* Visitor Counter */
@@ -365,43 +405,33 @@
       display: block;
     }
 
-    /* Award Grid */
-    .awards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+    /* Honors List */
+    .honors-list {
+      list-style: none;
       margin-top: 1.5rem;
     }
 
-    .award-card {
-      padding: 1.5rem;
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: all 0.3s ease;
+    .honor-item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .award-card:hover {
-      box-shadow: 0 6px 20px var(--shadow);
-      transform: translateY(-4px);
-      border-color: var(--primary);
+    .honor-item:first-child {
+      border-top: 1px solid var(--border);
     }
 
-    .award-icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .award-year {
+    .honor-year {
       font-size: 0.9rem;
       font-weight: 600;
       color: var(--primary);
-      margin-bottom: 0.5rem;
     }
 
-    .award-title {
+    .honor-title {
       color: var(--text-gray);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       line-height: 1.5;
     }
 
@@ -479,11 +509,6 @@
       border: 1px solid var(--border);
     }
 
-    .contact-icon {
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
-
     .contact-content strong {
       display: block;
       color: var(--text-dark);
@@ -524,8 +549,9 @@
         flex-wrap: wrap;
       }
 
-      .awards-grid {
+      .honor-item {
         grid-template-columns: 1fr;
+        gap: 0.2rem;
       }
     }
   </style>
@@ -538,6 +564,7 @@
       <nav>
         <a href="#about">About</a>
         <a href="#research">Research</a>
+        <a href="#phd-progress">Progress</a>
         <a href="#publications">Publications</a>
         <a href="#projects">Projects</a>
         <a href="#awards">Awards</a>
@@ -570,14 +597,14 @@
         <p>Research focus: Topology Optimization • PDE Analysis • AI for Thermal Energy Systems</p>
         
         <div class="award-highlight">
-          <strong>🏆 Recent Achievement:</strong> Best Paper Award at ACCM-2023 (6th Australasian Congress on Computational Mechanics)
+          <strong>Recent Achievement:</strong> Best Paper Award at ACCM-2023 (6th Australasian Congress on Computational Mechanics)
         </div>
 
         <div class="social-links">
-          <a class="btn" href="/CV.pdf" target="_blank">📄 CV</a>
-          <a class="btn" href="https://scholar.google.com/citations?user=Gzmt1REAAAAJ" target="_blank">🎓 Scholar</a>
-          <a class="btn btn-secondary" href="https://github.com/" target="_blank">💻 GitHub</a>
-          <a class="btn btn-secondary" href="https://orcid.org/0009-0003-1988-0730" target="_blank">🔗 ORCID</a>
+          <a class="btn" href="/CV.pdf" target="_blank">CV</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=Gzmt1REAAAAJ" target="_blank">Scholar</a>
+          <a class="btn btn-secondary" href="https://github.com/" target="_blank">GitHub</a>
+          <a class="btn btn-secondary" href="https://orcid.org/0009-0003-1988-0730" target="_blank">ORCID</a>
         </div>
       </div>
     </div>
@@ -756,6 +783,34 @@
       </div>
     </section>
 
+    <!-- PhD Research Progress -->
+    <section id="phd-progress">
+      <h2>PhD Research Progress</h2>
+      <p class="section-note">Selected research activities and working directions from my doctoral study at UTC-LMAC.</p>
+      <div class="progress-grid">
+        <div class="progress-item">
+          <div class="progress-meta">Kapitza interface laws</div>
+          <div class="progress-title">Nonlinear contact resistance and bifurcation analysis</div>
+          <p class="progress-desc">Study of steady heat conduction across composite-domain interfaces with temperature-dependent Kapitza resistance, including existence, non-uniqueness, bifurcation, and hysteresis phenomena.</p>
+        </div>
+        <div class="progress-item">
+          <div class="progress-meta">Numerical analysis</div>
+          <div class="progress-title">Galerkin and FEM approximation of interface problems</div>
+          <p class="progress-desc">Finite element analysis for linear and nonlinear Kapitza interface models, with implementation in FreeFEM and ongoing work on discrete maximum-principle and L-infinity estimates.</p>
+        </div>
+        <div class="progress-item">
+          <div class="progress-meta">AI for PDEs</div>
+          <div class="progress-title">PINN-based multi-solution discovery</div>
+          <p class="progress-desc">Development of a probabilistic framework where PINNs act as randomized seed generators, followed by Newton/FEM refinement and certification of multiple nonlinear PDE solutions.</p>
+        </div>
+        <div class="progress-item">
+          <div class="progress-meta">Research presentation</div>
+          <div class="progress-title">From Kapitza bifurcations to PINN-based discovery</div>
+          <p class="progress-desc">May 2026 research presentation connecting Kapitza bifurcation theory, probabilistic completeness for multi-solution discovery, and XPINN experiments. <a href="assets/phd-progress-slides-may-2026.pdf" target="_blank" rel="noopener">Slides</a></p>
+        </div>
+      </div>
+    </section>
+
 
    <!-- Publications -->
     <section id="publications">
@@ -766,7 +821,7 @@
         </li>
         <li class="pub-item">
           Xiao, M., <strong>Ma, J.</strong>, Gao, X., et al. (2024). "<a href="https://www.sciencedirect.com/science/article/abs/pii/S0045782524003554" target="_blank" rel="noopener">Primal–dual on-the-fly reduced-order modeling for large-scale transient dynamic topology optimization</a>." <em>Computer Methods in Applied Mechanics and Engineering</em>, 428: 117099. <span class="pub-badge">Dynamics</span>
-          <div class="pub-award">🏆 ACCM-2023 Best Paper Award</div>
+          <div class="pub-award">ACCM-2023 Best Paper Award</div>
         </li>
         <li class="pub-item">
           Bejaoui, E., Ben Belgacem, F., Jelassi, F., et al. (2026). "<a href="https://www.sciencedirect.com/science/article/abs/pii/S0378475426001412" target="_blank" rel="noopener">Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</a>." <em>Mathematics and Computers in Simulation</em>. <span class="pub-badge">PDE</span>
@@ -786,7 +841,6 @@
       
       <div class="project">
         <div class="project-title">
-          <span class="project-icon">🔬</span>
           Dynamic Multi-Fidelity Reduction Theory and Methods for Large-Scale Structural Dynamics Topology Optimization
         </div>
         <div class="project-meta">National Natural Science Foundation of China (NSFC) • Grant No. 12272302 • Jan 2023 - Dec 2026</div>
@@ -795,7 +849,6 @@
 
       <div class="project">
         <div class="project-title">
-          <span class="project-icon">🌐</span>
           Models, Theory and Methods for Scientific Computing
         </div>
         <div class="project-meta">High-end Foreign Expert Introduction Program, Ministry of Science and Technology • Grant No. G2021183022L • Jan 2021 - Dec 2022</div>
@@ -804,7 +857,6 @@
 
       <div class="project">
         <div class="project-title">
-          <span class="project-icon">⚡</span>
           Large-Scale Stress-Constrained Topology Optimization Based on Reduced-Order Models
         </div>
         <div class="project-meta">Natural Science Basic Research Program of Shaanxi Province • Grant No. 2021JM-043 • Jan 2021 - Dec 2022</div>
@@ -813,7 +865,6 @@
 
       <div class="project">
         <div class="project-title">
-          <span class="project-icon">🚀</span>
           Integrated Design Methods for Functionally Graded Sandwich Structures for Lightweight Thermal Protection
         </div>
         <div class="project-meta">National Natural Science Foundation of China (NSFC) • Grant No. 11972166 • Jan 2019 - Dec 2022</div>
@@ -826,48 +877,40 @@
     <!-- Awards -->
     <section id="awards">
       <h2>Honors & Awards</h2>
-      <div class="awards-grid">
-        <div class="award-card">
-          <div class="award-icon">🏆</div>
-          <div class="award-year">2023</div>
-          <div class="award-title">Best Paper Award, ACCM-2023 (6th Australasian Congress on Computational Mechanics)</div>
-        </div>
-        <div class="award-card">
-          <div class="award-icon">🎓</div>
-          <div class="award-year">2024</div>
-          <div class="award-title">Outstanding Graduate, Northwestern Polytechnical University (Master's)</div>
-        </div>
-        <div class="award-card">
-          <div class="award-icon">💰</div>
-          <div class="award-year">2021-2023</div>
-          <div class="award-title">First-Class & Second-Class Graduate Scholarships, NPU</div>
-        </div>
-        <div class="award-card">
-          <div class="award-icon">🎓</div>
-          <div class="award-year">2021</div>
-          <div class="award-title">Outstanding Graduate, Northwestern Polytechnical University (Bachelor's)</div>
-        </div>
-        <div class="award-card">
-          <div class="award-icon">🥈</div>
-          <div class="award-year">2021</div>
-          <div class="award-title">Second Prize, National Finals of Chinese Mathematics Competitions for College Students</div>
-        </div>
-        <div class="award-card">
-          <div class="award-icon">🥇</div>
-          <div class="award-year">2020</div>
-          <div class="award-title">Meritorious Winner (First Prize), Mathematical Contest in Modeling (MCM), USA</div>
-        </div>
-        <div class="award-card">
-          <div class="award-icon">🥇</div>
-          <div class="award-year">2019</div>
-          <div class="award-title">First Prize, National Mathematical Modeling Competition (Shaanxi Province)</div>
-        </div>
-        <div class="award-card">
-          <div class="award-icon">🥉</div>
-          <div class="award-year">2021</div>
-          <div class="award-title">Third Prize, Huawei Cup Graduate Mathematical Modeling Competition</div>
-        </div>
-      </div>
+      <ul class="honors-list">
+        <li class="honor-item">
+          <span class="honor-year">2023</span>
+          <span class="honor-title">Best Paper Award, ACCM-2023 (6th Australasian Congress on Computational Mechanics)</span>
+        </li>
+        <li class="honor-item">
+          <span class="honor-year">2024</span>
+          <span class="honor-title">Outstanding Graduate, Northwestern Polytechnical University (Master's)</span>
+        </li>
+        <li class="honor-item">
+          <span class="honor-year">2021-2023</span>
+          <span class="honor-title">First-Class and Second-Class Graduate Scholarships, Northwestern Polytechnical University</span>
+        </li>
+        <li class="honor-item">
+          <span class="honor-year">2021</span>
+          <span class="honor-title">Outstanding Graduate, Northwestern Polytechnical University (Bachelor's)</span>
+        </li>
+        <li class="honor-item">
+          <span class="honor-year">2021</span>
+          <span class="honor-title">Second Prize, National Finals of Chinese Mathematics Competitions for College Students</span>
+        </li>
+        <li class="honor-item">
+          <span class="honor-year">2020</span>
+          <span class="honor-title">Meritorious Winner, Mathematical Contest in Modeling (MCM), USA</span>
+        </li>
+        <li class="honor-item">
+          <span class="honor-year">2019</span>
+          <span class="honor-title">First Prize, National Mathematical Modeling Competition (Shaanxi Province)</span>
+        </li>
+        <li class="honor-item">
+          <span class="honor-year">2021</span>
+          <span class="honor-title">Third Prize, Huawei Cup Graduate Mathematical Modeling Competition</span>
+        </li>
+      </ul>
     </section>
 
     <!-- Teaching -->
@@ -999,28 +1042,24 @@
       <h2>Contact Information</h2>
       <div class="contact-grid">
         <div class="contact-item">
-          <div class="contact-icon">📧</div>
           <div class="contact-content">
             <strong>Email</strong>
             <a href="mailto:majun2512@mail.nwpu.edu.cn">majun2512@mail.nwpu.edu.cn</a>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">🏢</div>
           <div class="contact-content">
             <strong>Laboratory</strong>
             UTC — LMAC, Compiègne, France
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">📱</div>
           <div class="contact-content">
             <strong>Phone</strong>
             +86 18791196392
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">🔗</div>
           <div class="contact-content">
             <strong>ORCID</strong>
             <a href="https://orcid.org/0009-0003-1988-0730" target="_blank">0009-0003-1988-0730</a>
