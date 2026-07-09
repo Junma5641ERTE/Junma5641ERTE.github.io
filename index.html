@@ -257,19 +257,20 @@
       transform: translateY(-2px);
     }
 
-    /* Project Item */
+    /* Academic Entries */
     .project {
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      background: var(--bg-gray);
-      border-left: 4px solid var(--primary);
-      border-radius: 6px;
-      transition: all 0.3s ease;
+      padding: 1.2rem 0;
+      margin-bottom: 0;
+      background: transparent;
+      border-bottom: 1px solid var(--border);
+      border-left: none;
+      border-radius: 0;
+      transition: all 0.2s ease;
     }
 
     .project:hover {
-      transform: translateX(4px);
-      box-shadow: 0 4px 12px var(--shadow);
+      transform: none;
+      box-shadow: none;
     }
 
     .project-title {
@@ -289,6 +290,62 @@
     .project-desc {
       color: var(--text-gray);
       font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .academic-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .academic-entry {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .academic-entry:first-child,
+    .project:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    .entry-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: baseline;
+      margin-bottom: 0.35rem;
+    }
+
+    .entry-title {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .entry-date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .entry-meta {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .entry-desc {
+      color: var(--text-gray);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .course-list {
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+      color: var(--text-gray);
+      font-size: 0.94rem;
       line-height: 1.6;
     }
 
@@ -552,6 +609,15 @@
       .honor-item {
         grid-template-columns: 1fr;
         gap: 0.2rem;
+      }
+
+      .entry-header {
+        grid-template-columns: 1fr;
+        gap: 0.15rem;
+      }
+
+      .entry-date {
+        white-space: normal;
       }
     }
   </style>
@@ -837,14 +903,15 @@
 
     <!-- Research Projects -->
     <section id="projects">
-      <h2>Research Projects</h2>
+      <h2>Funded Research Projects</h2>
+      <p class="section-note">Selected research projects related to topology optimization, reduced-order modeling, and computational mechanics.</p>
       
       <div class="project">
         <div class="project-title">
           Dynamic Multi-Fidelity Reduction Theory and Methods for Large-Scale Structural Dynamics Topology Optimization
         </div>
         <div class="project-meta">National Natural Science Foundation of China (NSFC) • Grant No. 12272302 • Jan 2023 - Dec 2026</div>
-        <div class="project-desc">Developing advanced reduced-order modeling techniques coupled with topology optimization for large-scale transient dynamic problems. Focuses on primal-dual POD methods and adaptive model updating strategies.</div>
+        <div class="project-desc">Contributed to reduced-order modeling strategies for transient structural dynamics topology optimization, with emphasis on primal-dual model reduction, adaptive basis enrichment, and large-scale numerical implementation.</div>
       </div>
 
       <div class="project">
@@ -852,7 +919,7 @@
           Models, Theory and Methods for Scientific Computing
         </div>
         <div class="project-meta">High-end Foreign Expert Introduction Program, Ministry of Science and Technology • Grant No. G2021183022L • Jan 2021 - Dec 2022</div>
-        <div class="project-desc">International collaboration project focusing on advanced computational methods and theoretical foundations for scientific computing applications.</div>
+        <div class="project-desc">Participated in an international collaboration on computational mechanics and scientific computing, including numerical methods for optimization, model reduction, and machine-learning-assisted simulation.</div>
       </div>
 
       <div class="project">
@@ -860,7 +927,7 @@
           Large-Scale Stress-Constrained Topology Optimization Based on Reduced-Order Models
         </div>
         <div class="project-meta">Natural Science Basic Research Program of Shaanxi Province • Grant No. 2021JM-043 • Jan 2021 - Dec 2022</div>
-        <div class="project-desc">Developing multi-fidelity dynamic reduced-order modeling strategies for stress-constrained topology optimization problems with millions of degrees of freedom.</div>
+        <div class="project-desc">Worked on approximate reanalysis and on-the-fly reduced-order modeling for stress-constrained topology optimization, supporting efficient analysis of high-dimensional finite element models.</div>
       </div>
 
       <div class="project">
@@ -868,7 +935,7 @@
           Integrated Design Methods for Functionally Graded Sandwich Structures for Lightweight Thermal Protection
         </div>
         <div class="project-meta">National Natural Science Foundation of China (NSFC) • Grant No. 11972166 • Jan 2019 - Dec 2022</div>
-        <div class="project-desc">Research on integrated design methodologies for functionally graded sandwich structures with applications in aerospace thermal protection systems.</div>
+        <div class="project-desc">Studied topology and material-layout design methods for lightweight thermal protection structures, connecting structural mechanics, heat transfer, and gradient-material modeling.</div>
       </div>
     </section>
 
@@ -915,104 +982,68 @@
 
     <!-- Teaching -->
     <section id="teaching">
-      <h2>Teaching Experience</h2>
-      
-      <h3 style="color: var(--primary); font-size: 1.2rem; margin-top: 1.5rem;">Lecturer</h3>
-      <div style="margin-bottom: 2rem;">
-        <div style="padding: 1rem; background: var(--bg-gray); border-radius: 6px; margin-bottom: 1rem;">
-          <strong>Xi'an International Studies University - Sino-Thai Program</strong> (256 credit hours)<br>
-          <em style="color: var(--text-light);">Digital Economy, Statistics, Computer Design, Digital Commerce</em><br>
-          <span style="color: var(--text-light); font-size: 0.9rem;">September 2022 - June 2023</span>
-        </div>
-      </div>
+      <h2>Teaching & Academic Instruction</h2>
+      <p class="section-note">Selected university-level teaching, course assistance, and academic workshop support.</p>
 
-      <h3 style="color: var(--primary); font-size: 1.2rem; margin-top: 1.5rem;">Teaching Assistant (NPU)</h3>
-      <div style="margin-bottom: 2rem;">
-        <ul style="list-style: none; padding: 0;">
-          <li style="padding: 0.8rem; background: var(--bg-white); border-left: 3px solid var(--secondary); margin-bottom: 0.8rem; border-radius: 4px;">
-            <strong>Computational Methods & Numerical Analysis</strong> (English)<br>
-            <em style="color: var(--text-light);">Northwestern Polytechnical University - Queen Mary University of London Joint Program</em><br>
-            <span style="color: var(--text-light); font-size: 0.9rem;">2020, 2021, 2022, 2023</span>
-          </li>
-          <li style="padding: 0.8rem; background: var(--bg-white); border-left: 3px solid var(--secondary); margin-bottom: 0.8rem; border-radius: 4px;">
-            <strong>Mathematical Modeling</strong> (English)<br>
-            <em style="color: var(--text-light);">Northwestern Polytechnical University - Queen Mary University of London Joint Program</em><br>
-            <span style="color: var(--text-light); font-size: 0.9rem;">2020, 2021, 2022, 2023</span>
-          </li>
-          <li style="padding: 0.8rem; background: var(--bg-white); border-left: 3px solid var(--secondary); margin-bottom: 0.8rem; border-radius: 4px;">
-            <strong>Computational Methods</strong> (Graduate Course)<br>
-            <em style="color: var(--text-light);">Northwestern Polytechnical University</em><br>
-            <span style="color: var(--text-light); font-size: 0.9rem;">2021</span>
-          </li>
-        </ul>
-      </div>
+      <ul class="academic-list">
+        <li class="academic-entry">
+          <div class="entry-header">
+            <div class="entry-title">Lecturer, Sino-Thai Program</div>
+            <div class="entry-date">Sep 2022 - Jun 2023</div>
+          </div>
+          <div class="entry-meta">Xi'an International Studies University • 256 credit hours</div>
+          <p class="entry-desc">Delivered undergraduate-level instruction in Digital Economy, Statistics, Computer Design, and Digital Commerce; prepared course materials, assignments, and assessment activities.</p>
+        </li>
 
-      <h3 style="color: var(--primary); font-size: 1.2rem; margin-top: 1.5rem;">Advanced Workshops & Guest Courses</h3>
-      <div style="margin-bottom: 2rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-          <div style="padding: 1rem; background: var(--bg-gray); border-radius: 6px;">
-            <strong>Advanced Topology Optimization Series</strong><br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">Prof. Balaji Raghavan, Université de Rennes, France</em><br>
-            <span style="color: var(--text-light); font-size: 0.85rem;">• Nonlinear Topology Optimization (July 2021)<br>
-            • Advanced Topics (July 2022)<br>
-            • Geometric & Material Nonlinearity (July 2023)<br>
-            • Nonlinearity & Buckling (July 2024)</span>
+        <li class="academic-entry">
+          <div class="entry-header">
+            <div class="entry-title">Teaching Assistant, Joint Undergraduate Program</div>
+            <div class="entry-date">2020 - 2023</div>
           </div>
-          
-          <div style="padding: 1rem; background: var(--bg-gray); border-radius: 6px;">
-            <strong>Reduced-Order Modeling & Machine Learning</strong><br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">Prof. Piotr Breitkopf, UTC, France</em><br>
-            <span style="color: var(--text-light); font-size: 0.85rem;">• Truss & Continuum Topology Optimization (July 2022)<br>
-            • Continuum & Dynamic Topology Optimization (July 2020)<br>
-            • Gaussian Process Regression (July 2023)<br>
-            • ML in Computational Mechanics (July 2024)</span>
-          </div>
-          
-          <div style="padding: 1rem; background: var(--bg-gray); border-radius: 6px;">
-            <strong>High Performance Computing & Finance</strong><br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">Dr. Lei Shang, Hina Group (Asia Pacific CTO)</em><br>
-            <span style="color: var(--text-light); font-size: 0.85rem;">• HPC & System Optimization (July 2021)<br>
-            • Quantitative & Computational Finance (July 2021)</span>
-          </div>
-        </div>
-      </div>
+          <div class="entry-meta">Northwestern Polytechnical University - Queen Mary University of London Joint Program</div>
+          <p class="entry-desc">Assisted English-taught mathematics and scientific computing courses, including tutorials, exercise sessions, grading, and student consultation.</p>
+          <ul class="course-list">
+            <li>Computational Methods and Numerical Analysis</li>
+            <li>Mathematical Modeling</li>
+          </ul>
+        </li>
 
-      <h3 style="color: var(--primary); font-size: 1.2rem; margin-top: 1.5rem;">International Teaching Assistant Programs</h3>
-      <div style="background: var(--bg-gray); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
-        <p style="color: var(--text-gray); margin-bottom: 1rem;">Served as TA for prestigious international programs with top universities:</p>
-        
-        <div style="display: grid; gap: 0.8rem;">
-          <div style="padding: 0.8rem; background: var(--bg-white); border-radius: 4px;">
-            <strong>Brown University</strong> - Prof. Justin Holmer<br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">Numerical Methods, Fourier Analysis, Quantitative Finance (Multiple sessions 2023-2025)</em>
+        <li class="academic-entry">
+          <div class="entry-header">
+            <div class="entry-title">Teaching Assistant, Graduate Course in Computational Methods</div>
+            <div class="entry-date">2021</div>
           </div>
-          
-          <div style="padding: 0.8rem; background: var(--bg-white); border-radius: 4px;">
-            <strong>ETH Zürich</strong> - Prof. Alessandra Iozzi<br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">Probability Theory & Statistics Applications (2024-2025)</em>
-          </div>
-          
-          <div style="padding: 0.8rem; background: var(--bg-white); border-radius: 4px;">
-            <strong>Imperial College London</strong> - Prof. Ferruccio Renzoni<br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">PDEs, Fourier Analysis & Lagrangian Equations (2024)</em>
-          </div>
-          
-          <div style="padding: 0.8rem; background: var(--bg-white); border-radius: 4px;">
-            <strong>Queen Mary University of London</strong> - Prof. Pierre Clare<br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">Statistical Applications in Biology, Medicine & Economics (2025)</em>
-          </div>
-          
-          <div style="padding: 0.8rem; background: var(--bg-white); border-radius: 4px;">
-            <strong>University of Illinois at Urbana-Champaign</strong> - Prof. Matthew Caesar<br>
-            <em style="color: var(--text-light); font-size: 0.9rem;">Networking Technologies for Underserved Regions (2023)</em>
-          </div>
-        </div>
-      </div>
+          <div class="entry-meta">Northwestern Polytechnical University</div>
+          <p class="entry-desc">Supported graduate-level instruction in computational methods, with responsibilities including problem-session preparation, numerical exercises, and coursework feedback.</p>
+        </li>
 
-      <h3 style="color: var(--primary); font-size: 1.2rem; margin-top: 1.5rem;">Private Tutoring</h3>
-      <div style="padding: 1rem; background: var(--bg-gray); border-radius: 6px;">
-        <p style="color: var(--text-gray); margin: 0;">Mathematics and Science tutoring for secondary school students (2018-2024), including exam preparation and subject advancement.</p>
-      </div>
+        <li class="academic-entry">
+          <div class="entry-header">
+            <div class="entry-title">Academic Workshop Assistant, Computational Mechanics and Optimization</div>
+            <div class="entry-date">2020 - 2024</div>
+          </div>
+          <div class="entry-meta">International short courses and invited lecture series</div>
+          <p class="entry-desc">Supported advanced workshops on topology optimization, reduced-order modeling, machine learning for computational mechanics, high-performance computing, and quantitative finance.</p>
+          <ul class="course-list">
+            <li>Advanced topology optimization and nonlinear computational mechanics, Prof. Balaji Raghavan, Université de Rennes</li>
+            <li>Reduced-order modeling, Gaussian process regression, and machine learning in computational mechanics, Prof. Piotr Breitkopf, UTC</li>
+            <li>High-performance computing, system optimization, and quantitative finance, Dr. Lei Shang</li>
+          </ul>
+        </li>
+
+        <li class="academic-entry">
+          <div class="entry-header">
+            <div class="entry-title">International Program Teaching Assistant</div>
+            <div class="entry-date">2023 - 2025</div>
+          </div>
+          <div class="entry-meta">Selected visiting and joint teaching programs</div>
+          <p class="entry-desc">Assisted short-course teaching activities involving faculty from Brown University, ETH Zürich, Imperial College London, Queen Mary University of London, and the University of Illinois Urbana-Champaign.</p>
+          <ul class="course-list">
+            <li>Numerical methods, Fourier analysis, quantitative finance, probability and statistics</li>
+            <li>Partial differential equations, Lagrangian equations, and statistical applications</li>
+          </ul>
+        </li>
+      </ul>
     </section>
 
     <!-- Photos -->
