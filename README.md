@@ -190,6 +190,27 @@ Edit the CSS variables in `_layouts/post.html` and `thoughts.html`:
 - Add tags in addition to categories
 - Add search functionality
 
+## 📊 Website Analytics
+
+GitHub Pages is static hosting, so it does not provide a built-in visitor counter with country distribution on the website itself. To track visits and global country distribution, connect an analytics provider:
+
+### Recommended option: Google Analytics 4
+
+1. Create a GA4 property at <https://analytics.google.com/>
+2. Create a Web data stream for your GitHub Pages URL
+3. Copy the Measurement ID, for example `G-XXXXXXXXXX`
+4. Add the GA4 script to the `<head>` section of `index.html`, `thoughts.html`, and `_layouts/post.html`
+
+GA4 can report:
+- Total users and page views
+- Active users over time
+- Country / region distribution
+- Traffic source and referral data
+
+### Alternative: Cloudflare Web Analytics
+
+Cloudflare Web Analytics is also suitable for a static GitHub Pages site. It provides privacy-friendly page views, visitors, referrers, and country distribution after adding its JavaScript beacon token.
+
 ## 📚 Example Post Categories
 
 Good category examples:
