@@ -441,6 +441,75 @@
       margin-bottom: 0;
     }
 
+    /* Doctoral Experience */
+    .doctoral-timeline {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .doctoral-year {
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .doctoral-year:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .year-header {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.2rem;
+      align-items: baseline;
+      margin-bottom: 0.8rem;
+    }
+
+    .year-label {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .year-title {
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .year-summary {
+      color: var(--text-gray);
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+    }
+
+    .detail-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--text-gray);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .detail-list li {
+      margin-bottom: 0.45rem;
+    }
+
+    .experience-subtitle {
+      margin-top: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .report-links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
     /* Visitor Counter */
     .visitor-counter {
       margin-top: 1.5rem;
@@ -619,6 +688,11 @@
       .entry-date {
         white-space: normal;
       }
+
+      .year-header {
+        grid-template-columns: 1fr;
+        gap: 0.15rem;
+      }
     }
   </style>
 </head>
@@ -631,6 +705,7 @@
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#phd-progress">Progress</a>
+        <a href="#doctoral-experience">Experience</a>
         <a href="#publications">Publications</a>
         <a href="#projects">Projects</a>
         <a href="#awards">Awards</a>
@@ -874,6 +949,90 @@
           <div class="progress-title">From Kapitza bifurcations to PINN-based discovery</div>
           <p class="progress-desc">May 2026 research presentation connecting Kapitza bifurcation theory, probabilistic completeness for multi-solution discovery, and XPINN experiments. <a href="assets/phd-progress-slides-may-2026.pdf" target="_blank" rel="noopener">Slides</a></p>
         </div>
+      </div>
+    </section>
+
+    <!-- Doctoral Experience -->
+    <section id="doctoral-experience">
+      <h2>Doctoral Experience</h2>
+      <p class="section-note">Detailed doctoral progress reconstructed from my annual CSI thesis progress reports at UTC-LMAC.</p>
+
+      <div class="doctoral-timeline">
+        <div class="doctoral-year">
+          <div class="year-header">
+            <div class="year-label">Year 1</div>
+            <div class="year-title">Foundation of TES modeling, heat-transfer analysis, Kapitza interface laws, and topology optimization</div>
+          </div>
+          <p class="year-summary">The first year established the mathematical and computational foundation of my PhD project on hybrid thermal energy storage systems. The broad objective was to improve heat transfer in phase-change-material (PCM) based TES systems by combining topology optimization, shape optimization, reduced-order modeling, and physics-informed deep learning.</p>
+          <div class="experience-subtitle">Research work completed</div>
+          <ul class="detail-list">
+            <li>Clarified the thesis objective: design hybrid TES media with thermally conductive enhancers that preserve PCM storage capacity while accelerating heat charging, storage, and especially heat extraction during short thermal cycles.</li>
+            <li>Started from steady-state heat conduction by neglecting the time derivative, derived the governing equation analytically, and used numerical verification to understand the spatial structure of the temperature field.</li>
+            <li>Extended the work to transient heat conduction, using Laplace transforms, hyperbolic-function analysis, and series expansion to handle temporal terms, parameter sensitivity, and spatio-temporal heat-flux evolution.</li>
+            <li>Implemented one-dimensional and two-dimensional transient heat-conduction simulations in FreeFEM++, building the first computational basis for later finite element and topology optimization studies.</li>
+            <li>Introduced radiative heat-transfer effects through the Stefan-Boltzmann law, leading to nonlinear PDE systems and motivating the study of nonlinear thermal behavior.</li>
+            <li>Studied steady heat conduction in a double-layer domain with nonlinear Kapitza contact resistance at the interface, where imperfect contact creates resistance and slows heat transfer.</li>
+            <li>Used a simple one-dimensional model to demonstrate non-uniqueness of solutions under nonlinear Kapitza interface laws.</li>
+            <li>Applied Picard iteration to compute fixed points of the associated algebraic mapping and used bifurcation analysis with the conductivity ratio of two layers as a control parameter.</li>
+            <li>Observed several bifurcation mechanisms for power-law Kapitza conductivities, including transcritical bifurcation, pitchfork bifurcation, flip bifurcation, and saddle-node bifurcation.</li>
+            <li>Studied the theory of topological derivatives and carried out derivations using the Dirichlet-to-Neumann operator.</li>
+            <li>Implemented an inverse/topology optimization procedure in FreeFEM++ for two-dimensional transient heat conduction, connecting thermal sensitivity analysis with material-layout design.</li>
+          </ul>
+          <div class="experience-subtitle">Training and academic activities</div>
+          <ul class="detail-list">
+            <li>Completed doctoral training in practical problem-solving tools, random modeling methods, French language training, scientific Python and JupyterLab, and the CIMPA research school on Mathematics, Artificial Intelligence and Applications.</li>
+            <li>Participated in FreeFEM Days in Paris, the ANR NumOpTES project meeting at the University of Bordeaux, a winter school on control, optimization, and artificial intelligence for machine learning in Tunisia, and the LMAC monthly doctoral and postdoctoral seminar.</li>
+          </ul>
+          <div class="experience-subtitle">Planned continuation after Year 1</div>
+          <ul class="detail-list">
+            <li>Build a full one-dimensional bifurcation atlas for scalar Kapitza models, including codimension-one continuation, period-k cascades, and multi-parameter unfoldings in the exponent, boundary data, and coefficients.</li>
+            <li>Develop nonlinear elliptic and parabolic heat-transfer models with volumetric sources, state-dependent coefficients, and nonlinear interface or boundary laws.</li>
+            <li>Study existence, uniqueness, global attractors, basins of attraction, and feedback or optimal-control strategies for transient nonlinear heat-transfer models.</li>
+            <li>Construct reduced-order modeling strategies based on PINNs, using physical constraints to reduce labeled-data requirements while improving scalability and interpretability.</li>
+          </ul>
+        </div>
+
+        <div class="doctoral-year">
+          <div class="year-header">
+            <div class="year-label">Year 2</div>
+            <div class="year-title">Consolidation around Kapitza interface FEM, continuation methods, topological derivatives, and XPINN solvers</div>
+          </div>
+          <p class="year-summary">The second year made the thesis direction more coherent and technically focused. The work developed along three connected lines: numerical Kapitza interface problems, topology optimization through topological derivatives, and physics-informed domain-decomposition solvers for heterogeneous heat conduction.</p>
+          <div class="experience-subtitle">Research work completed</div>
+          <ul class="detail-list">
+            <li>Refined the thesis framework around heat-transfer models for PCMs and thermal storage systems, emphasizing heterogeneous media, material interfaces, inclusions, phase boundaries, and imperfect thermal contact.</li>
+            <li>Identified Kapitza-type interface conditions as the central mathematical mechanism for modeling temperature jumps and thermal resistance across composite interfaces.</li>
+            <li>Developed and tested computational tools for both linear and nonlinear Kapitza interface laws, using FreeFEM and Matlab for simulation, post-processing, and parameter studies.</li>
+            <li>Investigated nonlinear interface conditions numerically and found that standard Newton iterations and classical parameter continuation may fail or become unstable when multiple branches or turning points occur.</li>
+            <li>Used pseudo-arclength continuation as a more robust strategy to follow nonlinear solution branches through folds and to recover branches that direct continuation may miss.</li>
+            <li>Analyzed branch selection, sensitivity to initial guesses, convergence difficulty, non-uniqueness, and bifurcation-type behavior caused by nonlinear Kapitza laws.</li>
+            <li>Continued the study of topological derivatives for heat-transfer and topology optimization problems, focusing on how small inclusions or material perturbations change thermal objective functionals.</li>
+            <li>Implemented and verified topological-derivative-based criteria for identifying favorable regions for material modification or inclusion insertion.</li>
+            <li>Developed XPINN-based solvers for steady variable-coefficient heat-conduction equations, using domain decomposition to handle subdomains with different thermal conductivities.</li>
+            <li>Extended XPINN implementation to time-dependent variable-coefficient heat-conduction equations, creating a preliminary physics-informed framework for heterogeneous thermal media.</li>
+            <li>Used XPINN experiments to assess how neural domain-decomposition methods could later support Kapitza interface modeling, topology optimization, and repeated parametric simulations.</li>
+            <li>Consolidated the theoretical background of the linear Kapitza problem, including weak formulation, the role of interface terms, and finite element discretization.</li>
+          </ul>
+          <div class="experience-subtitle">Scientific outputs</div>
+          <ul class="detail-list">
+            <li>Published the work on steady conduction problems with nonlinear Kapitza contact resistance in <em>Mathematics and Computers in Simulation</em>, focusing on existence and non-uniqueness.</li>
+            <li>Prepared and deposited the HAL preprint on semilinear elliptic problems with nonlinear contact resistance in composite domains.</li>
+            <li>Prepared a May 2026 research presentation connecting Kapitza bifurcations, probabilistic completeness ideas for multi-solution discovery, and XPINN experiments.</li>
+          </ul>
+          <div class="experience-subtitle">Training and planned continuation</div>
+          <ul class="detail-list">
+            <li>Added doctoral training in Advanced Mechanics of Solids, Fluids, Structures and Flexible Multibody Systems, complementing earlier training in modeling, scientific Python, language, and AI-oriented mathematics.</li>
+            <li>Set the next thesis objectives: strengthen the linear FEM formulation of Kapitza problems, systematically analyze nonlinear interface laws through continuation, and develop topology/shape-derivative-based optimization for thermal storage systems.</li>
+            <li>Clarified the role of PINN and XPINN methods as complementary tools rather than replacements for finite element analysis, with a focus on surrogate modeling, heterogeneous media, interface conditions, and optimization-driven simulations.</li>
+            <li>Defined the next publication directions: a rigorous chapter or article on linear Kapitza FEM formulation and implementation, followed by nonlinear interface laws, bifurcation phenomena, and optimization frameworks for thermal storage applications.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="report-links">
+        <a class="btn btn-secondary" href="assets/phd-progress-report-year-1.pdf" target="_blank" rel="noopener">Year 1 Report</a>
+        <a class="btn btn-secondary" href="assets/phd-progress-report-year-2.pdf" target="_blank" rel="noopener">Year 2 Report</a>
+        <a class="btn btn-secondary" href="assets/phd-progress-slides-may-2026.pdf" target="_blank" rel="noopener">May 2026 Slides</a>
       </div>
     </section>
 
