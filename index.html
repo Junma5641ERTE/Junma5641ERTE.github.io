@@ -361,6 +361,10 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       transition: all 0.3s ease;
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 1rem;
+      align-items: start;
     }
 
     .pub-item:hover {
@@ -370,6 +374,27 @@
 
     .pub-item strong {
       color: var(--text-dark);
+    }
+
+    .journal-mark {
+      min-height: 58px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      background: var(--bg-gray);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.45rem;
+    }
+
+    .pub-main {
+      min-width: 0;
     }
 
     .pub-badge {
@@ -394,6 +419,73 @@
       border-radius: 6px;
       margin-top: 0.5rem;
       border: 1px solid var(--border);
+    }
+
+    .pub-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.65rem;
+    }
+
+    .metric-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.24rem 0.58rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--bg-gray);
+      color: var(--text-gray);
+      font-size: 0.76rem;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .metric-pill.strong {
+      border-color: rgba(12, 124, 89, 0.25);
+      background: rgba(12, 124, 89, 0.08);
+      color: var(--primary);
+    }
+
+    .publication-feature {
+      margin-top: 1.6rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .publication-feature h3 {
+      margin-bottom: 0.35rem;
+    }
+
+    .feature-intro {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
+
+    .graphical-abstract-link {
+      display: block;
+      border: none;
+    }
+
+    .graphical-abstract {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+
+    .metric-note {
+      color: var(--text-light);
+      font-size: 0.84rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0;
     }
 
     /* PhD Progress */
@@ -680,6 +772,21 @@
         gap: 0.2rem;
       }
 
+      .pub-item {
+        grid-template-columns: 1fr;
+      }
+
+      .journal-mark {
+        width: fit-content;
+        min-height: 0;
+        padding: 0.45rem 0.7rem;
+      }
+
+      .feature-intro {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
       .entry-header {
         grid-template-columns: 1fr;
         gap: 0.15rem;
@@ -705,8 +812,8 @@
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#phd-progress">Progress</a>
-        <a href="#doctoral-experience">Experience</a>
         <a href="#publications">Publications</a>
+        <a href="#doctoral-experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#awards">Awards</a>
         <a href="thoughts">Thoughts</a>
@@ -952,6 +1059,92 @@
       </div>
     </section>
 
+   <!-- Publications -->
+    <section id="publications">
+      <h2>Selected Publications</h2>
+      <p class="section-note">Publisher-reported journal indicators are shown where they are publicly available; these values can change over time.</p>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="journal-mark">HAL</div>
+          <div class="pub-main">
+            Bejaoui, E., Ben Belgacem, F., Jelassi, F., & <strong>Ma, J.</strong> (2026). "<a href="https://hal.science/hal-05659943/" target="_blank" rel="noopener">Semilinear Elliptic Problems with Nonlinear Contact Resistance in Composite Domains</a>." <em>HAL preprint</em>.
+            <div class="pub-metrics">
+              <span class="metric-pill strong">Preprint</span>
+              <span class="metric-pill">Composite domains</span>
+              <span class="metric-pill">Nonlinear contact resistance</span>
+              <span class="metric-pill">PDE analysis</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="journal-mark">CMAME</div>
+          <div class="pub-main">
+            Xiao, M., <strong>Ma, J.</strong>, Gao, X., et al. (2024). "<a href="https://www.sciencedirect.com/science/article/abs/pii/S0045782524003554" target="_blank" rel="noopener">Primal-dual on-the-fly reduced-order modeling for large-scale transient dynamic topology optimization</a>." <em>Computer Methods in Applied Mechanics and Engineering</em>, 428: 117099.
+            <div class="pub-metrics">
+              <span class="metric-pill strong">Impact Factor 7.3</span>
+              <span class="metric-pill strong">CiteScore 12.8</span>
+              <span class="metric-pill">Elsevier</span>
+              <span class="metric-pill">Graphical abstract</span>
+              <span class="metric-pill">Topology optimization</span>
+            </div>
+            <div class="pub-award">ACCM-2023 Best Paper Award</div>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="journal-mark">MATCOM</div>
+          <div class="pub-main">
+            Bejaoui, E., Ben Belgacem, F., Jelassi, F., et al. (2026). "<a href="https://www.sciencedirect.com/science/article/abs/pii/S0378475426001412" target="_blank" rel="noopener">Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</a>." <em>Mathematics and Computers in Simulation</em>.
+            <div class="pub-metrics">
+              <span class="metric-pill strong">Impact Factor 4.4</span>
+              <span class="metric-pill strong">CiteScore 9.5</span>
+              <span class="metric-pill">Elsevier / IMACS</span>
+              <span class="metric-pill">Nonlinear Kapitza law</span>
+              <span class="metric-pill">Bifurcation</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="journal-mark">AMSES</div>
+          <div class="pub-main">
+            Xiao, M., <strong>Ma, J.</strong>, Lu, D., et al. (2022). "<a href="https://link.springer.com/article/10.1186/s40323-022-00231-x" target="_blank" rel="noopener">Stress-constrained topology optimization using approximate reanalysis with on-the-fly reduced order modeling</a>." <em>Advanced Modeling and Simulation in Engineering Sciences</em>, 9(1): 1-30.
+            <div class="pub-metrics">
+              <span class="metric-pill strong">Impact Factor 4.1</span>
+              <span class="metric-pill">SpringerOpen</span>
+              <span class="metric-pill">ESCI</span>
+              <span class="metric-pill">SCOPUS</span>
+              <span class="metric-pill">SCImago</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="journal-mark">CM</div>
+          <div class="pub-main">
+            Ma, R., <strong>Ma, J.</strong>, Xiao, M. (2022). "<a href="https://oversea.cnki.net/kcms2/article/abstract?v=LT90ZeEa8UwbksutCtpkiH8n2MicjbHp7UYFYuBYrLHTggjfv7ub-JIpMhSO9hROAk_nWyIonQfayeRYKh2LncloVAubuLFCe5kkkCw8erW2pL-yD0FmZ5tEcz8cvhd4ZjbXycvS32uSWVs54lZBiY7Li5mfpiygmzhNThPnBOjBgIBcWbGC-w==&amp;uniplatform=OVERSEA&amp;language=EN" target="_blank" rel="noopener">Several Computational Methods for Geodesic Equations on Surfaces</a>." <em>College Mathematics</em>, 38(4).
+            <div class="pub-metrics">
+              <span class="metric-pill">Geodesic equations</span>
+              <span class="metric-pill">Computational geometry</span>
+              <span class="metric-pill">CNKI</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="publication-feature">
+        <div class="feature-intro">
+          <div>
+            <div class="progress-meta">Featured graphical abstract</div>
+            <h3>Primal-dual on-the-fly reduced-order modeling</h3>
+            <p class="section-note">Visual summary for the CMAME paper on reduced-order modeling for large-scale transient dynamic topology optimization.</p>
+          </div>
+          <a class="btn btn-secondary" href="https://www.sciencedirect.com/science/article/abs/pii/S0045782524003554" target="_blank" rel="noopener">Article Page</a>
+        </div>
+        <a class="graphical-abstract-link" href="assets/primal-dual-graphical-abstract.png" target="_blank" rel="noopener">
+          <img class="graphical-abstract" src="assets/primal-dual-graphical-abstract.png" alt="Graphical abstract for the primal-dual on-the-fly reduced-order modeling paper">
+        </a>
+        <p class="metric-note">The journal page lists this article with a graphical abstract; this homepage uses my local research visual for the same primal-dual reduced-order modeling work.</p>
+      </div>
+    </section>
+
     <!-- Doctoral Experience -->
     <section id="doctoral-experience">
       <h2>Doctoral Experience</h2>
@@ -1036,29 +1229,6 @@
       </div>
     </section>
 
-
-   <!-- Publications -->
-    <section id="publications">
-      <h2>Selected Publications</h2>
-      <ul class="pub-list">
-        <li class="pub-item">
-          Bejaoui, E., Ben Belgacem, F., Jelassi, F., & <strong>Ma, J.</strong> (2026). "<a href="https://hal.science/hal-05659943/" target="_blank">Semilinear Elliptic Problems with NonLinear Contact Resistance in Composite Domains</a>." <em>HAL preprint</em>. <span class="pub-badge">PDE</span>
-        </li>
-        <li class="pub-item">
-          Xiao, M., <strong>Ma, J.</strong>, Gao, X., et al. (2024). "<a href="https://www.sciencedirect.com/science/article/abs/pii/S0045782524003554" target="_blank" rel="noopener">Primal–dual on-the-fly reduced-order modeling for large-scale transient dynamic topology optimization</a>." <em>Computer Methods in Applied Mechanics and Engineering</em>, 428: 117099. <span class="pub-badge">Dynamics</span>
-          <div class="pub-award">ACCM-2023 Best Paper Award</div>
-        </li>
-        <li class="pub-item">
-          Bejaoui, E., Ben Belgacem, F., Jelassi, F., et al. (2026). "<a href="https://www.sciencedirect.com/science/article/abs/pii/S0378475426001412" target="_blank" rel="noopener">Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</a>." <em>Mathematics and Computers in Simulation</em>. <span class="pub-badge">PDE</span>
-        </li>
-        <li class="pub-item">
-          Xiao, M., <strong>Ma, J.</strong>, Lu, D., et al. (2022). "<a href="https://link.springer.com/article/10.1186/s40323-022-00231-x" target="_blank" rel="noopener">Stress-constrained topology optimization using approximate reanalysis with on-the-fly reduced order modeling</a>." <em>Advanced Modeling and Simulation in Engineering Sciences</em>, 9(1): 1-30. <span class="pub-badge">Optimization</span>
-        </li>
-        <li class="pub-item">
-          Ma, R., <strong>Ma, J.</strong>, Xiao, M. (2022). "<a href="https://oversea.cnki.net/kcms2/article/abstract?v=LT90ZeEa8UwbksutCtpkiH8n2MicjbHp7UYFYuBYrLHTggjfv7ub-JIpMhSO9hROAk_nWyIonQfayeRYKh2LncloVAubuLFCe5kkkCw8erW2pL-yD0FmZ5tEcz8cvhd4ZjbXycvS32uSWVs54lZBiY7Li5mfpiygmzhNThPnBOjBgIBcWbGC-w==&amp;uniplatform=OVERSEA&amp;language=EN" target="_blank" rel="noopener">Several Computational Methods for Geodesic Equations on Surfaces</a>." <em>College Mathematics</em>, 38(4). <span class="pub-badge">Geometry</span>
-        </li>
-      </ul>
-    </section>
 
     <!-- Research Projects -->
     <section id="projects">
