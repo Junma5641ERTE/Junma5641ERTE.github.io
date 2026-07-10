@@ -1,6 +1,6 @@
-\documentclass[9pt,a4paper]{extarticle}
+\documentclass[8pt,a4paper]{extarticle}
 
-\usepackage[margin=1.32cm]{geometry}
+\usepackage[margin=1.12cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -26,7 +26,7 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\renewcommand{\arraystretch}{1.08}
+\renewcommand{\arraystretch}{1.0}
 \urlstyle{same}
 
 \titleformat{\section}
@@ -35,14 +35,14 @@
   {0pt}
   {}
   [\vspace{0.1em}\titlerule]
-\titlespacing*{\section}{0pt}{0.72em}{0.38em}
+\titlespacing*{\section}{0pt}{0.48em}{0.22em}
 
 \newcommand{\cvitem}[4]{%
-  \begin{tabularx}{\textwidth}{@{}p{2.18cm}X@{}}
+  \begin{tabularx}{\textwidth}{@{}p{1.85cm}X@{}}
     {\color{lightgray}\small #1} &
     \textbf{#2}{\color{lightgray}\small\quad #3}\\
     & {\color{textgray}\small #4}
-  \end{tabularx}\vspace{0.26em}
+  \end{tabularx}\vspace{0.1em}
 }
 
 \newcommand{\publication}[1]{%
@@ -50,7 +50,7 @@
 }
 
 \newcommand{\compactlist}{%
-  \begin{itemize}[leftmargin=1.05em,itemsep=0.12em,topsep=0.1em]
+  \begin{itemize}[leftmargin=1em,itemsep=0.04em,topsep=0.05em]
 }
 \newcommand{\finishcompactlist}{\end{itemize}}
 
@@ -85,7 +85,7 @@ Doctoral researcher working at the interface of topology optimization, PDE analy
 \finishcompactlist
 
 \section{Selected Publications}
-\begin{enumerate}[leftmargin=1.25em,itemsep=0.2em,topsep=0.1em]
+\begin{enumerate}[leftmargin=1.25em,itemsep=0.08em,topsep=0.05em]
   \publication{Bejaoui, E., Ben Belgacem, F., Jelassi, F., and \textbf{Ma, J.} (2026). ``\href{https://hal.science/hal-05659943/}{Semilinear Elliptic Problems with NonLinear Contact Resistance in Composite Domains}.'' \emph{HAL preprint}.}
   \publication{Xiao, M., \textbf{Ma, J.}, Gao, X., et al. (2024). ``\href{https://www.sciencedirect.com/science/article/abs/pii/S0045782524003554}{Primal-dual on-the-fly reduced-order modeling for large-scale transient dynamic topology optimization}.'' \emph{Computer Methods in Applied Mechanics and Engineering}, 428: 117099.}
   \publication{Bejaoui, E., Ben Belgacem, F., Jelassi, F., et al. (2026). ``\href{https://www.sciencedirect.com/science/article/abs/pii/S0378475426001412}{Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness}.'' \emph{Mathematics and Computers in Simulation}.}
@@ -99,11 +99,9 @@ Doctoral researcher working at the interface of topology optimization, PDE analy
 \cvitem{AI for PDEs}{PINN-based multi-solution discovery}{}{Probabilistic framework where PINNs serve as randomized seed generators, followed by Newton/FEM refinement and certification of multiple nonlinear PDE solutions.}
 
 \section{Doctoral Progress by Year}
-\cvitem{Year 1}{Foundations in TES modeling, Kapitza laws, and topology optimization}{}{Derived and numerically verified steady and transient heat-conduction models; implemented one- and two-dimensional FreeFEM++ simulations; incorporated radiative heat transfer through Stefan-Boltzmann-type nonlinear terms; studied nonlinear Kapitza contact resistance in double-layer domains; demonstrated non-uniqueness in scalar models; used Picard iteration and bifurcation analysis to identify transcritical, pitchfork, flip, and saddle-node bifurcations; studied topological derivatives via Dirichlet-to-Neumann operators and implemented a two-dimensional transient heat-conduction topology optimization prototype.}
-\cvitem{Year 2}{Kapitza FEM, continuation, topological derivatives, and XPINN methods}{}{Developed FreeFEM and Matlab tools for linear and nonlinear Kapitza interface problems; analyzed convergence limitations of Newton and classical continuation methods under multiple branches and turning points; adopted pseudo-arclength continuation to track folds and difficult branches; implemented topological-derivative criteria for inclusion insertion and material modification; built XPINN solvers for steady and time-dependent variable-coefficient heat conduction; consolidated weak formulations, interface terms, and finite element discretization of the linear Kapitza problem; clarified the role of PINN/XPINN methods as complementary tools for heterogeneous media, surrogate modeling, and optimization-driven simulations.}
-\cvitem{Training}{Doctoral training and scientific activities}{}{Completed training in problem-solving tools, random modeling, French A1/A2, scientific Python and JupyterLab, CIMPA Mathematics-AI school, and advanced mechanics of solids, fluids, structures and flexible multibody systems; participated in FreeFEM Days, ANR NumOpTES meeting, a winter school on control/optimization/AI, and LMAC doctoral seminars.}
-
-\newpage
+\cvitem{Year 1}{Foundations in TES modeling, Kapitza laws, and topology optimization}{}{Derived and verified steady/transient heat-conduction models; implemented 1D/2D FreeFEM++ simulations; incorporated radiative nonlinearities; studied nonlinear Kapitza contact resistance in double-layer domains; demonstrated scalar non-uniqueness; used Picard iteration and bifurcation analysis to identify transcritical, pitchfork, flip, and saddle-node behavior; studied topological derivatives and implemented a transient heat-conduction topology optimization prototype.}
+\cvitem{Year 2}{Kapitza FEM, continuation, topological derivatives, and XPINN methods}{}{Developed FreeFEM and Matlab tools for linear/nonlinear Kapitza interface problems; analyzed Newton and continuation failures near multiple branches and turning points; used pseudo-arclength continuation to track folds; implemented topological-derivative criteria for material modification; built XPINN solvers for steady and time-dependent variable-coefficient heat conduction; consolidated weak formulations and FEM discretization for linear Kapitza models.}
+\cvitem{Training}{Doctoral training and scientific activities}{}{Completed training in problem solving, random modeling, French A1/A2, scientific Python/JupyterLab, CIMPA Mathematics-AI school, and advanced mechanics; participated in FreeFEM Days, ANR NumOpTES meeting, a control/optimization/AI winter school, and LMAC doctoral seminars.}
 
 \section{Funded Research Projects}
 \cvitem{2023--2026}{Dynamic Multi-Fidelity Reduction Theory and Methods for Large-Scale Structural Dynamics Topology Optimization}{NSFC, Grant No. 12272302}{Contributed to reduced-order modeling strategies for transient structural dynamics topology optimization, including primal-dual model reduction and adaptive basis enrichment.}
