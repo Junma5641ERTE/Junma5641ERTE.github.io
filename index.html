@@ -30,12 +30,12 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
     }
 
     body {
       margin: 0;
-      padding: 0;
+      padding: 0 0 0 260px;
       background: var(--bg-white);
       color: var(--text-dark);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -79,32 +79,40 @@
     /* Header */
     header {
       background: var(--bg-white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
+      border-right: 1px solid var(--border);
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
       z-index: 100;
-      box-shadow: 0 2px 8px var(--shadow);
+      box-shadow: 2px 0 12px var(--shadow);
+      overflow-y: auto;
     }
 
     .header-content {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 1rem 20px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1.5rem;
+      max-width: none;
+      height: 100%;
+      margin: 0;
+      padding: 2rem 1.2rem;
     }
 
     .logo {
       font-family: 'Crimson Pro', serif;
-      font-size: 1.4rem;
+      font-size: 1.55rem;
       font-weight: 600;
       color: var(--primary);
+      line-height: 1.1;
     }
 
     nav {
       display: flex;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 0.22rem;
     }
 
     nav a {
@@ -113,22 +121,40 @@
       font-weight: 500;
       border: none;
       position: relative;
-      padding: 0.3rem 0;
+      padding: 0.48rem 0.65rem;
+      border-radius: 6px;
     }
 
     nav a::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      top: 0.48rem;
+      bottom: 0.48rem;
       left: 0;
-      width: 0;
-      height: 2px;
+      width: 3px;
+      height: auto;
       background: var(--primary);
-      transition: width 0.3s ease;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    nav a:hover {
+      background: var(--bg-gray);
+      color: var(--primary);
+    }
+
+    nav a.active {
+      background: rgba(12, 124, 89, 0.08);
+      color: var(--primary);
+      font-weight: 700;
     }
 
     nav a:hover::after {
-      width: 100%;
+      opacity: 1;
+    }
+
+    nav a.active::after {
+      opacity: 1;
     }
 
     /* Hero Section */
@@ -772,6 +798,45 @@
     }
 
     /* Responsive */
+    @media (max-width: 920px) {
+      body {
+        padding-left: 0;
+      }
+
+      header {
+        position: sticky;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 2px 8px var(--shadow);
+        overflow: visible;
+      }
+
+      .header-content {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.8rem 20px;
+      }
+
+      nav {
+        flex-direction: row;
+        gap: 0.35rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 0.1rem;
+      }
+
+      nav a {
+        padding: 0.35rem 0.55rem;
+      }
+
+      nav a::after {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
@@ -784,10 +849,6 @@
       .avatar {
         width: 140px;
         height: 140px;
-      }
-
-      nav {
-        display: none;
       }
 
       .social-links {
@@ -836,6 +897,7 @@
     <div class="header-content">
       <div class="logo">Jun Ma</div>
       <nav>
+        <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#phd-progress">Progress</a>
@@ -843,14 +905,16 @@
         <a href="#doctoral-experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#awards">Awards</a>
-        <a href="thoughts">Thoughts</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#visitors">Visitors</a>
+        <a href="thoughts.html">Thoughts</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
 <!-- Hero Section -->
-<section class="hero">
+<section id="home" class="hero">
   <div class="container">
     <div class="hero-content">
       <!-- 头像容器（左边） -->
@@ -1490,20 +1554,32 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+
+    const sectionLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+    const sectionMap = new Map(
+      sectionLinks
+        .map(link => [link.getAttribute('href').slice(1), link])
+        .filter(([id]) => document.getElementById(id))
+    );
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visible) return;
+
+        sectionLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = sectionMap.get(visible.target.id);
+        if (activeLink) activeLink.classList.add('active');
+      }, {
+        rootMargin: '-20% 0px -65% 0px',
+        threshold: [0.05, 0.2, 0.5]
       });
-    });
+
+      sectionMap.forEach((_, id) => observer.observe(document.getElementById(id)));
+    }
   </script>
 
 <script>
