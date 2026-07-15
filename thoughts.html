@@ -1,5 +1,6 @@
 ---
-layout: none
+layout: null
+permalink: /thoughts/
 ---
 <!doctype html>
 <html lang="en">
@@ -263,7 +264,7 @@ layout: none
       <a href="/" class="logo">Jun Ma</a>
       <nav>
         <a href="/">Home</a>
-        <a href="/thoughts.html" class="active">Thoughts</a>
+        <a href="/thoughts/" class="active">Thoughts</a>
       </nav>
     </div>
   </header>
@@ -279,7 +280,7 @@ layout: none
       {% for post in site.posts %}
       <li class="post-item">
         <h2 class="post-title">
-          <a href="{{ post.url }}">{{ post.title }}</a>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h2>
         <div class="post-meta">
           <span>📅 {{ post.date | date: "%B %d, %Y" }}</span>
