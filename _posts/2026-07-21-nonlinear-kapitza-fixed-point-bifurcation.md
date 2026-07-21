@@ -218,7 +218,7 @@ $$
 \frac{\alpha}{2}(1-x^2).
 $$
 
-A fixed point is attracting for this numerical iteration if $|\lambda|<1$, and repelling if $|\lambda|>1$.
+A fixed point is attracting for this numerical iteration if $\lvert\lambda\rvert<1$, and repelling if $\lvert\lambda\rvert>1$.
 
 In the symmetric case:
 
@@ -307,9 +307,9 @@ $$
 
 Consequently:
 
-- $|h|<h_c$: three distinct roots;
-- $|h|=h_c$: two distinct roots, one of them double;
-- $|h|>h_c$: one root.
+- $\lvert h\rvert<h_c$: three distinct roots;
+- $\lvert h\rvert=h_c$: two distinct roots, one of them double;
+- $\lvert h\rvert>h_c$: one root.
 
 For $\alpha=3$, $k=1.5$, and
 
@@ -350,7 +350,7 @@ A nonzero bias breaks the reflection symmetry $x\mapsto -x$. The perfect pitchfo
 
 - the branch favored by the sign of $h$ continues smoothly;
 - the other two branches are born in a saddle-node bifurcation;
-- the saddle-node threshold moves to larger $\alpha$ as $|h|$ increases.
+- the saddle-node threshold moves to larger $\alpha$ as $\lvert h\rvert$ increases.
 
 Combining the steady equation with the tangency condition gives
 
@@ -444,11 +444,11 @@ a(\alpha;-h)=\gamma-a(\alpha;h),
 \alpha_{\mathrm{SN}}(-h)=\alpha_{\mathrm{SN}}(h).
 $$
 
-Therefore negative bias is not a different mechanism. It favors the lower attracting branch and moves the saddle-node pair to the upper side, while the threshold for the same $|h|$ is unchanged.
+Therefore negative bias is not a different mechanism. It favors the lower attracting branch and moves the saddle-node pair to the upper side, while the threshold for the same $\lvert h\rvert$ is unchanged.
 
 ![Continuation in alpha for small negative fixed biases](/assets/kapitza/small_negative_bias_alpha_bifurcation.png)
 
-The saddle-node trajectory makes the imperfect-bifurcation geometry clearer. In the $(h,\alpha)$-plane, the exact multiplicity boundary is compared with the local $|h|^{2/3}$ approximation; in the state plot, positive and negative biases move the saddle node to opposite sides of $a=\gamma/2$.
+The saddle-node trajectory makes the imperfect-bifurcation geometry clearer. In the $(h,\alpha)$-plane, the exact multiplicity boundary is compared with the local $\lvert h\rvert^{2/3}$ approximation; in the state plot, positive and negative biases move the saddle node to opposite sides of $a=\gamma/2$.
 
 ![Trajectory of the saddle-node point replacing the pitchfork critical point](/assets/kapitza/critical_point_trajectory.png)
 
@@ -480,24 +480,24 @@ The S-curve is the actual bifurcation diagram for $h$-continuation. The fixed-$h
 
 ## 11. Fixed-state inversion for $h$
 
-A complementary inverse calculation prescribes a target state $a=a_*$ and recovers the compatible bias $h=h_*$. With
+A complementary inverse calculation prescribes a target state $a=a_{\ast}$ and recovers the compatible bias $h=h_{\ast}$. With
 
 $$
-x_*=2(1+\delta)a_*-1,
+x_{\ast}=2(1+\delta)a_{\ast}-1,
 $$
 
 define
 
 $$
-R_{a_*}(h)
+R_{a_{\ast}}(h)
 =
-\tanh(kx_*+h)-x_*.
+\tanh(kx_{\ast}+h)-x_{\ast}.
 $$
 
 The compatible bias is
 
 $$
-h_*=\operatorname{artanh}(x_*)-kx_*.
+h_{\ast}=\operatorname{artanh}(x_{\ast})-kx_{\ast}.
 $$
 
 The code also visualizes a relaxed fixed-point recovery procedure
@@ -505,7 +505,7 @@ The code also visualizes a relaxed fixed-point recovery procedure
 $$
 h_{n+1}
 =
-h_n+x_*-\tanh(kx_*+h_n).
+h_n+x_{\ast}-\tanh(kx_{\ast}+h_n).
 $$
 
 This is parameter inversion. It is not a physical time-dependent evolution, and its convergence should not be used as a physical stability criterion.
@@ -564,7 +564,7 @@ First, nonlinear Kapitza laws can create non-uniqueness even in a one-dimensiona
 
 Second, the threshold $\alpha_c=2$ is not a numerical accident. In the teacher's parameter convention it follows from the slope of the normalized sigmoid at the origin.
 
-Third, the symmetric pitchfork is structurally fragile. A nonzero bias $h$ unfolds it into saddle-node behavior and an S-curve. The local displacement law $\alpha_{\mathrm{SN}}-2\sim C|h|^{2/3}$ is a useful warning: the response to small bias is singular, not linear.
+Third, the symmetric pitchfork is structurally fragile. A nonzero bias $h$ unfolds it into saddle-node behavior and an S-curve. The local displacement law $\alpha_{\mathrm{SN}}-2\sim C\lvert h\rvert^{2/3}$ is a useful warning: the response to small bias is singular, not linear.
 
 Fourth, fixed-point iteration stability should not be confused with physical stability. The multiplier $\lambda$ tells us whether a numerical iteration converges to a fixed point. A time-dependent heat equation would require its own stability analysis.
 
