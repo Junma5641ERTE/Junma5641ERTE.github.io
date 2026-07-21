@@ -5,8 +5,6 @@ date: 2026-07-21
 categories: [PDE, Bifurcation, Heat Transfer, Research]
 ---
 
-# Nonlinear Kapitza Contact Resistance: Fixed-Point Reduction, Pitchfork Bifurcation, and S-Curve Unfolding
-
 These notes summarize a small but useful model problem that I developed while studying nonlinear Kapitza contact resistance in composite heat-conduction problems. The original folder contains French and Chinese understanding notes, a detailed English report, an English Beamer presentation, and reproducible Python/MATLAB codes. This post reorganizes the material into a single research note.
 
 The main point is that a one-dimensional nonlinear transmission problem can be reduced exactly to a scalar fixed-point equation. With the exponential conductance used here, the reduced equation becomes
@@ -21,10 +19,12 @@ The complete English report and presentation are available here:
 
 - [Detailed report: Nonlinear Kapitza Problem](/assets/kapitza/kapitza_solution_en.pdf)
 - [Presentation slides](/assets/kapitza/kapitza_presentation_en.pdf)
+- [View Python source code](/assets/kapitza/code/python.html)
+- [View MATLAB source code](/assets/kapitza/code/matlab.html)
 
 ## 1. The transmission problem
 
-Consider a one-dimensional steady heat-conduction problem on a two-layer domain. The temperature is piecewise affine, and the two subdomains meet at an interface with a temperature jump. The unknown can be reduced to one scalar parameter \(a\), which determines the affine temperature profile.
+Consider a one-dimensional steady heat-conduction problem on a two-layer domain. The temperature is piecewise affine, and the two subdomains meet at an interface with a temperature jump. The unknown can be reduced to one scalar parameter $a$, which determines the affine temperature profile.
 
 The interface jump and heat flux are written as
 
@@ -37,10 +37,10 @@ $$
 
 Here:
 
-- \(s=[u]\) is the temperature jump across the interface;
-- \(q\) is the steady heat flux;
-- \(\delta\) is the material-contrast parameter;
-- \(\beta(s)\) is the nonlinear Kapitza conductance.
+- $s=[u]$ is the temperature jump across the interface;
+- $q$ is the steady heat flux;
+- $\delta$ is the material-contrast parameter;
+- $\beta(s)$ is the nonlinear Kapitza conductance.
 
 The physically admissible interval is
 
@@ -50,7 +50,7 @@ $$
 
 This interval is not an artificial assumption. It comes from the maximum-principle interpretation of the one-dimensional steady state: the interface traces stay between the prescribed boundary values, and positive conductance gives positive heat flow.
 
-Solving the interface balance for \(a\) gives a scalar fixed-point map
+Solving the interface balance for $a$ gives a scalar fixed-point map
 
 $$
 a=F(a)
@@ -59,7 +59,7 @@ a=F(a)
 {\delta+(1+\delta)\beta(1-(1+\delta)a)}.
 $$
 
-Every fixed point of \(F\) corresponds to one steady transmission state.
+Every fixed point of $F$ corresponds to one steady transmission state.
 
 ## 2. The exponential Kapitza law
 
@@ -73,7 +73,7 @@ $$
 }
 $$
 
-The symmetric law is obtained when \(h=0\). The parameter \(h\) is a bias parameter; it multiplies the whole conductance by \(e^{2h}\). The variable \(d\) used in the teacher's short Scilab code is the same quantity as \(\delta\) in these notes.
+The symmetric law is obtained when $h=0$. The parameter $h$ is a bias parameter; it multiplies the whole conductance by $e^{2h}$. The variable $d$ used in the teacher's short Scilab code is the same quantity as $\delta$ in these notes.
 
 This nonlinear law is always positive. It is decreasing and convex as a function of the jump:
 
@@ -96,7 +96,7 @@ $$
 
 The important point is that the nonlinear interface law is not merely similar to a sigmoid map. It is exactly equivalent to one after the one-dimensional reduction.
 
-For the teacher's subcritical example with \(\delta=0.5\) and \(\alpha=1.5\), the fixed-point map has a single intersection:
+For the teacher's subcritical example with $\delta=0.5$ and $\alpha=1.5$, the fixed-point map has a single intersection:
 
 $$
 a=\frac13,
@@ -134,7 +134,7 @@ x=\tanh\left(\frac{\alpha}{2}x+h\right).
 }
 $$
 
-The material parameter \(\delta\) still matters when reconstructing the physical state \(a\), but it disappears from the normalized root equation. This is why the critical threshold in the teacher's \(\alpha\)-convention is universal:
+The material parameter $\delta$ still matters when reconstructing the physical state $a$, but it disappears from the normalized root equation. This is why the critical threshold in the teacher's $\alpha$-convention is universal:
 
 $$
 \alpha_c=2.
@@ -142,19 +142,19 @@ $$
 
 ## 4. Symmetric case: one root or three roots
 
-Set \(h=0\), and define \(k=\alpha/2\). The residual is
+Set $h=0$, and define $k=\alpha/2$. The residual is
 
 $$
 G(x)=\tanh(kx)-x.
 $$
 
-The function \(G\) is odd. Moreover,
+The function $G$ is odd. Moreover,
 
 $$
 G'(x)=k\,\operatorname{sech}^2(kx)-1.
 $$
 
-If \(k\le 1\), or equivalently \(\alpha\le 2\), the origin is the unique root. If \(k>1\), then the origin remains a root, but two additional nonzero roots appear symmetrically. Thus
+If $k\le 1$, or equivalently $\alpha\le 2$, the origin is the unique root. If $k>1$, then the origin remains a root, but two additional nonzero roots appear symmetrically. Thus
 
 $$
 \boxed{
@@ -191,7 +191,7 @@ $$
 =1+\frac{x^2}{3}+O(x^4),
 $$
 
-the two outer branches emerge continuously from the central state at \(\alpha=2\). This is the classical geometry of a supercritical pitchfork.
+the two outer branches emerge continuously from the central state at $\alpha=2$. This is the classical geometry of a supercritical pitchfork.
 
 ![Fixed-point intersections below, at, and above the universal threshold](/assets/kapitza/fixed_point_regimes.png)
 
@@ -218,14 +218,14 @@ $$
 \frac{\alpha}{2}(1-x^2).
 $$
 
-A fixed point is attracting for this numerical iteration if \(|\lambda|<1\), and repelling if \(|\lambda|>1\).
+A fixed point is attracting for this numerical iteration if $|\lambda|<1$, and repelling if $|\lambda|>1$.
 
 In the symmetric case:
 
-- the central branch has multiplier \(\lambda=\alpha/2\);
-- it is attracting for \(\alpha<2\);
-- it is repelling for \(\alpha>2\);
-- at \(\alpha=2\), the linearization is neutral;
+- the central branch has multiplier $\lambda=\alpha/2$;
+- it is attracting for $\alpha<2$;
+- it is repelling for $\alpha>2$;
+- at $\alpha=2$, the linearization is neutral;
 - the outer branches are attracting.
 
 At the critical point, the convergence is not geometric. Since
@@ -240,9 +240,9 @@ This stability statement is deliberately limited. It classifies the scalar fixed
 
 ![Cobweb paths showing convergence, critical slowing, and outer-branch selection](/assets/kapitza/cobweb_regimes.png)
 
-## 6. Numerical example: \(\delta=0.5,\alpha=3\)
+## 6. Numerical example: $\delta=0.5,\alpha=3$
 
-For the symmetric supercritical example with \(\delta=0.5\) and \(\alpha=3\), the physical interval is
+For the symmetric supercritical example with $\delta=0.5$ and $\alpha=3$, the physical interval is
 
 $$
 \gamma=\frac{1}{1+\delta}=\frac23.
@@ -250,7 +250,7 @@ $$
 
 The computations recover three steady states:
 
-| \(x\) | \(a\) | \(s\) | \(\beta(s)\) | \(q\) | \(\lambda\) | Fixed-point iteration |
+| $x$ | $a$ | $s$ | $\beta(s)$ | $q$ | $\lambda$ | Fixed-point iteration |
 |---:|---:|---:|---:|---:|---:|:---|
 | -0.858560 | 0.047147 | 0.929280 | 0.025367 | 0.023573 | 0.394313 | attracting |
 | 0.000000 | 0.333333 | 0.500000 | 0.333333 | 0.166667 | 1.500000 | repelling |
@@ -272,16 +272,16 @@ $$
 \beta_h(s)=e^{2h}\beta_0(s).
 $$
 
-Thus \(h\) rescales the entire interface conductance without changing its shape as a function of \(s\).
+Thus $h$ rescales the entire interface conductance without changing its shape as a function of $s$.
 
-In the normalized equation, solve for \(h\):
+In the normalized equation, solve for $h$:
 
 $$
 h(x)=\operatorname{artanh}(x)-kx,
 \qquad k=\frac{\alpha}{2}.
 $$
 
-When \(k>1\), the fold condition is
+When $k>1$, the fold condition is
 
 $$
 \frac{dh}{dx}
@@ -307,11 +307,11 @@ $$
 
 Consequently:
 
-- \(|h|<h_c\): three distinct roots;
-- \(|h|=h_c\): two distinct roots, one of them double;
-- \(|h|>h_c\): one root.
+- $|h|<h_c$: three distinct roots;
+- $|h|=h_c$: two distinct roots, one of them double;
+- $|h|>h_c$: one root.
 
-For \(\alpha=3\), \(k=1.5\), and
+For $\alpha=3$, $k=1.5$, and
 
 $$
 x_f=0.577350269190,
@@ -319,15 +319,15 @@ x_f=0.577350269190,
 h_c=0.207546455322.
 $$
 
-The sample biased case uses \(h=h_c/2=0.103773227661\), giving:
+The sample biased case uses $h=h_c/2=0.103773227661$, giving:
 
-| \(x\) | \(a\) | \(s\) | \(\beta_h(s)\) | \(q\) | \(\lambda\) | Fixed-point iteration |
+| $x$ | $a$ | $s$ | $\beta_h(s)$ | $q$ | $\lambda$ | Fixed-point iteration |
 |---:|---:|---:|---:|---:|---:|:---|
 | -0.798116 | 0.067295 | 0.899058 | 0.037425 | 0.033647 | 0.544516 | attracting |
 | -0.214294 | 0.261902 | 0.607147 | 0.215683 | 0.130951 | 1.431117 | repelling |
 | 0.894934 | 0.631645 | 0.052533 | 6.011867 | 0.315822 | 0.298641 | attracting |
 
-These same states can be represented either as fixed-point intersections of \(F_{\alpha,h}\) with the identity or as intersections of the two heat-flux curves
+These same states can be represented either as fixed-point intersections of $F_{\alpha,h}$ with the identity or as intersections of the two heat-flux curves
 
 $$
 q_K(s)=\beta_h(s)s,
@@ -337,20 +337,20 @@ $$
 
 ![A fixed-h slice of the biased model and two cobweb basins](/assets/kapitza/s_curve_fixed_point_cobweb.png)
 
-## 8. Continuing in \(\alpha\) with small fixed bias
+## 8. Continuing in $\alpha$ with small fixed bias
 
-To keep \(\alpha\) as the bifurcation parameter, fix a small nonzero \(h\) and solve the steady equation for \(\alpha\). For \(x\ne0\),
+To keep $\alpha$ as the bifurcation parameter, fix a small nonzero $h$ and solve the steady equation for $\alpha$. For $x\ne0$,
 
 $$
 \alpha(x;h)=
 2\frac{\operatorname{artanh}(x)-h}{x}.
 $$
 
-A nonzero bias breaks the reflection symmetry \(x\mapsto -x\). The perfect pitchfork no longer exists. Instead:
+A nonzero bias breaks the reflection symmetry $x\mapsto -x$. The perfect pitchfork no longer exists. Instead:
 
-- the branch favored by the sign of \(h\) continues smoothly;
+- the branch favored by the sign of $h$ continues smoothly;
 - the other two branches are born in a saddle-node bifurcation;
-- the saddle-node threshold moves to larger \(\alpha\) as \(|h|\) increases.
+- the saddle-node threshold moves to larger $\alpha$ as $|h|$ increases.
 
 Combining the steady equation with the tangency condition gives
 
@@ -380,7 +380,7 @@ $$
 \{2.000000,\ 2.041774,\ 2.077216,\ 2.123116,\ 2.196796,\ 2.315799\}.
 $$
 
-Thus even a very small bias destroys the exact pitchfork. The shift is not linear in \(h\). Near the symmetric critical state,
+Thus even a very small bias destroys the exact pitchfork. The shift is not linear in $h$. Near the symmetric critical state,
 
 $$
 \operatorname{artanh}(x)
@@ -410,7 +410,7 @@ x_{\mathrm{SN}}=O(|h|^{1/3}),
 \alpha_{\mathrm{SN}}-2=O(|h|^{2/3}).
 $$
 
-More precisely, for \(h\to0^+\),
+More precisely, for $h\to0^+$,
 
 $$
 \alpha_{\mathrm{SN}}-2
@@ -436,7 +436,7 @@ $$
 a=\frac{\gamma}{2}(1+x),
 $$
 
-changing the sign of the bias reflects the physical branches through the midpoint \(a=\gamma/2\):
+changing the sign of the bias reflects the physical branches through the midpoint $a=\gamma/2$:
 
 $$
 a(\alpha;-h)=\gamma-a(\alpha;h),
@@ -444,23 +444,23 @@ a(\alpha;-h)=\gamma-a(\alpha;h),
 \alpha_{\mathrm{SN}}(-h)=\alpha_{\mathrm{SN}}(h).
 $$
 
-Therefore negative bias is not a different mechanism. It favors the lower attracting branch and moves the saddle-node pair to the upper side, while the threshold for the same \(|h|\) is unchanged.
+Therefore negative bias is not a different mechanism. It favors the lower attracting branch and moves the saddle-node pair to the upper side, while the threshold for the same $|h|$ is unchanged.
 
 ![Continuation in alpha for small negative fixed biases](/assets/kapitza/small_negative_bias_alpha_bifurcation.png)
 
-The saddle-node trajectory makes the imperfect-bifurcation geometry clearer. In the \((h,\alpha)\)-plane, the exact multiplicity boundary is compared with the local \(|h|^{2/3}\) approximation; in the state plot, positive and negative biases move the saddle node to opposite sides of \(a=\gamma/2\).
+The saddle-node trajectory makes the imperfect-bifurcation geometry clearer. In the $(h,\alpha)$-plane, the exact multiplicity boundary is compared with the local $|h|^{2/3}$ approximation; in the state plot, positive and negative biases move the saddle node to opposite sides of $a=\gamma/2$.
 
 ![Trajectory of the saddle-node point replacing the pitchfork critical point](/assets/kapitza/critical_point_trajectory.png)
 
-## 10. The S-curve with \(h\) as continuation parameter
+## 10. The S-curve with $h$ as continuation parameter
 
-The S-curve viewpoint fixes \(\alpha\) and uses \(h\) as the continuation parameter. The curve is
+The S-curve viewpoint fixes $\alpha$ and uses $h$ as the continuation parameter. The curve is
 
 $$
 h(x)=\operatorname{artanh}(x)-kx.
 $$
 
-For \(\alpha=3\), the two folds occur at \(h=\pm h_c\), with
+For $\alpha=3$, the two folds occur at $h=\pm h_c$, with
 
 $$
 h_c=0.207546455322.
@@ -474,13 +474,13 @@ $$
 
 so that the folds are not visually compressed.
 
-The S-curve is the actual bifurcation diagram for \(h\)-continuation. The fixed-\(h\) cobweb figure is a slice through this family; its axes are \(a_n\) and \(a_{n+1}\) because once \(h\) is fixed, the iterated variable is the state \(a\), not the parameter \(h\).
+The S-curve is the actual bifurcation diagram for $h$-continuation. The fixed-$h$ cobweb figure is a slice through this family; its axes are $a_n$ and $a_{n+1}$ because once $h$ is fixed, the iterated variable is the state $a$, not the parameter $h$.
 
 ![S-curve continuation and equivalent heat-flux intersections](/assets/kapitza/s_curve.png)
 
-## 11. Fixed-state inversion for \(h\)
+## 11. Fixed-state inversion for $h$
 
-A complementary inverse calculation prescribes a target state \(a=a_*\) and recovers the compatible bias \(h=h_*\). With
+A complementary inverse calculation prescribes a target state $a=a_*$ and recovers the compatible bias $h=h_*$. With
 
 $$
 x_*=2(1+\delta)a_*-1,
@@ -516,17 +516,17 @@ This is parameter inversion. It is not a physical time-dependent evolution, and 
 
 Both the Python and MATLAB implementations follow the same four stages:
 
-1. Evaluate \(\beta_h(s)\) and \(F_{\alpha,h}(a)\).
+1. Evaluate $\beta_h(s)$ and $F_{\alpha,h}(a)$.
 2. Solve the normalized residual
 
    $$
    R(x)=\tanh(\alpha x/2+h)-x.
    $$
 
-3. Reconstruct \(a\), \(s\), \(\beta\), \(q\), and \(\lambda\).
+3. Reconstruct $a$, $s$, $\beta$, $q$, and $\lambda$.
 4. Generate fixed-point intersections, cobwebs, bifurcation curves, S-curves, and CSV data.
 
-For \(\alpha>2\), the residual has stationary points at
+For $\alpha>2$, the residual has stationary points at
 
 $$
 x=\pm\sqrt{1-\frac{2}{\alpha}}.
@@ -549,17 +549,24 @@ run('code/matlab/kapitza_numerical.m')
 
 The two implementations were written to match the same mathematics and regenerate the same canonical figures. Python also writes CSV tables for the reconstructed states and iteration multipliers.
 
+For convenience, I have also published the source files as readable web pages:
+
+| Implementation | View in browser | Download source |
+|---|---|---|
+| Python | [kapitza_numerical.py](/assets/kapitza/code/python.html) | [Download .py](/assets/kapitza/code/kapitza_numerical.py) |
+| MATLAB | [kapitza_numerical.m](/assets/kapitza/code/matlab.html) | [Download .m](/assets/kapitza/code/kapitza_numerical.m) |
+
 ## 13. What this model clarifies
 
 This model is small, but it clarifies several points that matter for nonlinear interface problems.
 
 First, nonlinear Kapitza laws can create non-uniqueness even in a one-dimensional steady problem. The mechanism is visible after reduction to one scalar fixed-point equation.
 
-Second, the threshold \(\alpha_c=2\) is not a numerical accident. In the teacher's parameter convention it follows from the slope of the normalized sigmoid at the origin.
+Second, the threshold $\alpha_c=2$ is not a numerical accident. In the teacher's parameter convention it follows from the slope of the normalized sigmoid at the origin.
 
-Third, the symmetric pitchfork is structurally fragile. A nonzero bias \(h\) unfolds it into saddle-node behavior and an S-curve. The local displacement law \(\alpha_{\mathrm{SN}}-2\sim C|h|^{2/3}\) is a useful warning: the response to small bias is singular, not linear.
+Third, the symmetric pitchfork is structurally fragile. A nonzero bias $h$ unfolds it into saddle-node behavior and an S-curve. The local displacement law $\alpha_{\mathrm{SN}}-2\sim C|h|^{2/3}$ is a useful warning: the response to small bias is singular, not linear.
 
-Fourth, fixed-point iteration stability should not be confused with physical stability. The multiplier \(\lambda\) tells us whether a numerical iteration converges to a fixed point. A time-dependent heat equation would require its own stability analysis.
+Fourth, fixed-point iteration stability should not be confused with physical stability. The multiplier $\lambda$ tells us whether a numerical iteration converges to a fixed point. A time-dependent heat equation would require its own stability analysis.
 
 Finally, the same mathematics can be made reproducible in both Python and MATLAB. The key is to keep the parameter convention explicit, reconstruct physical variables after solving the normalized equation, and distinguish carefully between continuation parameters and iterated state variables.
 
@@ -579,6 +586,6 @@ $$
 x=\tanh\left(\frac{\alpha}{2}x+h\right).
 $$
 
-For \(h=0\), the universal threshold is \(\alpha_c=2\). Below threshold there is one steady state; above threshold there are three, organized by a supercritical pitchfork. For \(h\ne0\), the pitchfork unfolds into saddle-node folds and an S-curve. The numerical codes reproduce the analytical branches, cobweb behavior, heat-flux intersections, fold trajectory, and fixed-state inversion.
+For $h=0$, the universal threshold is $\alpha_c=2$. Below threshold there is one steady state; above threshold there are three, organized by a supercritical pitchfork. For $h\ne0$, the pitchfork unfolds into saddle-node folds and an S-curve. The numerical codes reproduce the analytical branches, cobweb behavior, heat-flux intersections, fold trajectory, and fixed-state inversion.
 
 These notes are a compact model for thinking about nonlinear contact resistance, bifurcation, and numerical branch reconstruction in more general composite-domain heat-transfer problems.
