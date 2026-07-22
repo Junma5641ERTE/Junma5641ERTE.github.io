@@ -332,16 +332,96 @@
       margin-bottom: 0.75rem;
     }
 
-    .reader-map a {
-      display: inline-block;
-      border-bottom: 0;
+    .reader-map-panel {
+      position: relative;
+      min-width: 0;
     }
 
-    .reader-map img {
+    #reader-world-map {
       display: block;
-      max-width: 100%;
-      height: auto;
-      border: 0;
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      min-height: 220px;
+      overflow: visible;
+    }
+
+    .reader-region {
+      stroke: #171717;
+      stroke-width: 0.55;
+      vector-effect: non-scaling-stroke;
+      transition: fill 0.18s ease;
+    }
+
+    .reader-region.has-visits {
+      cursor: pointer;
+    }
+
+    .reader-region.has-visits:hover,
+    .reader-region.has-visits:focus {
+      stroke-width: 1.4;
+      outline: none;
+    }
+
+    .reader-map-tooltip {
+      position: absolute;
+      z-index: 3;
+      min-width: 130px;
+      padding: 0.55rem 0.7rem;
+      background: var(--text-dark);
+      color: var(--bg-white);
+      border-radius: 4px;
+      box-shadow: 0 4px 14px var(--shadow);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      pointer-events: none;
+      transform: translate(-50%, calc(-100% - 10px));
+    }
+
+    .reader-map-tooltip[hidden] {
+      display: none;
+    }
+
+    .reader-map-tooltip strong,
+    .reader-map-tooltip span {
+      display: block;
+    }
+
+    .reader-map-legend {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 0.35rem;
+      color: var(--text-light);
+      font-size: 0.75rem;
+    }
+
+    .reader-map-gradient {
+      width: min(150px, 42%);
+      height: 8px;
+      background: linear-gradient(90deg, #dcefe8, #0C7C59);
+      border: 1px solid var(--border);
+    }
+
+    .reader-map-selection {
+      min-height: 1.35rem;
+      margin: 0.5rem 0 0;
+      color: var(--text-light);
+      font-size: 0.78rem;
+    }
+
+    .reader-map-source {
+      display: inline-block;
+      margin-top: 0.35rem;
+      color: var(--text-light);
+      font-size: 0.72rem;
+    }
+
+    .reader-counter-pixel {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .statistics-note {
@@ -442,13 +522,28 @@
             <strong class="view-total-value" id="article-view-count">Loading</strong>
           </div>
           <div class="reader-map">
-            <span class="reader-map-label">Readers by country</span>
-            <a href="https://s01.flagcounter.com/more/9iO" target="_blank" rel="noopener">
-              <img src="https://s01.flagcounter.com/map/9iO/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_Readers/flags_0/" alt="Map showing the countries of website readers">
-            </a>
+            <span class="reader-map-label">Readers by country or region</span>
+            <div class="reader-map-panel" id="reader-map-panel">
+              <svg id="reader-world-map" role="img" aria-labelledby="reader-map-title reader-map-description">
+                <title id="reader-map-title">Global distribution of website readers</title>
+                <desc id="reader-map-description">Countries and regions are shaded according to recorded visits. Taiwan is included in the China map group.</desc>
+              </svg>
+              <div class="reader-map-tooltip" id="reader-map-tooltip" hidden>
+                <strong id="reader-tooltip-region"></strong>
+                <span id="reader-tooltip-count"></span>
+              </div>
+            </div>
+            <div class="reader-map-legend" aria-label="Reader count color scale">
+              <span>Fewer</span>
+              <span class="reader-map-gradient" aria-hidden="true"></span>
+              <span>More readers</span>
+            </div>
+            <p class="reader-map-selection" id="reader-map-selection">Hover over or select a highlighted country or region.</p>
+            <a class="reader-map-source" href="https://s01.flagcounter.com/more/9iO" target="_blank" rel="noopener">Site-wide location data</a>
+            <img class="reader-counter-pixel" src="https://s01.flagcounter.com/count2/9iO/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_250/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="" aria-hidden="true">
           </div>
         </div>
-        <p class="statistics-note">Article views are counted separately for this page. The country map is aggregated across this website and may update with a short delay.</p>
+        <p class="statistics-note">Article views are counted separately for this page. The country-and-region map is aggregated across this website and may update with a short delay.</p>
       </section>
     </article>
 
@@ -494,6 +589,120 @@
         countElements.forEach(element => { element.textContent = "Unavailable"; });
       }
     })();
+  </script>
+  <script type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    import { feature } from "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm";
+    import world from "https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m";
+
+    const mapPanel = document.getElementById("reader-map-panel");
+    const mapElement = document.getElementById("reader-world-map");
+    const tooltip = document.getElementById("reader-map-tooltip");
+    const tooltipRegion = document.getElementById("reader-tooltip-region");
+    const tooltipCount = document.getElementById("reader-tooltip-count");
+    const selectionText = document.getElementById("reader-map-selection");
+    const svg = d3.select(mapElement);
+
+    try {
+      const response = await fetch("/assets/data/visitor-stats.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("Reader statistics unavailable");
+
+      const statistics = await response.json();
+      const visitorByIso3 = new Map(statistics.countries.map(region => [region.iso3, region]));
+      const sourceFeatures = feature(world, world.objects.features).features;
+      const china = sourceFeatures.find(region => region.properties.id === "CHN");
+      const taiwan = sourceFeatures.find(region => region.properties.id === "TWN");
+      const mergeChinaMapGroup = Boolean(china && taiwan);
+
+      function polygonParts(geometry) {
+        if (geometry.type === "Polygon") return [geometry.coordinates];
+        if (geometry.type === "MultiPolygon") return geometry.coordinates;
+        return [];
+      }
+
+      const worldRegions = sourceFeatures
+        .filter(region => !mergeChinaMapGroup || region.properties.id !== "TWN")
+        .map(region => {
+          if (!mergeChinaMapGroup || region.properties.id !== "CHN") return region;
+          return {
+            ...region,
+            geometry: {
+              type: "MultiPolygon",
+              coordinates: [
+                ...polygonParts(china.geometry),
+                ...polygonParts(taiwan.geometry)
+              ]
+            }
+          };
+        });
+
+      const maximum = d3.max(statistics.countries, region => region.visitors) || 1;
+      const color = d3.scaleSequentialSqrt([1, maximum], ["#dcefe8", "#0C7C59"]);
+
+      function showRegion(region, event) {
+        if (!region) return;
+        tooltipRegion.textContent = region.name;
+        tooltipCount.textContent = `${region.visitors.toLocaleString("en-US")} reader${region.visitors === 1 ? "" : "s"}`;
+        selectionText.textContent = `${region.name}: ${region.visitors.toLocaleString("en-US")} reader${region.visitors === 1 ? "" : "s"}`;
+        tooltip.hidden = false;
+
+        const panelRect = mapPanel.getBoundingClientRect();
+        const x = Math.min(Math.max(event.clientX - panelRect.left, 80), panelRect.width - 80);
+        const y = Math.max(event.clientY - panelRect.top, 65);
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${y}px`;
+      }
+
+      function hideTooltip() {
+        tooltip.hidden = true;
+      }
+
+      function renderMap() {
+        const width = Math.max(mapElement.clientWidth, 280);
+        const height = Math.max(Math.round(width / 2), 220);
+        const collection = { type: "FeatureCollection", features: worldRegions };
+        const projection = d3.geoNaturalEarth1().fitExtent([[5, 7], [width - 5, height - 7]], collection);
+        const path = d3.geoPath(projection);
+
+        svg.attr("viewBox", `0 0 ${width} ${height}`);
+        svg.selectAll("path")
+          .data(worldRegions, region => region.properties.id)
+          .join("path")
+          .attr("class", region => visitorByIso3.has(region.properties.id) ? "reader-region has-visits" : "reader-region")
+          .attr("d", path)
+          .attr("fill", region => {
+            const visitor = visitorByIso3.get(region.properties.id);
+            return visitor ? color(visitor.visitors) : "#f4f5f3";
+          })
+          .attr("tabindex", region => visitorByIso3.has(region.properties.id) ? 0 : null)
+          .attr("role", region => visitorByIso3.has(region.properties.id) ? "button" : null)
+          .attr("aria-label", region => {
+            const visitor = visitorByIso3.get(region.properties.id);
+            return visitor ? `${visitor.name}: ${visitor.visitors} readers` : null;
+          })
+          .on("pointerenter pointermove", function(event, region) {
+            showRegion(visitorByIso3.get(region.properties.id), event);
+          })
+          .on("pointerleave", hideTooltip)
+          .on("click", function(event, region) {
+            showRegion(visitorByIso3.get(region.properties.id), event);
+          })
+          .on("focus", function(event, region) {
+            const [x, y] = path.centroid(region);
+            const svgRect = mapElement.getBoundingClientRect();
+            showRegion(visitorByIso3.get(region.properties.id), {
+              clientX: svgRect.left + x * (svgRect.width / width),
+              clientY: svgRect.top + y * (svgRect.height / height)
+            });
+          })
+          .on("blur", hideTooltip);
+      }
+
+      renderMap();
+      new ResizeObserver(renderMap).observe(mapPanel);
+    } catch (error) {
+      selectionText.textContent = "Reader location statistics are temporarily unavailable.";
+    }
   </script>
 </body>
 </html>
