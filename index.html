@@ -1679,7 +1679,7 @@
             </div>
             <svg id="visitor-world-map" role="img" aria-labelledby="visitor-map-title visitor-map-description">
               <title id="visitor-map-title">Global distribution of website visitors</title>
-              <desc id="visitor-map-description">Countries are shaded according to their number of recorded visitors.</desc>
+              <desc id="visitor-map-description">Countries and regions are shaded according to their number of recorded visitors. Taiwan is included in the China map group.</desc>
             </svg>
             <div class="visitor-map-tooltip" id="visitor-map-tooltip" hidden>
               <strong id="visitor-tooltip-country"></strong>
@@ -1690,18 +1690,18 @@
               <span class="visitor-map-gradient" aria-hidden="true"></span>
               <span>More visitors</span>
             </div>
-            <p class="visitor-map-selection" id="visitor-map-selection">Hover over or select a highlighted country to see its visitor count.</p>
+            <p class="visitor-map-selection" id="visitor-map-selection">Hover over or select a highlighted country or region to see its visitor count.</p>
           </div>
 
           <aside class="visitor-ranking" aria-labelledby="visitor-ranking-title">
-            <h3 id="visitor-ranking-title">Visitors by country</h3>
+            <h3 id="visitor-ranking-title">Visitors by country or region</h3>
             <ol class="visitor-country-list" id="visitor-country-list">
               <li class="visitor-map-status">Loading visitor statistics</li>
             </ol>
             <div class="visitor-source">
               <span class="visitor-source-label">Live counter and data source</span>
               <a href="https://s01.flagcounter.com/more/9iO" target="_blank" rel="noopener">
-                <img src="https://s01.flagcounter.com/count2/9iO/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_250/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter showing live country totals and page views">
+                <img src="https://s01.flagcounter.com/count2/9iO/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_250/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter showing live country and region totals and page views">
               </a>
               <span class="visitor-updated" id="visitor-updated"></span>
             </div>
@@ -1801,12 +1801,37 @@
 
       const statistics = await response.json();
       const visitorByIso3 = new Map(statistics.countries.map(country => [country.iso3, country]));
-      const worldCountries = feature(world, world.objects.features).features;
+      const sourceFeatures = feature(world, world.objects.features).features;
+      const china = sourceFeatures.find(region => region.properties.id === "CHN");
+      const taiwan = sourceFeatures.find(region => region.properties.id === "TWN");
+      const mergeChinaMapGroup = Boolean(china && taiwan);
+
+      function polygonParts(geometry) {
+        if (geometry.type === "Polygon") return [geometry.coordinates];
+        if (geometry.type === "MultiPolygon") return geometry.coordinates;
+        return [];
+      }
+
+      const worldCountries = sourceFeatures
+        .filter(region => !mergeChinaMapGroup || region.properties.id !== "TWN")
+        .map(region => {
+          if (!mergeChinaMapGroup || region.properties.id !== "CHN") return region;
+          return {
+            ...region,
+            geometry: {
+              type: "MultiPolygon",
+              coordinates: [
+                ...polygonParts(china.geometry),
+                ...polygonParts(taiwan.geometry)
+              ]
+            }
+          };
+        });
       const maximum = d3.max(statistics.countries, country => country.visitors) || 1;
       const color = d3.scaleSequentialSqrt([1, maximum], ["#dcefe8", "#0C7C59"]);
 
       totalElement.textContent = Number(statistics.total_visitors).toLocaleString("en-US");
-      updatedElement.textContent = `Country data updated ${new Date(statistics.updated_at).toLocaleDateString("en-GB")}`;
+      updatedElement.textContent = `Location data updated ${new Date(statistics.updated_at).toLocaleDateString("en-GB")}`;
 
       countryList.replaceChildren(...statistics.countries.map(country => {
         const item = document.createElement("li");

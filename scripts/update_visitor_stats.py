@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the country-level visitor data used by the homepage map."""
+"""Refresh the country-and-region visitor data used by the homepage map."""
 
 from __future__ import annotations
 
@@ -14,6 +14,13 @@ COUNTER_ID = "9iO"
 COUNTRIES_URL = f"https://s01.flagcounter.com/countries/{COUNTER_ID}/"
 METADATA_URL = "https://cdn.jsdelivr.net/npm/world-countries@5.1.0/countries.json"
 OUTPUT_PATH = Path(__file__).resolve().parents[1] / "assets/data/visitor-stats.json"
+
+# FlagCounter reports Taiwan separately. The public map presents those visits
+# together with China so the ranking, total, fill color, and tooltip stay aligned.
+VISITOR_REGION_GROUPS = {
+    "CN": ("CN", "China (including Taiwan region)"),
+    "TW": ("CN", "China (including Taiwan region)"),
+}
 
 
 class CountryTableParser(HTMLParser):
@@ -103,11 +110,11 @@ def parse_country_counts(document: str) -> list[dict[str, object]]:
         path_parts = country_anchor["href"].strip("/").split("/")
         if len(path_parts) < 3:
             continue
-        code = path_parts[1].upper()
-        name = country_anchor["text"]
+        source_code = path_parts[1].upper()
+        source_name = country_anchor["text"]
 
         try:
-            name_index = cells.index(name)
+            name_index = cells.index(source_name)
         except ValueError:
             continue
 
@@ -116,7 +123,17 @@ def parse_country_counts(document: str) -> list[dict[str, object]]:
             None,
         )
         if count is not None:
-            countries[code] = {"code": code, "name": name, "visitors": count}
+            code, name = VISITOR_REGION_GROUPS.get(
+                source_code, (source_code, source_name)
+            )
+            if code in countries:
+                countries[code]["visitors"] += count
+            else:
+                countries[code] = {
+                    "code": code,
+                    "name": name,
+                    "visitors": count,
+                }
 
     return sorted(countries.values(), key=lambda country: (-country["visitors"], country["name"]))
 
