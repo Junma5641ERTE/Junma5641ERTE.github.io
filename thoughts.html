@@ -193,6 +193,12 @@ permalink: /thoughts/
       margin-bottom: 1rem;
     }
 
+    .post-meta span + span::before {
+      content: "\00b7";
+      margin: 0 0.65rem;
+      color: var(--border);
+    }
+
     .post-excerpt {
       color: var(--text-gray);
       line-height: 1.6;
@@ -283,7 +289,8 @@ permalink: /thoughts/
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h2>
         <div class="post-meta">
-          <span>📅 {{ post.date | date: "%B %d, %Y" }}</span>
+          <span>{{ post.date | date: "%B %d, %Y" }}</span>
+          <span><span class="post-view-count" data-post-path="{{ post.url }}">Loading</span> views</span>
         </div>
         <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
         {% if post.categories %}
@@ -315,6 +322,24 @@ permalink: /thoughts/
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll(".post-view-count").forEach(async element => {
+      const site = "junma5641erte.github.io";
+      const path = element.dataset.postPath;
+      const query = `site=${encodeURIComponent(site)}&path=${encodeURIComponent(path)}`;
+
+      try {
+        const response = await fetch(`https://page-views-api.ratneshc.com/api/v1/views?${query}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) throw new Error("View count unavailable");
+
+        const data = await response.json();
+        element.textContent = Number(data.views).toLocaleString("en-US");
+      } catch (error) {
+        element.textContent = "Unavailable";
+      }
+    });
   </script>
 </body>
 </html>

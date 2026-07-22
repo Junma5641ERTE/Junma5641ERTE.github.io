@@ -167,6 +167,12 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .post-meta span + span::before {
+      content: "\00b7";
+      margin: 0 0.65rem;
+      color: var(--border);
+    }
+
     /* Post Content */
     .post-content {
       font-size: 1.05rem;
@@ -277,6 +283,74 @@
       margin: 0.5rem 0;
     }
 
+    /* Per-article readership and site-wide geographic distribution */
+    .reader-statistics {
+      margin-top: 3.5rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .reader-statistics h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .reader-statistics-grid {
+      display: grid;
+      grid-template-columns: minmax(160px, 0.65fr) minmax(280px, 1.35fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .view-total {
+      padding-top: 0.4rem;
+    }
+
+    .view-total-label,
+    .reader-map-label {
+      display: block;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .view-total-value {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--text-dark);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .reader-map-label {
+      margin-bottom: 0.75rem;
+    }
+
+    .reader-map a {
+      display: inline-block;
+      border-bottom: 0;
+    }
+
+    .reader-map img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border: 0;
+    }
+
+    .statistics-note {
+      margin: 1rem 0 0;
+      color: var(--text-light);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
     /* Back link */
     .back-link {
       display: inline-block;
@@ -325,6 +399,11 @@
       .post-content table td {
         padding: 0.6rem;
       }
+
+      .reader-statistics-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -345,14 +424,32 @@
     <article>
       <h1>{{ page.title }}</h1>
       <div class="post-meta">
-        <span>📅 {{ page.date | date: "%B %d, %Y" }}</span>
+        <span>{{ page.date | date: "%B %d, %Y" }}</span>
+        <span><span id="article-view-count-meta">Loading</span> views</span>
         {% if page.categories %}
-        <span style="margin-left: 1rem;">🏷️ {{ page.categories | join: ', ' }}</span>
+        <span>{{ page.categories | join: ', ' }}</span>
         {% endif %}
       </div>
       <div class="post-content">
         {{ content }}
       </div>
+
+      <section class="reader-statistics" aria-labelledby="reader-statistics-title">
+        <h2 id="reader-statistics-title">Reader Statistics</h2>
+        <div class="reader-statistics-grid">
+          <div class="view-total">
+            <span class="view-total-label">Article views</span>
+            <strong class="view-total-value" id="article-view-count">Loading</strong>
+          </div>
+          <div class="reader-map">
+            <span class="reader-map-label">Readers by country</span>
+            <a href="https://s01.flagcounter.com/more/9iO" target="_blank" rel="noopener">
+              <img src="https://s01.flagcounter.com/map/9iO/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_Readers/flags_0/" alt="Map showing the countries of website readers">
+            </a>
+          </div>
+        </div>
+        <p class="statistics-note">Article views are counted separately for this page. The country map is aggregated across this website and may update with a short delay.</p>
+      </section>
     </article>
 
     <a href="/thoughts/" class="back-link">← Back to All Thoughts</a>
@@ -367,6 +464,36 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    (async function updateArticleViews() {
+      const site = "junma5641erte.github.io";
+      const path = {{ page.url | jsonify }};
+      const countElements = [
+        document.getElementById("article-view-count"),
+        document.getElementById("article-view-count-meta")
+      ];
+      const query = `site=${encodeURIComponent(site)}&path=${encodeURIComponent(path)}`;
+
+      try {
+        if (window.location.hostname === site) {
+          await fetch(`https://page-views-api.ratneshc.com/api/v1/track?${query}`, {
+            cache: "no-store",
+            keepalive: true
+          });
+        }
+
+        const response = await fetch(`https://page-views-api.ratneshc.com/api/v1/views?${query}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) throw new Error("View count unavailable");
+
+        const data = await response.json();
+        const count = Number(data.views).toLocaleString("en-US");
+        countElements.forEach(element => { element.textContent = count; });
+      } catch (error) {
+        countElements.forEach(element => { element.textContent = "Unavailable"; });
+      }
+    })();
   </script>
 </body>
 </html>
