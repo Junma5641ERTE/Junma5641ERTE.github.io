@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kapitza Python Source - Jun Ma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
   <style>
     :root {
       --primary: #0C7C59;
@@ -85,6 +86,11 @@
       font: 0.86rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
       tab-size: 4;
     }
+
+    pre code.hljs {
+      padding: 0;
+      background: transparent;
+    }
   </style>
 </head>
 <body>
@@ -99,13 +105,23 @@
   </header>
   <main>
     <p class="note">This page displays the reproducible Python implementation used for the nonlinear Kapitza fixed-point and bifurcation figures.</p>
-    <pre><code id="source">Loading source...</code></pre>
+    <pre><code id="source" class="language-python">Loading source...</code></pre>
   </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script>
     fetch('/assets/kapitza/code/kapitza_numerical.py')
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Unable to load source');
+        }
+        return response.text();
+      })
       .then(text => {
-        document.getElementById('source').textContent = text;
+        const source = document.getElementById('source');
+        source.textContent = text;
+        if (window.hljs) {
+          hljs.highlightElement(source);
+        }
       })
       .catch(() => {
         document.getElementById('source').textContent = 'Unable to load source. Use the download link above.';
