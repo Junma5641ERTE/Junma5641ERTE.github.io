@@ -1,30 +1,34 @@
 {
-  "updated_at": "2026-07-22T08:19:00Z",
+  "updated_at": "2026-07-22T08:52:55Z",
   "total_visitors": 33,
   "countries": [
     {
       "code": "US",
       "name": "United States",
       "visitors": 14,
-      "iso3": "USA"
+      "iso3": "USA",
+      "map_id": "840"
     },
     {
       "code": "FR",
       "name": "France",
       "visitors": 12,
-      "iso3": "FRA"
+      "iso3": "FRA",
+      "map_id": "250"
     },
     {
       "code": "CN",
       "name": "China (including Taiwan region)",
       "visitors": 5,
-      "iso3": "CHN"
+      "iso3": "CHN",
+      "map_id": "156"
     },
     {
       "code": "SG",
       "name": "Singapore",
       "visitors": 2,
-      "iso3": "SGP"
+      "iso3": "SGP",
+      "map_id": "702"
     }
   ]
 }

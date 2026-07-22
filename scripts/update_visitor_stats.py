@@ -144,10 +144,12 @@ def main() -> None:
         raise RuntimeError("FlagCounter returned no country rows")
 
     metadata = json.loads(fetch_text(METADATA_URL))
-    iso3_by_iso2 = {country["cca2"]: country["cca3"] for country in metadata}
+    metadata_by_iso2 = {country["cca2"]: country for country in metadata}
 
     for country in country_counts:
-        country["iso3"] = iso3_by_iso2[country["code"]]
+        country_metadata = metadata_by_iso2[country["code"]]
+        country["iso3"] = country_metadata["cca3"]
+        country["map_id"] = country_metadata["ccn3"]
 
     payload = {
         "updated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),

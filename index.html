@@ -1782,7 +1782,6 @@
   <script type="module">
     import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
     import { feature } from "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm";
-    import world from "https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m";
 
     const mapPanel = document.getElementById("visitor-map-panel");
     const mapElement = document.getElementById("visitor-world-map");
@@ -1796,37 +1795,21 @@
     const svg = d3.select(mapElement);
 
     try {
-      const response = await fetch("/assets/data/visitor-stats.json", { cache: "no-store" });
-      if (!response.ok) throw new Error("Visitor statistics unavailable");
+      const [statisticsResponse, worldResponse] = await Promise.all([
+        fetch("/assets/data/visitor-stats.json", { cache: "no-store" }),
+        fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
+      ]);
+      if (!statisticsResponse.ok || !worldResponse.ok) throw new Error("Visitor map data unavailable");
 
-      const statistics = await response.json();
-      const visitorByIso3 = new Map(statistics.countries.map(country => [country.iso3, country]));
-      const sourceFeatures = feature(world, world.objects.features).features;
-      const china = sourceFeatures.find(region => region.properties.id === "CHN");
-      const taiwan = sourceFeatures.find(region => region.properties.id === "TWN");
-      const mergeChinaMapGroup = Boolean(china && taiwan);
-
-      function polygonParts(geometry) {
-        if (geometry.type === "Polygon") return [geometry.coordinates];
-        if (geometry.type === "MultiPolygon") return geometry.coordinates;
-        return [];
-      }
-
-      const worldCountries = sourceFeatures
-        .filter(region => !mergeChinaMapGroup || region.properties.id !== "TWN")
-        .map(region => {
-          if (!mergeChinaMapGroup || region.properties.id !== "CHN") return region;
-          return {
-            ...region,
-            geometry: {
-              type: "MultiPolygon",
-              coordinates: [
-                ...polygonParts(china.geometry),
-                ...polygonParts(taiwan.geometry)
-              ]
-            }
-          };
-        });
+      const [statistics, world] = await Promise.all([
+        statisticsResponse.json(),
+        worldResponse.json()
+      ]);
+      const visitorByMapId = new Map(statistics.countries.map(country => [country.map_id, country]));
+      const chinaVisitors = visitorByMapId.get("156");
+      if (chinaVisitors) visitorByMapId.set("158", chinaVisitors);
+      const worldCountries = feature(world, world.objects.countries).features;
+      const regionId = country => String(country.id);
       const maximum = d3.max(statistics.countries, country => country.visitors) || 1;
       const color = d3.scaleSequentialSqrt([1, maximum], ["#dcefe8", "#0C7C59"]);
 
@@ -1870,32 +1853,32 @@
 
         svg.attr("viewBox", `0 0 ${width} ${height}`);
         svg.selectAll("path")
-          .data(worldCountries, country => country.properties.id)
+          .data(worldCountries, regionId)
           .join("path")
-          .attr("class", country => visitorByIso3.has(country.properties.id) ? "visitor-country has-visits" : "visitor-country")
+          .attr("class", country => visitorByMapId.has(regionId(country)) ? "visitor-country has-visits" : "visitor-country")
           .attr("d", path)
           .attr("fill", country => {
-            const visitor = visitorByIso3.get(country.properties.id);
+            const visitor = visitorByMapId.get(regionId(country));
             return visitor ? color(visitor.visitors) : "#f4f5f3";
           })
-          .attr("tabindex", country => visitorByIso3.has(country.properties.id) ? 0 : null)
-          .attr("role", country => visitorByIso3.has(country.properties.id) ? "button" : null)
+          .attr("tabindex", country => visitorByMapId.has(regionId(country)) ? 0 : null)
+          .attr("role", country => visitorByMapId.has(regionId(country)) ? "button" : null)
           .attr("aria-label", country => {
-            const visitor = visitorByIso3.get(country.properties.id);
+            const visitor = visitorByMapId.get(regionId(country));
             return visitor ? `${visitor.name}: ${visitor.visitors} visitors` : null;
           })
           .on("pointerenter pointermove", function(event, country) {
-            showCountry(visitorByIso3.get(country.properties.id), event);
+            showCountry(visitorByMapId.get(regionId(country)), event);
           })
           .on("pointerleave", hideTooltip)
           .on("click", function(event, country) {
-            showCountry(visitorByIso3.get(country.properties.id), event);
+            showCountry(visitorByMapId.get(regionId(country)), event);
           })
           .on("focus", function(event, country) {
             const [x, y] = path.centroid(country);
             const panelRect = mapPanel.getBoundingClientRect();
             const svgRect = mapElement.getBoundingClientRect();
-            showCountry(visitorByIso3.get(country.properties.id), {
+            showCountry(visitorByMapId.get(regionId(country)), {
               clientX: svgRect.left + x * (svgRect.width / width),
               clientY: svgRect.top + y * (svgRect.height / height)
             });
