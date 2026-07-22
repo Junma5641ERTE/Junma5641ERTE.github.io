@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-22T08:52:55Z",
-  "total_visitors": 33,
+  "updated_at": "2026-07-22T18:41:38Z",
+  "total_visitors": 34,
   "countries": [
     {
       "code": "US",
@@ -12,7 +12,7 @@
     {
       "code": "FR",
       "name": "France",
-      "visitors": 12,
+      "visitors": 13,
       "iso3": "FRA",
       "map_id": "250"
     },
