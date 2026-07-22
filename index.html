@@ -690,25 +690,180 @@
       gap: 0.8rem;
     }
 
-    /* Visitor Counter */
-    .visitor-counter {
+    /* Interactive visitor map */
+    .visitor-analytics {
       margin-top: 1.5rem;
-      padding: 1.5rem;
-      background: var(--bg-gray);
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .visitor-map-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(220px, 0.7fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .visitor-map-panel {
+      position: relative;
+      min-width: 0;
+    }
+
+    .visitor-total {
+      position: absolute;
+      top: 0.6rem;
+      left: 0.75rem;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .visitor-total-label {
+      display: block;
+      color: var(--text-light);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .visitor-total-value {
+      display: block;
+      color: var(--text-dark);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.05;
+    }
+
+    #visitor-world-map {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      min-height: 260px;
+      overflow: visible;
+    }
+
+    .visitor-country {
+      stroke: #171717;
+      stroke-width: 0.55;
+      vector-effect: non-scaling-stroke;
+      transition: fill 0.18s ease;
+    }
+
+    .visitor-country.has-visits {
+      cursor: pointer;
+    }
+
+    .visitor-country.has-visits:hover,
+    .visitor-country.has-visits:focus {
+      stroke-width: 1.4;
+      outline: none;
+    }
+
+    .visitor-map-tooltip {
+      position: absolute;
+      z-index: 3;
+      min-width: 130px;
+      padding: 0.55rem 0.7rem;
+      background: var(--text-dark);
+      color: var(--bg-white);
+      border-radius: 4px;
+      box-shadow: 0 4px 14px var(--shadow);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      pointer-events: none;
+      transform: translate(-50%, calc(-100% - 10px));
+    }
+
+    .visitor-map-tooltip[hidden] {
+      display: none;
+    }
+
+    .visitor-map-tooltip strong,
+    .visitor-map-tooltip span {
+      display: block;
+    }
+
+    .visitor-map-legend {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.35rem;
+      color: var(--text-light);
+      font-size: 0.78rem;
+    }
+
+    .visitor-map-gradient {
+      width: min(180px, 42%);
+      height: 8px;
+      background: linear-gradient(90deg, #dcefe8, #0C7C59);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      text-align: center;
     }
 
-    .visitor-counter a {
-      border: none;
+    .visitor-map-selection {
+      min-height: 1.5rem;
+      margin: 0.6rem 0 0;
+      color: var(--text-gray);
+      font-size: 0.86rem;
+    }
+
+    .visitor-ranking h3 {
+      margin: 0 0 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+
+    .visitor-country-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .visitor-country-list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+
+    .visitor-country-list strong {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .visitor-source {
+      margin-top: 1.25rem;
+    }
+
+    .visitor-source-label,
+    .visitor-updated {
+      display: block;
+      color: var(--text-light);
+      font-size: 0.74rem;
+    }
+
+    .visitor-source a {
       display: inline-block;
+      margin-top: 0.45rem;
+      border: 0;
     }
 
-    .visitor-counter img {
+    .visitor-source img {
+      display: block;
       max-width: 100%;
       height: auto;
-      display: block;
+      border: 0;
+    }
+
+    .visitor-map-status {
+      color: var(--text-light);
+      font-size: 0.85rem;
     }
 
     /* Honors List */
@@ -887,6 +1042,15 @@
       .year-header {
         grid-template-columns: 1fr;
         gap: 0.15rem;
+      }
+
+      .visitor-map-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      #visitor-world-map {
+        min-height: 210px;
       }
     }
   </style>
@@ -1506,10 +1670,43 @@
     <!-- Visitors -->
     <section id="visitors">
       <h2>Visitors</h2>
-      <div class="visitor-counter">
-        <a href="https://s01.flagcounter.com/more/9iO" target="_blank" rel="noopener">
-          <img src="https://s01.flagcounter.com/map/9iO/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_Visitors/flags_0/" alt="World map showing the countries of website visitors">
-        </a>
+      <div class="visitor-analytics" id="visitor-analytics">
+        <div class="visitor-map-grid">
+          <div class="visitor-map-panel" id="visitor-map-panel">
+            <div class="visitor-total" aria-live="polite">
+              <span class="visitor-total-label">Total visitors</span>
+              <strong class="visitor-total-value" id="visitor-total">--</strong>
+            </div>
+            <svg id="visitor-world-map" role="img" aria-labelledby="visitor-map-title visitor-map-description">
+              <title id="visitor-map-title">Global distribution of website visitors</title>
+              <desc id="visitor-map-description">Countries are shaded according to their number of recorded visitors.</desc>
+            </svg>
+            <div class="visitor-map-tooltip" id="visitor-map-tooltip" hidden>
+              <strong id="visitor-tooltip-country"></strong>
+              <span id="visitor-tooltip-count"></span>
+            </div>
+            <div class="visitor-map-legend" aria-label="Visitor count color scale">
+              <span>Fewer</span>
+              <span class="visitor-map-gradient" aria-hidden="true"></span>
+              <span>More visitors</span>
+            </div>
+            <p class="visitor-map-selection" id="visitor-map-selection">Hover over or select a highlighted country to see its visitor count.</p>
+          </div>
+
+          <aside class="visitor-ranking" aria-labelledby="visitor-ranking-title">
+            <h3 id="visitor-ranking-title">Visitors by country</h3>
+            <ol class="visitor-country-list" id="visitor-country-list">
+              <li class="visitor-map-status">Loading visitor statistics</li>
+            </ol>
+            <div class="visitor-source">
+              <span class="visitor-source-label">Live counter and data source</span>
+              <a href="https://s01.flagcounter.com/more/9iO" target="_blank" rel="noopener">
+                <img src="https://s01.flagcounter.com/count2/9iO/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_250/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter showing live country totals and page views">
+              </a>
+              <span class="visitor-updated" id="visitor-updated"></span>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
@@ -1579,6 +1776,114 @@
       });
 
       sectionMap.forEach((_, id) => observer.observe(document.getElementById(id)));
+    }
+  </script>
+
+  <script type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    import { feature } from "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm";
+    import world from "https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m";
+
+    const mapPanel = document.getElementById("visitor-map-panel");
+    const mapElement = document.getElementById("visitor-world-map");
+    const tooltip = document.getElementById("visitor-map-tooltip");
+    const tooltipCountry = document.getElementById("visitor-tooltip-country");
+    const tooltipCount = document.getElementById("visitor-tooltip-count");
+    const selectionText = document.getElementById("visitor-map-selection");
+    const totalElement = document.getElementById("visitor-total");
+    const countryList = document.getElementById("visitor-country-list");
+    const updatedElement = document.getElementById("visitor-updated");
+    const svg = d3.select(mapElement);
+
+    try {
+      const response = await fetch("/assets/data/visitor-stats.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("Visitor statistics unavailable");
+
+      const statistics = await response.json();
+      const visitorByIso3 = new Map(statistics.countries.map(country => [country.iso3, country]));
+      const worldCountries = feature(world, world.objects.features).features;
+      const maximum = d3.max(statistics.countries, country => country.visitors) || 1;
+      const color = d3.scaleSequentialSqrt([1, maximum], ["#dcefe8", "#0C7C59"]);
+
+      totalElement.textContent = Number(statistics.total_visitors).toLocaleString("en-US");
+      updatedElement.textContent = `Country data updated ${new Date(statistics.updated_at).toLocaleDateString("en-GB")}`;
+
+      countryList.replaceChildren(...statistics.countries.map(country => {
+        const item = document.createElement("li");
+        const name = document.createElement("span");
+        const count = document.createElement("strong");
+        name.textContent = country.name;
+        count.textContent = country.visitors.toLocaleString("en-US");
+        item.append(name, count);
+        return item;
+      }));
+
+      function showCountry(country, event) {
+        if (!country) return;
+        tooltipCountry.textContent = country.name;
+        tooltipCount.textContent = `${country.visitors.toLocaleString("en-US")} visitor${country.visitors === 1 ? "" : "s"}`;
+        selectionText.textContent = `${country.name}: ${country.visitors.toLocaleString("en-US")} visitor${country.visitors === 1 ? "" : "s"}`;
+        tooltip.hidden = false;
+
+        const panelRect = mapPanel.getBoundingClientRect();
+        const x = Math.min(Math.max(event.clientX - panelRect.left, 80), panelRect.width - 80);
+        const y = Math.max(event.clientY - panelRect.top, 65);
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${y}px`;
+      }
+
+      function hideTooltip() {
+        tooltip.hidden = true;
+      }
+
+      function renderMap() {
+        const width = Math.max(mapElement.clientWidth, 320);
+        const height = Math.max(Math.round(width / 2), width < 520 ? 210 : 260);
+        const collection = { type: "FeatureCollection", features: worldCountries };
+        const projection = d3.geoNaturalEarth1().fitExtent([[6, 8], [width - 6, height - 8]], collection);
+        const path = d3.geoPath(projection);
+
+        svg.attr("viewBox", `0 0 ${width} ${height}`);
+        svg.selectAll("path")
+          .data(worldCountries, country => country.properties.id)
+          .join("path")
+          .attr("class", country => visitorByIso3.has(country.properties.id) ? "visitor-country has-visits" : "visitor-country")
+          .attr("d", path)
+          .attr("fill", country => {
+            const visitor = visitorByIso3.get(country.properties.id);
+            return visitor ? color(visitor.visitors) : "#f4f5f3";
+          })
+          .attr("tabindex", country => visitorByIso3.has(country.properties.id) ? 0 : null)
+          .attr("role", country => visitorByIso3.has(country.properties.id) ? "button" : null)
+          .attr("aria-label", country => {
+            const visitor = visitorByIso3.get(country.properties.id);
+            return visitor ? `${visitor.name}: ${visitor.visitors} visitors` : null;
+          })
+          .on("pointerenter pointermove", function(event, country) {
+            showCountry(visitorByIso3.get(country.properties.id), event);
+          })
+          .on("pointerleave", hideTooltip)
+          .on("click", function(event, country) {
+            showCountry(visitorByIso3.get(country.properties.id), event);
+          })
+          .on("focus", function(event, country) {
+            const [x, y] = path.centroid(country);
+            const panelRect = mapPanel.getBoundingClientRect();
+            const svgRect = mapElement.getBoundingClientRect();
+            showCountry(visitorByIso3.get(country.properties.id), {
+              clientX: svgRect.left + x * (svgRect.width / width),
+              clientY: svgRect.top + y * (svgRect.height / height)
+            });
+          })
+          .on("blur", hideTooltip);
+      }
+
+      renderMap();
+      new ResizeObserver(renderMap).observe(mapPanel);
+    } catch (error) {
+      totalElement.textContent = "--";
+      countryList.innerHTML = '<li class="visitor-map-status">Interactive map temporarily unavailable. The live counter remains active below.</li>';
+      selectionText.textContent = "Visitor statistics could not be loaded.";
     }
   </script>
 

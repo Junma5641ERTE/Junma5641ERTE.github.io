@@ -1,0 +1,30 @@
+{
+  "updated_at": "2026-07-22T08:19:00Z",
+  "total_visitors": 33,
+  "countries": [
+    {
+      "code": "US",
+      "name": "United States",
+      "visitors": 14,
+      "iso3": "USA"
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "visitors": 12,
+      "iso3": "FRA"
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "visitors": 5,
+      "iso3": "CHN"
+    },
+    {
+      "code": "SG",
+      "name": "Singapore",
+      "visitors": 2,
+      "iso3": "SGP"
+    }
+  ]
+}
