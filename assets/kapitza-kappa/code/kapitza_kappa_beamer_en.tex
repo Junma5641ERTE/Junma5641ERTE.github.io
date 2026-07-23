@@ -1,0 +1,334 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\definecolor{navy}{RGB}{27,60,93}
+\definecolor{blue}{RGB}{52,120,168}
+\definecolor{red}{RGB}{194,59,35}
+\definecolor{green}{RGB}{42,143,85}
+\definecolor{lightblue}{RGB}{239,245,250}
+\definecolor{graytext}{RGB}{75,82,88}
+
+\setbeamercolor{normal text}{fg=graytext,bg=white}
+\setbeamercolor{structure}{fg=navy}
+\setbeamercolor{frametitle}{fg=navy,bg=white}
+\setbeamercolor{title}{fg=navy}
+\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor{block title}{fg=white,bg=navy}
+\setbeamercolor{block body}{fg=graytext,bg=lightblue}
+\setbeamercolor{exampleblock title}{fg=white,bg=green}
+\setbeamercolor{exampleblock body}{fg=graytext,bg=lightblue}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{blue}$\blacktriangleright$}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{frametitle}{%
+  \vspace{0.22em}\insertframetitle\par
+  \vspace{-0.34em}{\color{blue}\rule{\textwidth}{0.7pt}}
+}
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \hbox{%
+    \begin{beamercolorbox}[wd=.82\paperwidth,ht=2.6ex,dp=1.1ex,leftskip=1.2em]{author in head/foot}%
+      \color{graytext}\scriptsize Source-controlled nonlinear Kapitza model
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.18\paperwidth,ht=2.6ex,dp=1.1ex,rightskip=1.2em plus1fil]{date in head/foot}%
+      \color{graytext}\scriptsize\insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}%
+  }
+}
+
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{block title}{series=\bfseries}
+\setlength{\leftmargini}{1.4em}
+
+\newcommand{\artanh}{\operatorname{artanh}}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\betahat}{\widehat{\beta}}
+
+\title{A Source-Controlled\\Nonlinear Kapitza Model}
+\subtitle{Exact reduction, imperfect pitchfork unfolding, and reproducible computation}
+\author{Discussion draft}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \vfill
+  \begin{center}
+    {\usebeamerfont{title}\color{navy}\inserttitle\par}
+    \vspace{0.8em}
+    {\usebeamerfont{subtitle}\color{graytext}\insertsubtitle\par}
+    \vspace{1.8em}
+    {\color{blue}\rule{0.46\textwidth}{1.2pt}}\par
+    \vspace{1.2em}
+    {\large\insertauthor}\par
+    \vspace{0.35em}
+    {\small\insertdate}
+  \end{center}
+  \vfill
+\end{frame}
+
+\begin{frame}{The physical control parameter is the source strength}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.52\textwidth}
+      \begin{block}{Two-layer Poisson problem}
+      \[
+        \Omega_I=[-1,0],\qquad \Omega_E=[0,1],
+      \]
+      \[
+        -\lambda u_I''=0,\qquad
+        -\mu u_E''=2\mu\kappa,
+      \]
+      \[
+        u_I(-1)=u_E(1)=0.
+      \]
+      \end{block}
+    \column{0.44\textwidth}
+      \begin{block}{Interpretation}
+        \begin{itemize}
+          \item \(\lambda,\mu\): material conductivities;
+          \item \(\delta=\lambda/\mu\): conductivity ratio;
+          \item \(\kappa\): normalized source strength;
+          \item source amplitude after division by \(\mu\): \(2\kappa\).
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{The bulk fields are explicit}
+  Imposing the exterior boundary conditions gives
+  \[
+    u(z)=
+    \begin{cases}
+      a(z+1), & z\in\Omega_I,\\[0.2em]
+      b(z-1)+\kappa(1-z^2), & z\in\Omega_E.
+    \end{cases}
+  \]
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.46\textwidth}
+      \begin{block}{Interface traces}
+        \[
+          u_I(0)=a,\qquad u_E(0)=\kappa-b.
+        \]
+      \end{block}
+    \column{0.50\textwidth}
+      \begin{block}{Transmission law}
+        \[
+          \lambda a=\mu b
+          =\beta_{\rm phys}(\kappa-b-a).
+        \]
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Elimination gives one scalar fixed-point problem}
+  Flux continuity gives \(b=\delta a\), hence
+  \[
+    \boxed{s=[u]=\kappa-(1+\delta)a.}
+  \]
+  After normalizing the conductance and heat flux by \(\mu\),
+  \[
+    \widehat q=\delta a=\betahat(s)s.
+  \]
+  Therefore
+  \begin{equation*}
+    \boxed{
+    a=F_{\kappa,h}(a)
+    =\frac{\kappa\betahat_{\kappa,h}(s)}
+    {\delta+(1+\delta)\betahat_{\kappa,h}(s)}.}
+  \end{equation*}
+  The physical interval moves with the control parameter:
+  \[
+    0<a<\frac{\kappa}{1+\delta},\qquad 0<s<\kappa.
+  \]
+\end{frame}
+
+\begin{frame}{The new exponential contact law is exactly solvable}
+  Choose
+  \[
+    \boxed{
+    \betahat_{\kappa,h}(s)
+    =\frac{\delta}{1+\delta}
+    \exp\!\left[2(\kappa-2s)+2h\right].}
+  \]
+  Define
+  \[
+    x=\frac{2(1+\delta)a}{\kappa}-1
+     =1-\frac{2s}{\kappa}.
+  \]
+  Since \(\kappa-2s=\kappa x\), the complete steady equation becomes
+  \[
+    \boxed{x=\tanh(\kappa x+h).}
+  \]
+
+  \begin{center}
+    \small The source parameter now controls both the moving physical scale and the normalized sigmoid slope.
+  \end{center}
+\end{frame}
+
+\begin{frame}{The critical source strength is one}
+  For \(h=0\), the equation is \(x=\tanh(\kappa x)\).
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+      \begin{block}{Root count}
+        \[
+        \begin{array}{ll}
+        0<\kappa\le1: & 1\text{ state},\\
+        \kappa>1: & 3\text{ states}.
+        \end{array}
+        \]
+        \[
+          \boxed{\kappa_c=1.}
+        \]
+      \end{block}
+    \column{0.49\textwidth}
+      \begin{block}{Exact branches}
+        \small
+        \[
+          a_c(\kappa)=\frac{\kappa}{2(1+\delta)},
+        \]
+        \[
+          \kappa(x)=\frac{\artanh x}{x},\qquad
+          a(x)=\frac{\kappa(x)(1+x)}{2(1+\delta)}.
+        \]
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Fixed-point intersections show the transition}
+  \centering
+  \includegraphics[width=0.98\textwidth]{output/python/fixed_point_regimes.png}
+\end{frame}
+
+\begin{frame}{Cobwebs reveal critical slowing and branch selection}
+  \centering
+  \includegraphics[width=0.98\textwidth]{output/python/cobweb_regimes.png}
+\end{frame}
+
+\begin{frame}{The physical pitchfork has a moving centerline}
+  \centering
+  \includegraphics[width=0.96\textwidth]{output/python/symmetric_bifurcation.png}
+\end{frame}
+
+\begin{frame}{Stability means attraction of the Picard iteration}
+  At a fixed point,
+  \[
+    m_{\rm FP}
+    =\kappa\sech^2(\kappa x+h)
+    =\kappa(1-x^2).
+  \]
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+      \begin{block}{Line convention}
+        \begin{itemize}
+          \item solid: \(|m_{\rm FP}|<1\), attracting;
+          \item dashed: \(|m_{\rm FP}|>1\), repelling.
+        \end{itemize}
+      \end{block}
+    \column{0.49\textwidth}
+      \begin{block}{Scope}
+        This is stability of the fixed-point algorithm. Physical transient stability requires a separate time-dependent interface model.
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Small positive biases unfold the pitchfork}
+  \centering
+  \includegraphics[height=0.75\textheight]{output/python/small_positive_bias_bifurcations.png}
+\end{frame}
+
+\begin{frame}{Negative biases produce the reflected unfolding}
+  \centering
+  \includegraphics[height=0.75\textheight]{output/python/small_negative_bias_bifurcations.png}
+\end{frame}
+
+\begin{frame}{The saddle-node trajectory is analytic}
+  The fold equations are
+  \[
+    \kappa_{\rm SN}=\frac{1}{1-x_{\rm SN}^2},
+    \qquad
+    h=\artanh x_{\rm SN}
+      -\frac{x_{\rm SN}}{1-x_{\rm SN}^2}.
+  \]
+  Near \((\kappa,h)=(1,0)\),
+  \[
+    h=-\frac{2}{3}x_{\rm SN}^3+O(x_{\rm SN}^5),
+    \qquad
+    \kappa_{\rm SN}-1=x_{\rm SN}^2+O(x_{\rm SN}^4),
+  \]
+  hence
+  \[
+    \boxed{\kappa_{\rm SN}-1
+      \sim\left(\frac{3|h|}{2}\right)^{2/3}.}
+  \]
+\end{frame}
+
+\begin{frame}{The critical point follows a cusp trajectory}
+  \centering
+  \includegraphics[width=0.98\textwidth]{output/python/critical_point_trajectory.png}
+\end{frame}
+
+\begin{frame}{Fixed \(\kappa\): S-curve and equivalent flux roots}
+  \centering
+  \includegraphics[width=0.96\textwidth]{output/python/s_curve.png}
+\end{frame}
+
+\begin{frame}{A fixed-bias slice has two attracting basins}
+  \centering
+  \includegraphics[width=0.96\textwidth]{output/python/biased_fixed_point_cobweb.png}
+\end{frame}
+
+\begin{frame}{Every scalar root reconstructs a complete temperature field}
+  \centering
+  \includegraphics[height=0.73\textheight]{output/python/temperature_profiles.png}
+\end{frame}
+
+\begin{frame}{The implementation is reproducible in two languages}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+      \begin{block}{Python}
+        \texttt{code/python/}\par
+        \texttt{kapitza\_kappa\_model.py}
+        \begin{itemize}
+          \item one self-contained script;
+          \item bracketed root isolation;
+          \item PNG, vector PDF, and CSV outputs.
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{MATLAB}
+        \texttt{code/matlab/}\par
+        \texttt{kapitza\_kappa\_model.m}
+        \begin{itemize}
+          \item matching equations and figures;
+          \item solid/dashed stability convention;
+          \item English comments throughout.
+        \end{itemize}
+      \end{block}
+  \end{columns}
+  \vspace{0.5em}
+  \begin{center}
+    \small PDE reduction from the cited paper; exponential conductance is the new constitutive construction.
+  \end{center}
+\end{frame}
+
+\begin{frame}[plain]
+  \vfill
+  \begin{center}
+    {\Huge\bfseries\color{navy}Thank you}\par
+    \vspace{1em}
+    {\large\color{graytext}Questions and discussion}
+  \end{center}
+  \vfill
+\end{frame}
+
+\end{document}

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Source-Controlled Kapitza Model - Source Code</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
+  <style>
+    :root {
+      --primary: #0C7C59;
+      --secondary: #1A5490;
+      --text-dark: #1a1a1a;
+      --text-gray: #4a4a4a;
+      --bg-white: #ffffff;
+      --bg-code: #f7f9fb;
+      --border: #dfe5e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0.9rem 1.2rem;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+
+    .actions,
+    .language-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+
+    .language-tabs {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1rem 1.2rem 0;
+    }
+
+    .language-tab {
+      padding: 0.35rem 0;
+      border-bottom: 2px solid transparent;
+      color: var(--text-gray);
+    }
+
+    .language-tab.active {
+      border-bottom-color: var(--primary);
+      color: var(--primary);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1rem 1.2rem 1.5rem;
+    }
+
+    .note {
+      margin: 0 0 1rem;
+      color: var(--text-gray);
+    }
+
+    pre {
+      margin: 0;
+      padding: 1.2rem;
+      overflow-x: auto;
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: 0.86rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      tab-size: 4;
+    }
+
+    pre code.hljs {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 720px) {
+      .bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <h1 id="page-title">Source-Controlled Kapitza Model</h1>
+      <div class="actions">
+        <a href="/thoughts/2026/07/23/source-controlled-nonlinear-kapitza-model/">Back to article</a>
+        <a id="download-link" href="#" download>Download source</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="language-tabs" aria-label="Source language">
+    <a class="language-tab" id="python-tab" href="?lang=python">Python</a>
+    <a class="language-tab" id="matlab-tab" href="?lang=matlab">MATLAB</a>
+  </nav>
+
+  <main>
+    <p class="note" id="source-note"></p>
+    <pre><code id="source">Loading source...</code></pre>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+  <script>
+    const configurations = {
+      python: {
+        label: "Python",
+        filename: "kapitza_kappa_model.py",
+        className: "language-python"
+      },
+      matlab: {
+        label: "MATLAB",
+        filename: "kapitza_kappa_model.m",
+        className: "language-matlab"
+      }
+    };
+
+    const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+    const language = requestedLanguage === "matlab" ? "matlab" : "python";
+    const configuration = configurations[language];
+    const sourcePath = `/assets/kapitza-kappa/code/${configuration.filename}`;
+    const source = document.getElementById("source");
+
+    document.title = `${configuration.label} Source - Source-Controlled Kapitza Model`;
+    document.getElementById("page-title").textContent = `Source-Controlled Kapitza Model - ${configuration.label}`;
+    document.getElementById("source-note").textContent =
+      `Complete ${configuration.label} implementation used to generate the article figures and numerical tables.`;
+    document.getElementById("download-link").href = sourcePath;
+    document.getElementById("download-link").textContent = `Download ${configuration.filename}`;
+    document.getElementById(`${language}-tab`).classList.add("active");
+    source.className = configuration.className;
+
+    fetch(sourcePath)
+      .then(response => {
+        if (!response.ok) throw new Error("Unable to load source");
+        return response.text();
+      })
+      .then(text => {
+        source.textContent = text;
+        if (window.hljs) hljs.highlightElement(source);
+      })
+      .catch(() => {
+        source.textContent = "Unable to load source. Use the download link above.";
+      });
+  </script>
+</body>
+</html>
