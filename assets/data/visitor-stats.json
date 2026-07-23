@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-07-23T12:49:01Z",
-  "total_visitors": 36,
+  "updated_at": "2026-07-23T18:43:11Z",
+  "total_visitors": 38,
   "countries": [
     {
       "code": "US",
       "name": "United States",
-      "visitors": 16,
+      "visitors": 17,
       "iso3": "USA",
       "map_id": "840"
     },
@@ -26,7 +26,7 @@
     {
       "code": "SG",
       "name": "Singapore",
-      "visitors": 2,
+      "visitors": 3,
       "iso3": "SGP",
       "map_id": "702"
     }
