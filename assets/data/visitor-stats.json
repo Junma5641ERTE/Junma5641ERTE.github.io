@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-12T00:57:00Z",
-  "total_visitors": 96,
+  "updated_at": "2026-09-13T12:32:47Z",
+  "total_visitors": 97,
   "countries": [
     {
       "code": "US",
       "name": "United States",
-      "visitors": 43,
+      "visitors": 44,
       "iso3": "USA",
       "map_id": "840"
     },
