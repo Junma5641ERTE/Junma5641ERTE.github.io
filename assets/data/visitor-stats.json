@@ -1,25 +1,25 @@
 {
-  "updated_at": "2026-09-13T18:27:51Z",
-  "total_visitors": 98,
+  "updated_at": "2026-09-14T12:37:55Z",
+  "total_visitors": 101,
   "countries": [
     {
       "code": "US",
       "name": "United States",
-      "visitors": 44,
+      "visitors": 45,
       "iso3": "USA",
       "map_id": "840"
     },
     {
       "code": "FR",
       "name": "France",
-      "visitors": 23,
+      "visitors": 24,
       "iso3": "FRA",
       "map_id": "250"
     },
     {
       "code": "SG",
       "name": "Singapore",
-      "visitors": 11,
+      "visitors": 12,
       "iso3": "SGP",
       "map_id": "702"
     },
