@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-09T18:33:32Z",
-  "total_visitors": 125,
+  "updated_at": "2026-10-10T06:42:27Z",
+  "total_visitors": 126,
   "countries": [
     {
       "code": "US",
@@ -33,7 +33,7 @@
     {
       "code": "HK",
       "name": "Hong Kong",
-      "visitors": 5,
+      "visitors": 6,
       "iso3": "HKG",
       "map_id": "344"
     },
