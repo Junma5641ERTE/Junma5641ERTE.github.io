@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Kapitza-aware XPINN architecture</title>
+  <desc id="desc">Two subdomain neural networks approximate independent temperature traces. Automatic differentiation supplies PDE, boundary, flux-balance, and nonlinear Kapitza residuals that are combined in a weighted objective.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfdfc"/><stop offset="1" stop-color="#f1f6f4"/></linearGradient>
+    <linearGradient id="leftDom" x1="0" x2="1"><stop stop-color="#dff2ea"/><stop offset="1" stop-color="#bde1d3"/></linearGradient>
+    <linearGradient id="rightDom" x1="0" x2="1"><stop stop-color="#dfeaf6"/><stop offset="1" stop-color="#bfd5ea"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#173041" flood-opacity=".12"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#526873"/></marker>
+    <style>
+      .sans{font-family:Inter,Arial,sans-serif}.math{font-family:'STIX Two Math','Cambria Math','Times New Roman',serif;font-style:italic}.ink{fill:#173041}.muted{fill:#657780}.green{fill:#08705b}.blue{fill:#285f94}.orange{fill:#9a5b20}.small{font-size:17px}.label{font-size:19px;font-weight:700}.eq{font-size:21px}.title{font-size:34px;font-weight:700}.subtitle{font-size:19px}.box{fill:#fff;stroke:#d7e1de;stroke-width:1.5}.arrow{fill:none;stroke:#526873;stroke-width:2.2;marker-end:url(#arrow)}.thin{fill:none;stroke:#7d8f97;stroke-width:1.2}.netI{fill:#e8f6f1;stroke:#0c7c59;stroke-width:2}.netE{fill:#e8f0f8;stroke:#1a5490;stroke-width:2}
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" rx="28" fill="url(#bg)"/>
+  <text x="800" y="54" text-anchor="middle" class="sans title ink">Kapitza-aware XPINN for composite thermal domains</text>
+  <text x="800" y="84" text-anchor="middle" class="sans subtitle muted">Independent neural fields in Ω<tspan baseline-shift="sub" font-size="14">I</tspan> and Ω<tspan baseline-shift="sub" font-size="14">E</tspan> · coupled by flux balance and a nonlinear temperature-jump law</text>
+
+  <!-- physical domain -->
+  <g filter="url(#shadow)">
+    <rect x="72" y="118" width="420" height="170" rx="16" class="box"/>
+    <text x="92" y="148" class="sans label ink">1. Collocation on the decomposed domain</text>
+    <rect x="102" y="171" width="165" height="76" rx="7" fill="url(#leftDom)" stroke="#0c7c59"/>
+    <rect x="267" y="171" width="165" height="76" rx="7" fill="url(#rightDom)" stroke="#1a5490"/>
+    <line x1="267" y1="159" x2="267" y2="259" stroke="#b36a24" stroke-width="5"/>
+    <text x="184" y="214" text-anchor="middle" class="math eq green">Ω<tspan baseline-shift="sub" font-size="15">I</tspan></text>
+    <text x="350" y="214" text-anchor="middle" class="math eq blue">Ω<tspan baseline-shift="sub" font-size="15">E</tspan></text>
+    <text x="278" y="168" class="math eq orange">Γ</text>
+    <g fill="#0c7c59"><circle cx="126" cy="189" r="3"/><circle cx="155" cy="225" r="3"/><circle cx="215" cy="196" r="3"/><circle cx="235" cy="231" r="3"/></g>
+    <g fill="#1a5490"><circle cx="293" cy="194" r="3"/><circle cx="320" cy="228" r="3"/><circle cx="376" cy="188" r="3"/><circle cx="404" cy="224" r="3"/></g>
+    <g fill="#b36a24"><circle cx="267" cy="184" r="4"/><circle cx="267" cy="207" r="4"/><circle cx="267" cy="230" r="4"/></g>
+    <text x="102" y="271" class="sans small muted">interior · boundary · initial · interface samples</text>
+  </g>
+
+  <!-- subnetworks -->
+  <g filter="url(#shadow)">
+    <rect x="535" y="118" width="500" height="430" rx="16" class="box"/>
+    <text x="558" y="148" class="sans label ink">2. Two trainable subdomain networks</text>
+    <rect x="557" y="168" width="456" height="164" rx="12" fill="#f5fbf8" stroke="#b9ddd0"/>
+    <rect x="557" y="352" width="456" height="164" rx="12" fill="#f5f8fc" stroke="#bfd2e4"/>
+    <text x="577" y="195" class="sans label green">Subnetwork I</text><text x="577" y="379" class="sans label blue">Subnetwork E</text>
+    <rect x="579" y="215" width="72" height="58" rx="9" class="netI"/><text x="615" y="240" text-anchor="middle" class="math eq green">(x,t)</text><text x="615" y="260" text-anchor="middle" class="sans small muted">input</text>
+    <rect x="579" y="399" width="72" height="58" rx="9" class="netE"/><text x="615" y="424" text-anchor="middle" class="math eq blue">(x,t)</text><text x="615" y="444" text-anchor="middle" class="sans small muted">input</text>
+    <!-- connections and nodes I -->
+    <g stroke="#87bfae" stroke-width="1.1" opacity=".75">
+      <path d="M651 244L700 219M651 244L700 244M651 244L700 269"/><path d="M714 219L766 219M714 219L766 244M714 244L766 219M714 244L766 244M714 244L766 269M714 269L766 244M714 269L766 269"/><path d="M780 219L832 219M780 219L832 244M780 244L832 219M780 244L832 244M780 244L832 269M780 269L832 244M780 269L832 269"/><path d="M846 219L898 244M846 244L898 244M846 269L898 244"/>
+    </g>
+    <g class="netI"><circle cx="707" cy="219" r="7"/><circle cx="707" cy="244" r="7"/><circle cx="707" cy="269" r="7"/><circle cx="773" cy="219" r="7"/><circle cx="773" cy="244" r="7"/><circle cx="773" cy="269" r="7"/><circle cx="839" cy="219" r="7"/><circle cx="839" cy="244" r="7"/><circle cx="839" cy="269" r="7"/></g>
+    <rect x="898" y="215" width="94" height="58" rx="9" class="netI"/><text x="945" y="241" text-anchor="middle" class="math eq green">T<tspan baseline-shift="sub" font-size="15">I</tspan></text><text x="945" y="261" text-anchor="middle" class="sans small muted">output</text>
+    <!-- connections and nodes E -->
+    <g stroke="#89aac8" stroke-width="1.1" opacity=".75">
+      <path d="M651 428L700 403M651 428L700 428M651 428L700 453"/><path d="M714 403L766 403M714 403L766 428M714 428L766 403M714 428L766 428M714 428L766 453M714 453L766 428M714 453L766 453"/><path d="M780 403L832 403M780 403L832 428M780 428L832 403M780 428L832 428M780 428L832 453M780 453L832 428M780 453L832 453"/><path d="M846 403L898 428M846 428L898 428M846 453L898 428"/>
+    </g>
+    <g class="netE"><circle cx="707" cy="403" r="7"/><circle cx="707" cy="428" r="7"/><circle cx="707" cy="453" r="7"/><circle cx="773" cy="403" r="7"/><circle cx="773" cy="428" r="7"/><circle cx="773" cy="453" r="7"/><circle cx="839" cy="403" r="7"/><circle cx="839" cy="428" r="7"/><circle cx="839" cy="453" r="7"/></g>
+    <rect x="898" y="399" width="94" height="58" rx="9" class="netE"/><text x="945" y="425" text-anchor="middle" class="math eq blue">T<tspan baseline-shift="sub" font-size="15">E</tspan></text><text x="945" y="445" text-anchor="middle" class="sans small muted">output</text>
+    <text x="786" y="307" text-anchor="middle" class="sans small muted">parameters θ<tspan baseline-shift="sub" font-size="13">I</tspan> and θ<tspan baseline-shift="sub" font-size="13">E</tspan> are trained jointly, but the temperature traces remain independent</text>
+    <text x="786" y="491" text-anchor="middle" class="math small orange">T<tspan baseline-shift="sub" font-size="12">I</tspan>|<tspan baseline-shift="sub" font-size="12">Γ</tspan> ≠ T<tspan baseline-shift="sub" font-size="12">E</tspan>|<tspan baseline-shift="sub" font-size="12">Γ</tspan> is admissible</text>
+  </g>
+
+  <!-- automatic differentiation and residuals -->
+  <g filter="url(#shadow)">
+    <rect x="1078" y="118" width="450" height="430" rx="16" class="box"/>
+    <text x="1101" y="148" class="sans label ink">3. Physics residuals by automatic differentiation</text>
+    <rect x="1102" y="172" width="402" height="65" rx="10" fill="#eef8f4" stroke="#b9ddd0"/>
+    <text x="1120" y="197" class="sans small green">Bulk PDE residuals</text>
+    <text x="1120" y="223" class="math eq ink">r<tspan baseline-shift="sub" font-size="14">i</tspan> = ρ<tspan baseline-shift="sub" font-size="14">i</tspan>c<tspan baseline-shift="sub" font-size="14">i</tspan> ∂<tspan baseline-shift="sub" font-size="14">t</tspan>T<tspan baseline-shift="sub" font-size="14">i</tspan> − ∇·(k<tspan baseline-shift="sub" font-size="14">i</tspan>∇T<tspan baseline-shift="sub" font-size="14">i</tspan>) − f<tspan baseline-shift="sub" font-size="14">i</tspan></text>
+    <rect x="1102" y="250" width="402" height="65" rx="10" fill="#f3f6fa" stroke="#bfd2e4"/>
+    <text x="1120" y="275" class="sans small blue">Boundary and initial data</text>
+    <text x="1120" y="301" class="math eq ink">r<tspan baseline-shift="sub" font-size="14">BC/IC</tspan> = B(T<tspan baseline-shift="sub" font-size="14">I</tspan>,T<tspan baseline-shift="sub" font-size="14">E</tspan>) − g</text>
+    <rect x="1102" y="328" width="402" height="82" rx="10" fill="#fff7ec" stroke="#e1bd86"/>
+    <text x="1120" y="353" class="sans small orange">Flux conservation on Γ</text>
+    <text x="1120" y="382" class="math eq ink">r<tspan baseline-shift="sub" font-size="14">q</tspan> = k<tspan baseline-shift="sub" font-size="14">I</tspan>∇T<tspan baseline-shift="sub" font-size="14">I</tspan>·n<tspan baseline-shift="sub" font-size="14">I</tspan> + k<tspan baseline-shift="sub" font-size="14">E</tspan>∇T<tspan baseline-shift="sub" font-size="14">E</tspan>·n<tspan baseline-shift="sub" font-size="14">E</tspan></text>
+    <rect x="1102" y="423" width="402" height="101" rx="10" fill="#fff4e5" stroke="#dba95e" stroke-width="2"/>
+    <text x="1120" y="448" class="sans small orange">Nonlinear Kapitza contact law</text>
+    <text x="1120" y="478" class="math eq ink">r<tspan baseline-shift="sub" font-size="14">K</tspan> = −k<tspan baseline-shift="sub" font-size="14">I</tspan>∇T<tspan baseline-shift="sub" font-size="14">I</tspan>·n<tspan baseline-shift="sub" font-size="14">I</tspan></text>
+    <text x="1185" y="507" class="math eq ink">− β(T<tspan baseline-shift="sub" font-size="14">I</tspan>,T<tspan baseline-shift="sub" font-size="14">E</tspan>)(T<tspan baseline-shift="sub" font-size="14">I</tspan>−T<tspan baseline-shift="sub" font-size="14">E</tspan>)</text>
+  </g>
+
+  <!-- arrows across top -->
+  <path d="M492 203H527" class="arrow"/><path d="M1035 237H1070" class="arrow"/>
+
+  <!-- losses -->
+  <g filter="url(#shadow)">
+    <rect x="72" y="590" width="1456" height="248" rx="16" class="box"/>
+    <text x="96" y="624" class="sans label ink">4. Loss assembly and training objective</text>
+    <g>
+      <rect x="98" y="652" width="214" height="82" rx="10" fill="#eef8f4" stroke="#0c7c59"/><text x="205" y="682" text-anchor="middle" class="sans small green">PDE loss in Ω<tspan baseline-shift="sub" font-size="12">I</tspan></text><text x="205" y="715" text-anchor="middle" class="math eq ink">ℒ<tspan baseline-shift="sub" font-size="14">PDE,I</tspan> = ⟨|r<tspan baseline-shift="sub" font-size="14">I</tspan>|²⟩</text>
+      <rect x="330" y="652" width="214" height="82" rx="10" fill="#eef3f9" stroke="#1a5490"/><text x="437" y="682" text-anchor="middle" class="sans small blue">PDE loss in Ω<tspan baseline-shift="sub" font-size="12">E</tspan></text><text x="437" y="715" text-anchor="middle" class="math eq ink">ℒ<tspan baseline-shift="sub" font-size="14">PDE,E</tspan> = ⟨|r<tspan baseline-shift="sub" font-size="14">E</tspan>|²⟩</text>
+      <rect x="562" y="652" width="214" height="82" rx="10" fill="#f5f7f7" stroke="#7e9098"/><text x="669" y="682" text-anchor="middle" class="sans small muted">Boundary / initial loss</text><text x="669" y="715" text-anchor="middle" class="math eq ink">ℒ<tspan baseline-shift="sub" font-size="14">BC/IC</tspan> = ⟨|r<tspan baseline-shift="sub" font-size="14">BC/IC</tspan>|²⟩</text>
+      <rect x="794" y="652" width="214" height="82" rx="10" fill="#fff8ee" stroke="#c98a32"/><text x="901" y="682" text-anchor="middle" class="sans small orange">Flux-balance loss</text><text x="901" y="715" text-anchor="middle" class="math eq ink">ℒ<tspan baseline-shift="sub" font-size="14">flux</tspan> = ⟨|r<tspan baseline-shift="sub" font-size="14">q</tspan>|²⟩<tspan baseline-shift="sub" font-size="14">Γ</tspan></text>
+      <rect x="1026" y="652" width="214" height="82" rx="10" fill="#fff4e5" stroke="#b36a24" stroke-width="2"/><text x="1133" y="682" text-anchor="middle" class="sans small orange">Kapitza-law loss</text><text x="1133" y="715" text-anchor="middle" class="math eq ink">ℒ<tspan baseline-shift="sub" font-size="14">K</tspan> = ⟨|r<tspan baseline-shift="sub" font-size="14">K</tspan>|²⟩<tspan baseline-shift="sub" font-size="14">Γ</tspan></text>
+    </g>
+    <path d="M1248 693H1280" class="arrow"/>
+    <rect x="1287" y="642" width="216" height="103" rx="12" fill="#173041"/>
+    <text x="1395" y="672" text-anchor="middle" class="sans small" fill="#fff">Weighted objective</text>
+    <text x="1395" y="704" text-anchor="middle" class="math eq" fill="#fff">ℒ(θ<tspan baseline-shift="sub" font-size="14">I</tspan>,θ<tspan baseline-shift="sub" font-size="14">E</tspan>) = Σ λ<tspan baseline-shift="sub" font-size="14">j</tspan>ℒ<tspan baseline-shift="sub" font-size="14">j</tspan></text>
+    <text x="1395" y="730" text-anchor="middle" class="sans small" fill="#cfe1e8">Adam → L-BFGS / Newton–FEM refinement</text>
+    <rect x="98" y="758" width="1142" height="50" rx="9" fill="#f4f8f7" stroke="#d5dfdc"/>
+    <text x="669" y="789" text-anchor="middle" class="sans small ink"><tspan font-weight="700">Key modeling choice:</tspan> no artificial continuity loss on temperature; the nonzero jump is learned through the Kapitza law.</text>
+  </g>
+</svg>
