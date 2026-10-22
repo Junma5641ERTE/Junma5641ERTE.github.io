@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], processEscapes: true },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     /* Nature-inspired Academic Color Palette */
     :root {
@@ -622,65 +629,57 @@
     }
 
     /* Doctoral Research Journey */
-    .doctoral-intro { max-width: 780px; }
-    .doctoral-timeline { position:relative; display:grid; gap:1.35rem; margin-top:1.8rem; }
+    .doctoral-intro { max-width:800px; }
+    .doctoral-timeline { position:relative; display:grid; gap:1.5rem; margin-top:1.9rem; }
     .doctoral-timeline::before { content:''; position:absolute; top:29px; bottom:29px; left:26px; width:1px; background:linear-gradient(to bottom,var(--secondary),var(--primary)); opacity:.3; }
     .research-year { position:relative; display:grid; grid-template-columns:54px minmax(0,1fr); gap:1rem; }
     .year-marker { position:relative; z-index:2; width:54px; height:54px; display:grid; place-items:center; border:1px solid rgba(12,124,89,.28); border-radius:50%; background:#fff; color:var(--primary); box-shadow:0 0 0 7px #fff; font-family:'Crimson Pro',Georgia,serif; font-size:1.15rem; font-weight:600; }
     .research-year.current .year-marker { border-color:var(--primary); background:var(--primary); color:#fff; }
-    .year-panel { min-width:0; padding:1.35rem; border:1px solid var(--border); border-radius:12px; background:linear-gradient(145deg,#fff,#fbfcfc); box-shadow:0 8px 24px rgba(21,43,57,.055); }
-    .research-year.current .year-panel { border-color:rgba(12,124,89,.27); background:linear-gradient(145deg,#fff,#f5fbf8); }
+    .year-panel { min-width:0; padding:1.4rem; border:1px solid var(--border); border-radius:12px; background:#fff; box-shadow:0 8px 24px rgba(21,43,57,.055); }
+    .research-year.current .year-panel { border-color:rgba(12,124,89,.28); background:linear-gradient(145deg,#fff,#f7fbf9); }
     .year-kicker { display:flex; align-items:center; flex-wrap:wrap; gap:.55rem; margin-bottom:.3rem; color:var(--secondary); font-size:.74rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
     .ongoing-badge { display:inline-flex; align-items:center; gap:.32rem; padding:.16rem .52rem; border-radius:999px; background:rgba(12,124,89,.1); color:var(--primary); letter-spacing:.04em; }
     .ongoing-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--primary); }
-    .year-heading { margin:0; color:var(--text-dark); font-family:'Crimson Pro',Georgia,serif; font-size:1.38rem; line-height:1.28; }
-    .year-lead { max-width:850px; margin:.48rem 0 1rem; color:var(--text-gray); font-size:.9rem; line-height:1.6; }
-    .research-flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.8rem; }
-    .flow-card { position:relative; min-width:0; overflow:hidden; border:1px solid var(--border); border-radius:10px; background:#fff; box-shadow:0 4px 13px rgba(24,43,64,.045); }
-    .flow-card::after { content:''; position:absolute; inset:auto 0 0; height:3px; background:var(--flow-color,var(--primary)); }
-    .flow-card-head { padding:.78rem .85rem .5rem; }
-    .flow-index { display:block; margin-bottom:.23rem; color:var(--flow-color,var(--primary)); font-size:.66rem; font-weight:800; letter-spacing:.09em; }
-    .flow-title { display:block; color:var(--text-dark); font-size:.88rem; font-weight:700; }
-    .research-visual { height:176px; border-top:1px solid #edf1f0; background:linear-gradient(160deg,#fbfdfc,#f5f8f8); }
-    .research-visual svg,.research-visual img { display:block; width:100%; height:100%; }
-    .research-visual img { object-fit:contain; padding:.35rem; background:#fff; }
-    .research-visual text,.kapitza-atlas text { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
-    .research-visual .math,.kapitza-atlas .math,.math-equation { font-family:'Cambria Math','STIX Two Math','Times New Roman',serif; font-style:italic; }
-    .math-equation { display:flex; align-items:center; justify-content:center; min-height:47px; padding:.35rem .45rem; border-top:1px solid #edf1f0; border-bottom:1px solid #edf1f0; background:#f8fbfa; color:#1c3245; font-size:.87rem; text-align:center; }
-    .visual-caption { margin:0; padding:.48rem .72rem .68rem; color:var(--text-light); font-size:.69rem; line-height:1.42; }
-    .topology-frame { opacity:0; animation:topology-cycle 8s infinite; }
-    .topology-frame:nth-of-type(2) { animation-delay:2s; }
-    .topology-frame:nth-of-type(3) { animation-delay:4s; }
-    .topology-frame:nth-of-type(4) { animation-delay:6s; }
-    @keyframes topology-cycle { 0%,22%{opacity:1} 25%,100%{opacity:0} }
-    .journey-link { display:inline-flex; align-items:center; gap:.45rem; margin-top:.95rem; color:var(--primary); font-size:.82rem; font-weight:700; border-bottom:none; }
+    .year-heading { margin:0; color:var(--text-dark); font-family:'Crimson Pro',Georgia,serif; font-size:1.45rem; line-height:1.28; }
+    .year-lead { max-width:850px; margin:.48rem 0 1.15rem; color:var(--text-gray); font-size:.9rem; line-height:1.65; }
+    .research-stack { display:grid; gap:1rem; }
+    .research-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+    .research-plate { min-width:0; overflow:hidden; border:1px solid #d9e2df; border-radius:11px; background:#fff; box-shadow:0 5px 16px rgba(23,36,44,.055); }
+    .plate-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; padding:.9rem 1rem .72rem; border-bottom:1px solid #e8eeec; background:linear-gradient(180deg,#fff,#fafcfb); }
+    .plate-kicker { display:block; margin-bottom:.14rem; color:var(--plate-color,var(--primary)); font-size:.64rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .plate-title { margin:0; font-family:'Crimson Pro',Georgia,serif; font-size:1.13rem; line-height:1.25; }
+    .plate-tag { flex:0 0 auto; padding:.18rem .46rem; border:1px solid #dbe4e1; border-radius:999px; color:#697a82; font-size:.61rem; font-weight:700; letter-spacing:.04em; }
+    .plate-body { padding:1rem; }
+    .plate-split { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(230px,.65fr); gap:1rem; align-items:center; }
+    .plate-split.equal { grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; }
+    .research-figure { margin:0; min-width:0; }
+    .research-figure img { display:block; width:100%; max-height:390px; object-fit:contain; background:#fff; }
+    .research-figure.compact img { max-height:270px; }
+    .figure-caption { margin:.55rem 0 0; color:var(--text-light); font-size:.68rem; line-height:1.5; }
+    .figure-caption a { color:var(--secondary); border-bottom:1px solid rgba(26,84,144,.25); }
+    .math-panel { min-width:0; padding:.85rem .9rem; border-left:3px solid var(--plate-color,var(--primary)); border-radius:0 8px 8px 0; background:#f7faf9; color:#273a45; }
+    .math-panel h4 { margin:0 0 .45rem; color:var(--plate-color,var(--primary)); font-family:'Inter',sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; }
+    .math-panel p { margin:.35rem 0; color:#455761; font-size:.76rem; line-height:1.55; }
+    .math-panel mjx-container { overflow-x:auto; overflow-y:visible; font-size:92% !important; }
+    .math-panel mjx-container[display="true"] { margin:.55rem 0 !important; }
+    .equation-strip { padding:.75rem 1rem; border-top:1px solid #e8eeec; background:#f7faf9; color:#253946; text-align:center; }
+    .equation-strip mjx-container { overflow-x:auto; overflow-y:visible; margin:.25rem 0 !important; font-size:96% !important; }
+    .journey-link { display:inline-flex; align-items:center; gap:.45rem; margin-top:1rem; color:var(--primary); font-size:.82rem; font-weight:700; border-bottom:none; }
     .journey-link span { transition:transform .2s ease; }
     .journey-link:hover span { transform:translateX(3px); }
-    .kapitza-atlas { margin:1rem 0 0; overflow:hidden; border:1px solid rgba(12,124,89,.2); border-radius:11px; background:#fbfdfc; }
-    .atlas-header { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:.7rem; padding:.72rem .9rem; border-bottom:1px solid var(--border); background:linear-gradient(90deg,rgba(26,84,144,.06),rgba(12,124,89,.07)); }
-    .atlas-heading { color:var(--text-dark); font-size:.76rem; font-weight:700; }
-    .atlas-heading:last-child { text-align:right; }
-    .atlas-bridge { color:var(--primary); font-size:.64rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
-    .kapitza-atlas svg { display:block; width:100%; height:auto; }
-    .atlas-note { margin:.62rem 0 0; color:var(--text-light); font-size:.72rem; line-height:1.5; }
     .journey-footer { display:flex; align-items:center; flex-wrap:wrap; gap:.8rem; margin:1.35rem 0 0 70px; }
-    @media (prefers-reduced-motion:reduce) {
-      .topology-frame { animation:none; opacity:0; }
-      .topology-frame:last-of-type { opacity:1; }
-    }
     @media (max-width:900px) {
-      .research-flow { grid-template-columns:1fr; }
-      .research-visual { height:215px; }
+      .research-grid,.plate-split,.plate-split.equal { grid-template-columns:1fr; }
+      .research-figure img,.research-figure.compact img { max-height:none; }
     }
     @media (max-width:640px) {
       .doctoral-timeline::before { left:20px; }
       .research-year { grid-template-columns:42px minmax(0,1fr); gap:.65rem; }
       .year-marker { width:42px; height:42px; box-shadow:0 0 0 5px #fff; font-size:1rem; }
       .year-panel { padding:1rem; }
-      .year-heading { font-size:1.18rem; }
-      .research-visual { height:190px; }
-      .atlas-header { grid-template-columns:1fr; }
-      .atlas-heading:last-child { text-align:left; }
+      .year-heading { font-size:1.2rem; }
+      .plate-heading { flex-direction:column; gap:.4rem; }
+      .math-panel { padding:.75rem; }
       .journey-footer { margin-left:0; }
     }
 
@@ -1436,86 +1435,45 @@
     <!-- Doctoral Experience -->
     <section id="doctoral-experience">
       <h2>Doctoral Research Journey</h2>
-      <p class="section-note doctoral-intro">A visual map of my PhD research at UTC-LMAC. Each panel introduces one mathematical or computational idea; select a year for the full research narrative.</p>
-
+      <p class="section-note doctoral-intro">A research-level synopsis of my PhD work at UTC-LMAC. The panels combine exact model equations, figures from my research notes, and clearly attributed methodological references; the detailed page contains the full narrative.</p>
       <div class="doctoral-timeline">
         <article class="research-year">
           <div class="year-marker" aria-hidden="true">01</div>
           <div class="year-panel">
             <div class="year-kicker">Year 1 · Foundations</div>
-            <h3 class="year-heading">From thermal-energy models to interface-aware computation</h3>
-            <p class="year-lead">Physical modeling, numerical foundations, and the first connection between nonlinear thermal contact and inverse material design.</p>
-            <div class="research-flow" aria-label="Year 1 research route">
-              <div class="flow-card" style="--flow-color:#1A5490">
-                <div class="flow-card-head"><span class="flow-index">MODEL</span><span class="flow-title">Thermal Systems</span></div>
-                <div class="research-visual">
-                  <svg viewBox="0 0 300 176" role="img" aria-labelledby="thermal-title thermal-desc">
-                    <title id="thermal-title">Heat transfer through a composite thermal system</title>
-                    <desc id="thermal-desc">A hot boundary drives heat through a heterogeneous material toward a cold boundary.</desc>
-                    <defs>
-                      <linearGradient id="thermal-field-y1" x1="0" x2="1"><stop stop-color="#e99b55"/><stop offset=".48" stop-color="#f6e4bd"/><stop offset="1" stop-color="#8fb7db"/></linearGradient>
-                      <marker id="thermal-arrow-y1" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#425a67"/></marker>
-                    </defs>
-                    <rect x="30" y="30" width="240" height="104" rx="8" fill="url(#thermal-field-y1)" stroke="#78909b"/>
-                    <path d="M68 30V134M115 30V134M168 30V134M222 30V134" stroke="#fff" stroke-width="2" opacity=".62"/>
-                    <circle cx="95" cy="64" r="14" fill="#fff" opacity=".55"/><circle cx="183" cy="103" r="17" fill="#fff" opacity=".48"/>
-                    <path d="M12 52H46M12 82H46M12 112H46M254 52H288M254 82H288M254 112H288" stroke="#425a67" stroke-width="1.7" marker-end="url(#thermal-arrow-y1)"/>
-                    <text x="18" y="20" fill="#b45d20" font-size="11" font-weight="700">HOT</text><text x="255" y="20" fill="#245f95" font-size="11" font-weight="700">COLD</text>
-                    <text x="150" y="155" text-anchor="middle" fill="#50636d" font-size="10">conduction · storage · heterogeneous media</text>
-                  </svg>
+            <h3 class="year-heading">Thermal systems, nonlinear contact, and inverse material design</h3>
+            <p class="year-lead">The first stage connected heat-transfer PDEs, imperfect material interfaces, and topology optimization through analytical models and computational experiments.</p>
+            <div class="research-stack">
+              <section class="research-plate" style="--plate-color:#1A5490" aria-labelledby="thermal-kapitza-heading">
+                <div class="plate-heading"><div><span class="plate-kicker">Thermal system · Kapitza interface</span><h4 class="plate-title" id="thermal-kapitza-heading">Four linked views of the nonlinear conduction model</h4></div><span class="plate-tag">RESEARCH FIGURE</span></div>
+                <div class="plate-body plate-split">
+                  <figure class="research-figure">
+                    <img src="assets/kapitza-kappa/model_summary.png" alt="Four-panel research figure showing fixed points, nonlinear Kapitza conductance, flux intersections, and the spatial heat source" loading="lazy">
+                    <figcaption class="figure-caption">Figure from my source-controlled nonlinear Kapitza research note: fixed points, constitutive law, heat-flux balance, and spatial forcing are shown together.</figcaption>
+                  </figure>
+                  <div class="math-panel">
+                    <h4>Governing transmission problem</h4>
+                    <div>\[-\nabla\!\cdot(k_i\nabla T_i)=f_i\quad\text{in }\Omega_i,\qquad i\in\{I,E\}.\]</div>
+                    <div>\[q_\Gamma=\beta(T_I,T_E)\,[T]_\Gamma,\qquad [T]_\Gamma=T_I|_\Gamma-T_E|_\Gamma.\]</div>
+                    <p>The temperature has two independent traces on the geometric interface; the nonlinear contact law relates their jump to the common heat flux.</p>
+                  </div>
                 </div>
-                <p class="visual-caption">Heat transport across materials with contrasting conductivity and thermal response.</p>
-              </div>
-
-              <div class="flow-card" style="--flow-color:#0C7C59">
-                <div class="flow-card-head"><span class="flow-index">INTERFACE</span><span class="flow-title">Kapitza Contact Law</span></div>
-                <div class="math-equation">q<sub>Γ</sub> = β(T<sub>I</sub>,T<sub>E</sub>) (T<sub>I</sub> − T<sub>E</sub>)</div>
-                <div class="research-visual" style="height:128px">
-                  <svg viewBox="0 0 300 128" role="img" aria-labelledby="law-title law-desc">
-                    <title id="law-title">Temperature jump at a Kapitza interface</title>
-                    <desc id="law-desc">Two temperature traces meet a geometric interface with a nonzero jump.</desc>
-                    <path d="M28 105H278M38 112V18" stroke="#a9b5ba"/>
-                    <line x1="151" y1="16" x2="151" y2="110" stroke="#b36a24" stroke-width="2" stroke-dasharray="5 4"/>
-                    <path d="M40 96C78 84 112 66 144 40" fill="none" stroke="#0C7C59" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M158 73C196 61 232 44 272 34" fill="none" stroke="#1A5490" stroke-width="4" stroke-linecap="round"/>
-                    <circle cx="144" cy="40" r="4.5" fill="#fff" stroke="#0C7C59" stroke-width="2.5"/><circle cx="158" cy="73" r="4.5" fill="#fff" stroke="#1A5490" stroke-width="2.5"/>
-                    <path d="M170 40H184M170 73H184M181 40V73" fill="none" stroke="#9a5b20" stroke-width="1.4"/>
-                    <text class="math" x="189" y="60" fill="#8c541d" font-size="13">[T]<tspan baseline-shift="sub" font-size="9">Γ</tspan></text>
-                    <text class="math" x="142" y="27" text-anchor="end" fill="#08705b" font-size="11">T<tspan baseline-shift="sub" font-size="8">I</tspan></text>
-                    <text class="math" x="160" y="91" fill="#285f94" font-size="11">T<tspan baseline-shift="sub" font-size="8">E</tspan></text>
-                  </svg>
+              </section>
+              <section class="research-plate" style="--plate-color:#B36A24" aria-labelledby="topology-heading">
+                <div class="plate-heading"><div><span class="plate-kicker">Inverse design · topology evolution</span><h4 class="plate-title" id="topology-heading">From a distributed design field to a connected thermal layout</h4></div><span class="plate-tag">CITED OPEN-ACCESS FIGURE</span></div>
+                <div class="plate-body plate-split">
+                  <figure class="research-figure">
+                    <img src="https://www.mdpi.com/computation/computation-14-00019/article_deploy/html/images/computation-14-00019-g005.png" alt="Objective history and topology evolution across multiple optimization iterations" loading="lazy" referrerpolicy="no-referrer">
+                    <figcaption class="figure-caption">Representative topology-evolution sequence reproduced from Sun, Fu, Xu &amp; Guo, <em>Computation</em> 14 (2026), 19, Fig. 5, <a href="https://doi.org/10.3390/computation14010019" target="_blank" rel="noopener">CC BY 4.0</a>. It is used here as a methodological reference, not as my numerical result.</figcaption>
+                  </figure>
+                  <div class="math-panel">
+                    <h4>Optimization statement</h4>
+                    <div>\[\min_{\rho\in\{0,1\}} J(\rho)=\frac12\int_\Omega\bigl(T(\rho)-T_d\bigr)^2\,dx+\lambda\int_\Omega\rho\,dx\]</div>
+                    <div>\[-\nabla\!\cdot\bigl(k(\rho)\nabla T\bigr)=0,\qquad |\Omega_\rho|\le V_{\max}.\]</div>
+                    <p>The changing topology is an optimization history: geometry is updated from thermal sensitivity information while the state equation is repeatedly resolved.</p>
+                  </div>
                 </div>
-              </div>
-
-              <div class="flow-card" style="--flow-color:#B36A24">
-                <div class="flow-card-head"><span class="flow-index">DESIGN</span><span class="flow-title">Topology Optimization</span></div>
-                <div class="research-visual">
-                  <svg viewBox="0 0 300 176" role="img" aria-labelledby="topology-title topology-desc">
-                    <title id="topology-title">Animated topology optimization sequence</title>
-                    <desc id="topology-desc">Four design iterations evolve from a uniform field into a branching conductive path.</desc>
-                    <rect x="20" y="19" width="260" height="128" rx="5" fill="#eef2f1" stroke="#cbd5d2"/>
-                    <g opacity=".48" stroke="#fff"><path d="M20 51H280M20 83H280M20 115H280M63 19V147M106 19V147M149 19V147M192 19V147M235 19V147"/></g>
-                    <g class="topology-frame">
-                      <rect x="21" y="20" width="258" height="126" fill="#85a99e"/>
-                      <text x="150" y="166" text-anchor="middle" fill="#53666f" font-size="10">initial density · k = 0</text>
-                    </g>
-                    <g class="topology-frame">
-                      <path d="M21 63H83L116 42H169L203 64H279V106H206L172 126H115L81 107H21Z" fill="#14765d"/>
-                      <text x="150" y="166" text-anchor="middle" fill="#53666f" font-size="10">material redistribution · k = 18</text>
-                    </g>
-                    <g class="topology-frame">
-                      <path d="M21 75H72L111 42H148L176 61L207 41H279V67H219L187 88L218 111H279V135H205L174 111L145 132H108L70 101H21Z" fill="#0C7C59"/>
-                      <text x="150" y="166" text-anchor="middle" fill="#53666f" font-size="10">branch formation · k = 43</text>
-                    </g>
-                    <g class="topology-frame">
-                      <path d="M21 77H61L103 39H139L169 61L207 32H279V56H218L183 83L218 111H279V135H204L169 105L139 132H102L60 99H21Z" fill="#075b45"/>
-                      <circle cx="151" cy="83" r="10" fill="#f1c57e"/>
-                      <text x="150" y="166" text-anchor="middle" fill="#53666f" font-size="10">optimized thermal pathway · converged</text>
-                    </g>
-                  </svg>
-                </div>
-                <p class="visual-caption">A looping vector animation shows the material layout evolving during optimization.</p>
-              </div>
+              </section>
             </div>
             <a class="journey-link" href="doctoral-research.html#year-1">Read the Year 1 narrative <span aria-hidden="true">→</span></a>
           </div>
@@ -1525,60 +1483,49 @@
           <div class="year-marker" aria-hidden="true">02</div>
           <div class="year-panel">
             <div class="year-kicker">Year 2 · Consolidation</div>
-            <h3 class="year-heading">A focused framework for nonlinear interfaces and heterogeneous media</h3>
-            <p class="year-lead">Three connected tracks brought weak formulations, continuation analysis, and scientific machine learning into one interface-aware framework.</p>
-            <div class="research-flow" aria-label="Year 2 research route">
-              <div class="flow-card" style="--flow-color:#0C7C59">
-                <div class="flow-card-head"><span class="flow-index">TRACK A</span><span class="flow-title">Kapitza FEM</span></div>
-                <div class="math-equation">a(u,v) + ∫<sub>Γ</sub> β(u<sub>I</sub>,u<sub>E</sub>)[u][v] ds = ℓ(v)</div>
-                <div class="research-visual" style="height:128px">
-                  <svg viewBox="0 0 300 128" role="img" aria-labelledby="fem-title fem-desc">
-                    <title id="fem-title">Interface-fitted finite-element mesh</title>
-                    <desc id="fem-desc">Two triangulated subdomains meet at an explicitly fitted interface.</desc>
-                    <rect x="25" y="14" width="250" height="92" fill="#eff8f4" stroke="#53666f"/>
-                    <rect x="150" y="14" width="125" height="92" fill="#edf3f9"/>
-                    <g fill="none" stroke="#89a99f" stroke-width=".75"><path d="M25 14L67 45L25 76L67 106M67 14L25 45L67 76L25 106M67 14V106M67 14L108 45L67 76L108 106M108 14L67 45L108 76L67 106M108 14V106M108 14L150 45L108 76L150 106M150 14L108 45L150 76L108 106M25 45H150M25 76H150"/></g>
-                    <g fill="none" stroke="#92aac0" stroke-width=".75"><path d="M150 14L192 45L150 76L192 106M192 14L150 45L192 76L150 106M192 14V106M192 14L233 45L192 76L233 106M233 14L192 45L233 76L192 106M233 14V106M233 14L275 45L233 76L275 106M275 14L233 45L275 76L233 106M150 45H275M150 76H275"/></g>
-                    <line x1="150" y1="9" x2="150" y2="111" stroke="#b36a24" stroke-width="3"/>
-                    <text class="math" x="87" y="65" text-anchor="middle" fill="#08705b" font-size="15">Ω<tspan baseline-shift="sub" font-size="10">I</tspan></text>
-                    <text class="math" x="213" y="65" text-anchor="middle" fill="#285f94" font-size="15">Ω<tspan baseline-shift="sub" font-size="10">E</tspan></text>
-                    <text class="math" x="157" y="25" fill="#8c541d" font-size="12">Γ</text>
-                    <text x="150" y="122" text-anchor="middle" fill="#53666f" font-size="9">weak form → FreeFEM implementation → validation</text>
-                  </svg>
-                </div>
+            <h3 class="year-heading">Finite elements, continuation, and domain-decomposed scientific learning</h3>
+            <p class="year-lead">The second stage consolidated the model into a precise variational formulation, explored non-unique branches, and connected interface physics with PINN/XPINN solvers.</p>
+            <div class="research-stack">
+              <div class="research-grid">
+                <section class="research-plate" style="--plate-color:#0C7C59" aria-labelledby="weak-heading">
+                  <div class="plate-heading"><div><span class="plate-kicker">Kapitza FEM</span><h4 class="plate-title" id="weak-heading">Broken-space weak formulation</h4></div><span class="plate-tag">MATHEMATICAL FORM</span></div>
+                  <div class="plate-body">
+                    <div class="math-panel">
+                      <h4>Independent interface traces</h4>
+                      <div>\[V=\{(v_I,v_E):v_i\in H^1(\Omega_i),\;v_i=0\text{ on }\Gamma_{D,i}\}.\]</div>
+                      <div>\[\sum_{i\in\{I,E\}}\int_{\Omega_i}k_i\nabla u_i\!\cdot\!\nabla v_i\,dx+\int_\Gamma\beta(u_I,u_E)\,[u]_\Gamma[v]_\Gamma\,ds=\sum_{i\in\{I,E\}}\int_{\Omega_i}f_i v_i\,dx+\langle g_N,v\rangle_{\Gamma_N}.\]</div>
+                      <div>\[[u]_\Gamma=u_I|_\Gamma-u_E|_\Gamma,\qquad [v]_\Gamma=v_I|_\Gamma-v_E|_\Gamma.\]</div>
+                      <p>This is the formulation implemented on interface-fitted meshes: the two traces are not identified, and the nonlinear contact term remains on \(\Gamma\).</p>
+                    </div>
+                  </div>
+                </section>
+                <section class="research-plate" style="--plate-color:#B36A24" aria-labelledby="continuation-heading">
+                  <div class="plate-heading"><div><span class="plate-kicker">Continuation · non-uniqueness</span><h4 class="plate-title" id="continuation-heading">Folds, stable outer branches, and the repelling middle state</h4></div><span class="plate-tag">2026 RESEARCH FIGURE</span></div>
+                  <div class="plate-body">
+                    <figure class="research-figure compact">
+                      <img src="assets/kapitza-kappa/s_curve.png" alt="Imperfect bifurcation S-curve and equivalent heat-flux intersections from the 2026 Kapitza study" loading="lazy">
+                      <figcaption class="figure-caption">Continuation figure from my 2026 Kapitza study. The left panel resolves the S-shaped equilibrium branch; the right panel reconstructs the same states as heat-flux intersections.</figcaption>
+                    </figure>
+                  </div>
+                  <div class="equation-strip">\[R(u,\lambda)=0,\qquad D_uR(u,\lambda)\,\dot u+D_\lambda R(u,\lambda)\,\dot\lambda=0.\]</div>
+                </section>
               </div>
-
-              <div class="flow-card" style="--flow-color:#B36A24">
-                <div class="flow-card-head"><span class="flow-index">TRACK B</span><span class="flow-title">Continuation &amp; Branches</span></div>
-                <div class="research-visual">
-                  <img src="assets/kapitza/s_curve.png" alt="Continuation diagram with an S-shaped nonlinear solution branch and turning points" loading="lazy">
+              <section class="research-plate" style="--plate-color:#1A5490" aria-labelledby="xpinn-heading">
+                <div class="plate-heading"><div><span class="plate-kicker">PINN / XPINN · interface learning</span><h4 class="plate-title" id="xpinn-heading">Domain decomposition aligned with the Kapitza interface</h4></div><span class="plate-tag">REFERENCE + ADAPTED LOSS</span></div>
+                <div class="plate-body plate-split">
+                  <figure class="research-figure">
+                    <img src="https://www.global-sci.com/galley-file/38195/asset/411bbd65957746c72cdaf882bc7f567a6957e661dfc1aad15908d0892be4564a.webp" alt="Original XPINN framework and domain decomposition architecture" loading="lazy" referrerpolicy="no-referrer">
+                    <figcaption class="figure-caption">General XPINN architecture from Jagtap &amp; Karniadakis, <em>Communications in Computational Physics</em> 28 (2020), 2002–2041, <a href="https://doi.org/10.4208/cicp.OA-2020-0164" target="_blank" rel="noopener">doi:10.4208/cicp.OA-2020-0164</a>. The Kapitza-specific coupling is stated at right.</figcaption>
+                  </figure>
+                  <div class="math-panel">
+                    <h4>Kapitza-adapted XPINN loss</h4>
+                    <div>\[T_\theta(x)=\begin{cases}T_{\theta_I}(x),&x\in\Omega_I,\\T_{\theta_E}(x),&x\in\Omega_E,\end{cases}\]</div>
+                    <div>\[\mathcal L=\mathcal L_{\mathrm{PDE},I}+\mathcal L_{\mathrm{PDE},E}+\mathcal L_{\mathrm{BC}}+\mathcal L_{\mathrm{flux}}+\mathcal L_{\mathrm{Kapitza}},\]</div>
+                    <div>\[\mathcal L_{\mathrm{Kapitza}}=\left\|q_\Gamma-\beta(T_{\theta_I},T_{\theta_E})(T_{\theta_I}-T_{\theta_E})\right\|^2_{\Gamma}.\]</div>
+                    <p>Unlike a continuity penalty, the interface loss must allow a nonzero temperature jump and enforce the nonlinear contact law together with flux balance.</p>
+                  </div>
                 </div>
-                <p class="visual-caption">A continuation result from the ongoing Kapitza study: folds expose multiple stationary states and stability changes.</p>
-              </div>
-
-              <div class="flow-card" style="--flow-color:#1A5490">
-                <div class="flow-card-head"><span class="flow-index">TRACK C</span><span class="flow-title">PINN / XPINN</span></div>
-                <div class="research-visual">
-                  <svg viewBox="0 0 300 176" role="img" aria-labelledby="pinn-title pinn-desc">
-                    <title id="pinn-title">PINN and XPINN architectures for an interface problem</title>
-                    <desc id="pinn-desc">A single neural field is contrasted with two subdomain networks coupled through interface losses.</desc>
-                    <defs><marker id="pinn-arrow-y2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#61747d"/></marker></defs>
-                    <text x="69" y="18" text-anchor="middle" fill="#1A5490" font-size="10" font-weight="800">PINN</text>
-                    <circle cx="28" cy="55" r="12" fill="#e5eef7" stroke="#1A5490"/><text class="math" x="28" y="59" text-anchor="middle" fill="#285f94" font-size="11">x</text>
-                    <g fill="#fff" stroke="#1A5490"><circle cx="70" cy="37" r="7"/><circle cx="70" cy="55" r="7"/><circle cx="70" cy="73" r="7"/><circle cx="105" cy="46" r="7"/><circle cx="105" cy="64" r="7"/></g>
-                    <path d="M40 55H60M78 42L96 48M78 68L96 62M113 55H132" stroke="#61747d" marker-end="url(#pinn-arrow-y2)"/>
-                    <rect x="132" y="40" width="42" height="30" rx="5" fill="#eaf5f1" stroke="#0C7C59"/><text class="math" x="153" y="59" text-anchor="middle" fill="#08705b" font-size="11">Tθ(x)</text>
-                    <text x="100" y="91" text-anchor="middle" fill="#6a7680" font-size="8.5">one global smooth field</text>
-                    <line x1="19" y1="105" x2="281" y2="105" stroke="#dce4e2"/>
-                    <text x="150" y="121" text-anchor="middle" fill="#0C7C59" font-size="10" font-weight="800">XPINN / DOMAIN DECOMPOSITION</text>
-                    <rect x="27" y="133" width="76" height="28" rx="5" fill="#e8f5f0" stroke="#0C7C59"/><text class="math" x="65" y="151" text-anchor="middle" fill="#08705b" font-size="10">NN<tspan baseline-shift="sub" font-size="7">I</tspan> → T<tspan baseline-shift="sub" font-size="7">I</tspan></text>
-                    <rect x="197" y="133" width="76" height="28" rx="5" fill="#e8f0f8" stroke="#1A5490"/><text class="math" x="235" y="151" text-anchor="middle" fill="#285f94" font-size="10">NN<tspan baseline-shift="sub" font-size="7">E</tspan> → T<tspan baseline-shift="sub" font-size="7">E</tspan></text>
-                    <rect x="118" y="132" width="64" height="31" rx="15" fill="#fff4e5" stroke="#B36A24"/><text class="math" x="150" y="145" text-anchor="middle" fill="#8c541d" font-size="9">Γ loss</text><text class="math" x="150" y="156" text-anchor="middle" fill="#8c541d" font-size="8">L<tspan baseline-shift="sub" font-size="6">I</tspan>+L<tspan baseline-shift="sub" font-size="6">E</tspan>+L<tspan baseline-shift="sub" font-size="6">Γ</tspan></text>
-                    <path d="M103 147H117M183 147H196" stroke="#61747d" marker-end="url(#pinn-arrow-y2)"/>
-                  </svg>
-                </div>
-                <p class="visual-caption">Separate neural fields preserve the two interface traces and couple them through physics-informed contact losses.</p>
-              </div>
+              </section>
             </div>
             <a class="journey-link" href="doctoral-research.html#year-2">Read the Year 2 narrative <span aria-hidden="true">→</span></a>
           </div>
@@ -1588,67 +1535,32 @@
           <div class="year-marker" aria-hidden="true">03</div>
           <div class="year-panel">
             <div class="year-kicker">Year 3 <span class="ongoing-badge">Ongoing</span></div>
-            <h3 class="year-heading">Nonlinear Kapitza interfaces in one and two dimensions</h3>
-            <p class="year-lead">Current work connects one-dimensional solution structure with two-dimensional finite-element questions in stability and reliable computation.</p>
-            <figure class="kapitza-atlas">
-              <div class="atlas-header">
-                <span class="atlas-heading">One-dimensional model analysis</span>
-                <span class="atlas-bridge">Structure → geometry</span>
-                <span class="atlas-heading">Two-dimensional finite elements</span>
+            <h3 class="year-heading">One-dimensional branch structure and two-dimensional Kapitza finite elements</h3>
+            <p class="year-lead">The current project has two equal components: exact and continuation-based analysis in one dimension, and a two-dimensional interface problem focused on finite-element stability, discrete bounds, and reliable nonlinear computation.</p>
+            <section class="research-plate" style="--plate-color:#0C7C59" aria-labelledby="current-heading">
+              <div class="plate-heading"><div><span class="plate-kicker">Current work · 1D + 2D</span><h4 class="plate-title" id="current-heading">From multiple interface traces to multidimensional discretization</h4></div><span class="plate-tag">ONGOING</span></div>
+              <div class="plate-body plate-split equal">
+                <div>
+                  <figure class="research-figure">
+                    <img src="assets/kapitza-kappa/temperature_profiles.png" alt="Piecewise temperature solutions with different branches and a visible jump at the Kapitza interface" loading="lazy">
+                    <figcaption class="figure-caption"><strong>1D branch analysis.</strong> Piecewise temperature fields reconstructed from distinct nonlinear steady states. The jump at \(z=0\) is part of the solution, not a plotting discontinuity.</figcaption>
+                  </figure>
+                  <div class="equation-strip">\[x=\tanh(\kappa x+h),\qquad [u]_{z=0}=u_I(0^-)-u_E(0^+)\ne0.\]</div>
+                </div>
+                <div class="math-panel">
+                  <h4>2D interface problem and analysis targets</h4>
+                  <div>\[\Omega=\Omega_I\cup\Gamma\cup\Omega_E,\qquad -\nabla\!\cdot(k_i\nabla u_i)=f_i\quad\text{in }\Omega_i.\]</div>
+                  <div>\[-k_I\nabla u_I\!\cdot n_I=k_E\nabla u_E\!\cdot n_E=\beta(u_I,u_E)(u_I|_\Gamma-u_E|_\Gamma).\]</div>
+                  <div>\[u_h=(u_{I,h},u_{E,h})\in V_{I,h}\times V_{E,h},\qquad u_{I,h}|_\Gamma\ne u_{E,h}|_\Gamma.\]</div>
+                  <p><strong>Analytical direction:</strong> existence and branch-wise stability for nonlinear contact laws.</p>
+                  <p><strong>Discrete direction:</strong> fitted finite elements, maximum-principle / \(L^\infty\) control, consistent versus lumped formulations, and continuation near folds.</p>
+                </div>
               </div>
-              <svg viewBox="0 0 960 330" role="img" aria-labelledby="kapitza-v2-title kapitza-v2-desc">
-                <title id="kapitza-v2-title">Mathematical atlas of one- and two-dimensional Kapitza interfaces</title>
-                <desc id="kapitza-v2-desc">A one-dimensional temperature jump at x equals zero is connected to a two-dimensional interface-fitted finite-element domain.</desc>
-                <rect width="960" height="330" fill="#fbfdfc"/>
-                <rect x="28" y="24" width="398" height="278" rx="14" fill="#fff" stroke="#dce5e2"/>
-                <rect x="534" y="24" width="398" height="278" rx="14" fill="#fff" stroke="#dce5e2"/>
-
-                <text x="52" y="54" fill="#182b40" font-size="14" font-weight="700">Two traces at one interface</text>
-                <text class="math" x="52" y="75" fill="#63747d" font-size="12">Ω<tspan baseline-shift="sub" font-size="8">I</tspan> = (−L<tspan baseline-shift="sub" font-size="8">I</tspan>, 0),   Ω<tspan baseline-shift="sub" font-size="8">E</tspan> = (0, L<tspan baseline-shift="sub" font-size="8">E</tspan>)</text>
-                <line x1="70" y1="221" x2="385" y2="221" stroke="#9eabb1"/>
-                <line x1="84" y1="231" x2="84" y2="93" stroke="#9eabb1"/>
-                <line x1="228" y1="88" x2="228" y2="240" stroke="#B36A24" stroke-width="2" stroke-dasharray="5 4"/>
-                <path d="M85 194C128 180 174 148 220 111" fill="none" stroke="#0C7C59" stroke-width="4" stroke-linecap="round"/>
-                <path d="M236 155C281 138 328 113 377 101" fill="none" stroke="#1A5490" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="220" cy="111" r="5" fill="#fff" stroke="#0C7C59" stroke-width="3"/><circle cx="236" cy="155" r="5" fill="#fff" stroke="#1A5490" stroke-width="3"/>
-                <text class="math" x="212" y="99" text-anchor="end" fill="#08705b" font-size="12">T<tspan baseline-shift="sub" font-size="8">I</tspan>(0<tspan baseline-shift="super" font-size="8">−</tspan>)</text>
-                <text class="math" x="244" y="175" fill="#285f94" font-size="12">T<tspan baseline-shift="sub" font-size="8">E</tspan>(0<tspan baseline-shift="super" font-size="8">+</tspan>)</text>
-                <path d="M258 111H274M258 155H274M271 111V155" fill="none" stroke="#9a5b20" stroke-width="1.5"/>
-                <text class="math" x="281" y="136" fill="#8c541d" font-size="14">[T]<tspan baseline-shift="sub" font-size="9">Γ</tspan></text>
-                <text class="math" x="228" y="254" text-anchor="middle" fill="#8c541d" font-size="11">Γ = {x = 0}</text>
-                <rect x="56" y="269" width="342" height="19" rx="9" fill="#f2f6f5"/>
-                <text class="math" x="227" y="282" text-anchor="middle" fill="#3f5662" font-size="11">[T]<tspan baseline-shift="sub" font-size="8">Γ</tspan> = T<tspan baseline-shift="sub" font-size="8">E</tspan>(0<tspan baseline-shift="super" font-size="8">+</tspan>) − T<tspan baseline-shift="sub" font-size="8">I</tspan>(0<tspan baseline-shift="super" font-size="8">−</tspan>) ≠ 0</text>
-
-                <circle cx="480" cy="163" r="30" fill="#eef7f4" stroke="#b7dbcf"/>
-                <path d="M462 163H498M488 153L498 163L488 173" fill="none" stroke="#0C7C59" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <text x="480" y="205" text-anchor="middle" fill="#0C7C59" font-size="8.5" font-weight="800">SCALE UP</text>
-
-                <text x="558" y="54" fill="#182b40" font-size="14" font-weight="700">Interface-fitted composite</text>
-                <text class="math" x="558" y="75" fill="#63747d" font-size="11">Ω = Ω<tspan baseline-shift="sub" font-size="8">I</tspan> ∪ Γ ∪ Ω<tspan baseline-shift="sub" font-size="8">E</tspan></text>
-                <rect x="570" y="92" width="168" height="148" fill="#e8f5f0"/><rect x="738" y="92" width="168" height="148" fill="#e8f0f8"/>
-                <path d="M570 92H906V240H570Z" fill="none" stroke="#4b5d66" stroke-width="1.3"/>
-                <g fill="none" stroke-width=".75" opacity=".85">
-                  <g stroke="#85aa9f"><path d="M570 92L612 129L570 166L612 203L570 240M612 92L570 129L612 166L570 203L612 240M612 92V240M612 92L654 129L612 166L654 203L612 240M654 92L612 129L654 166L612 203L654 240M654 92V240M654 92L696 129L654 166L696 203L654 240M696 92L654 129L696 166L654 203L696 240M696 92V240M696 92L738 129L696 166L738 203L696 240M570 129H738M570 166H738M570 203H738"/></g>
-                  <g stroke="#8fa9c0"><path d="M738 92L780 129L738 166L780 203L738 240M780 92L738 129L780 166L738 203L780 240M780 92V240M780 92L822 129L780 166L822 203L780 240M822 92L780 129L822 166L780 203L822 240M822 92V240M822 92L864 129L822 166L864 203L822 240M864 92L822 129L864 166L822 203L864 240M864 92V240M864 92L906 129L864 166L906 203L864 240M738 129H906M738 166H906M738 203H906"/></g>
-                </g>
-                <line x1="738" y1="84" x2="738" y2="248" stroke="#B36A24" stroke-width="4"/><line x1="738" y1="84" x2="738" y2="248" stroke="#f4c67e" stroke-width="1"/>
-                <text class="math" x="654" y="169" text-anchor="middle" fill="#08705b" font-size="19">Ω<tspan baseline-shift="sub" font-size="12">I</tspan></text>
-                <text class="math" x="822" y="169" text-anchor="middle" fill="#285f94" font-size="19">Ω<tspan baseline-shift="sub" font-size="12">E</tspan></text>
-                <text class="math" x="748" y="107" fill="#8c541d" font-size="15">Γ</text>
-                <circle cx="732" cy="129" r="4" fill="#0C7C59"/><circle cx="744" cy="129" r="4" fill="#1A5490"/>
-                <circle cx="732" cy="166" r="4" fill="#0C7C59"/><circle cx="744" cy="166" r="4" fill="#1A5490"/>
-                <circle cx="732" cy="203" r="4" fill="#0C7C59"/><circle cx="744" cy="203" r="4" fill="#1A5490"/>
-                <rect x="558" y="260" width="360" height="28" rx="8" fill="#f2f6f5"/>
-                <text class="math" x="738" y="272" text-anchor="middle" fill="#3f5662" font-size="10">−k<tspan baseline-shift="sub" font-size="7">I</tspan>∇T<tspan baseline-shift="sub" font-size="7">I</tspan>·n = −k<tspan baseline-shift="sub" font-size="7">E</tspan>∇T<tspan baseline-shift="sub" font-size="7">E</tspan>·n = β(T<tspan baseline-shift="sub" font-size="7">I</tspan>,T<tspan baseline-shift="sub" font-size="7">E</tspan>)[T]<tspan baseline-shift="sub" font-size="7">Γ</tspan></text>
-                <text x="738" y="283" text-anchor="middle" fill="#63747d" font-size="8">independent traces · shared nonlinear flux</text>
-              </svg>
-            </figure>
-            <p class="atlas-note">Conceptual research illustration; mathematical notation is set in a dedicated equation font and the interface jump is represented explicitly.</p>
+            </section>
             <a class="journey-link" href="doctoral-research.html#year-3">Read the current research narrative <span aria-hidden="true">→</span></a>
           </div>
         </article>
       </div>
-
       <div class="journey-footer">
         <a class="btn" href="doctoral-research.html">Explore the Full PhD Journey</a>
         <a class="btn btn-secondary" href="assets/phd-progress-report-year-2.pdf" target="_blank" rel="noopener">Latest Progress Report</a>
