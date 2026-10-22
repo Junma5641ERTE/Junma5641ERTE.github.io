@@ -668,6 +668,7 @@
     .math-panel mjx-container[display="true"] { margin:.55rem 0 !important; }
     .equation-strip { padding:.75rem 1rem; border-top:1px solid #e8eeec; background:#f7faf9; color:#253946; text-align:center; }
     .equation-strip mjx-container { overflow-x:auto; overflow-y:visible; margin:.25rem 0 !important; font-size:96% !important; }
+    .equation-strip.compact-math mjx-container { overflow:visible; }
     .journey-link { display:inline-flex; align-items:center; gap:.45rem; margin-top:1rem; color:var(--primary); font-size:.82rem; font-weight:700; border-bottom:none; }
     .journey-link span { transition:transform .2s ease; }
     .journey-link:hover span { transform:translateX(3px); }
@@ -1459,7 +1460,7 @@
                     <figcaption class="figure-caption">Research visualization of the fixed-point mechanism developed in my 2026 <em>Mathematics and Computers in Simulation</em> paper. Intersections of the nonlinear response with the diagonal identify steady states; their local slopes distinguish attracting and repelling solutions.</figcaption>
                   </figure>
                 </div>
-                <div class="equation-strip">\[
+                <div class="equation-strip compact-math">\[
                   a=F_{\delta}(a),\qquad
                   |\partial_aF_{\delta}(a_*)|<1
                   \;\Longrightarrow\; a_*\text{ locally attracting},
