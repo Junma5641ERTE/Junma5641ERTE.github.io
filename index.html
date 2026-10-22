@@ -655,7 +655,7 @@
     .research-figure { margin:0; min-width:0; }
     .research-figure img { display:block; width:100%; max-height:none; object-fit:contain; background:#fff; }
     .diagram-figure img { border:1px solid #e2e9e7; border-radius:8px; }
-    .current-analysis-grid { margin-top:1rem; }
+    .current-analysis-grid { grid-template-columns:1fr; margin-top:1rem; }
     .current-analysis-grid .math-panel { height:100%; }
     .research-figure.compact img { max-height:270px; }
     .figure-caption { margin:.55rem 0 0; color:var(--text-light); font-size:.68rem; line-height:1.5; }
@@ -1528,8 +1528,8 @@
                 </div>
                 <div class="plate-body">
                   <figure class="research-figure diagram-figure">
-                    <img src="assets/kapitza-xpinn-architecture.svg" alt="Complete Kapitza-aware XPINN architecture with two neural subnetworks, automatic differentiation, PDE and interface residuals, and a weighted training objective" loading="lazy">
-                    <figcaption class="figure-caption">Architecture designed specifically for this project. Two subdomain networks approximate \(T_I\) and \(T_E\); automatic differentiation constructs bulk, boundary, flux-balance, and nonlinear Kapitza residuals. The temperature jump is learned rather than artificially penalized to zero.</figcaption>
+                    <a href="assets/kapitza-xpinn-architecture.svg" target="_blank" rel="noopener" aria-label="Open the full-resolution Kapitza-aware XPINN architecture"><img src="assets/kapitza-xpinn-architecture.svg" alt="Complete Kapitza-aware XPINN architecture with two neural subnetworks, automatic differentiation, PDE and interface residuals, and a weighted training objective" loading="lazy"></a>
+                    <figcaption class="figure-caption">Architecture designed specifically for this project. Two subdomain networks approximate \(T_I\) and \(T_E\); automatic differentiation constructs bulk, boundary, flux-balance, and nonlinear Kapitza residuals. The temperature jump is learned rather than artificially penalized to zero. <a href="assets/kapitza-xpinn-architecture.svg" target="_blank" rel="noopener">Open the full-resolution architecture.</a></figcaption>
                   </figure>
                 </div>
               </section>
