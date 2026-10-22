@@ -690,6 +690,39 @@
       gap: 0.8rem;
     }
 
+
+    /* Current doctoral research: descriptive text and conceptual geometry */
+    #phd-year-3 { scroll-margin-top: 100px; }
+    #phd-year-3 .year3-status {
+      display: inline-block; margin-top: 0.35rem; padding: 0.16rem 0.55rem;
+      border-radius: 999px; background: rgba(12, 124, 89, 0.08);
+      color: var(--primary); font-size: 0.75rem; font-weight: 600;
+    }
+    #phd-year-3 .research-figures {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem; margin-top: 1.4rem;
+    }
+    #phd-year-3 .research-figure {
+      min-width: 0; margin: 0; padding: 1rem;
+      border: 1px solid var(--border); border-radius: 8px; background: var(--bg-white);
+    }
+    #phd-year-3 .research-figure svg {
+      display: block; width: 100%; max-width: 580px; height: auto; margin: 0 auto;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    #phd-year-3 figcaption {
+      margin-top: 0.8rem; color: var(--text-gray); font-size: 0.88rem; line-height: 1.6;
+    }
+    #phd-year-3 figcaption strong {
+      display: block; color: var(--text-dark); font-size: 0.94rem; margin-bottom: 0.2rem;
+    }
+    #phd-year-3 .figure-note {
+      margin: 0.9rem 0 0; color: var(--text-light); font-size: 0.83rem; line-height: 1.6;
+    }
+    @media (max-width: 1100px) {
+      #phd-year-3 .research-figures { grid-template-columns: 1fr; }
+    }
+
     /* Interactive visitor map */
     .visitor-analytics {
       margin-top: 1.5rem;
@@ -1442,7 +1475,7 @@
     <!-- Doctoral Experience -->
     <section id="doctoral-experience">
       <h2>Doctoral Experience</h2>
-      <p class="section-note">Detailed doctoral progress reconstructed from my annual CSI thesis progress reports at UTC-LMAC.</p>
+      <p class="section-note">Doctoral progress at UTC-LMAC, including annual CSI reports and current third-year research.</p>
 
       <div class="doctoral-timeline">
         <div class="doctoral-year">
@@ -1513,6 +1546,74 @@
             <li>Clarified the role of PINN and XPINN methods as complementary tools rather than replacements for finite element analysis, with a focus on surrogate modeling, heterogeneous media, interface conditions, and optimization-driven simulations.</li>
             <li>Defined the next publication directions: a rigorous chapter or article on linear Kapitza FEM formulation and implementation, followed by nonlinear interface laws, bifurcation phenomena, and optimization frameworks for thermal storage applications.</li>
           </ul>
+        </div>
+
+        <div class="doctoral-year" id="phd-year-3">
+          <div class="year-header">
+            <div class="year-label">Year 3<br><span class="year3-status">Ongoing</span></div>
+            <div class="year-title">Nonlinear Kapitza Interfaces in One and Two Dimensions</div>
+          </div>
+          <p class="year-summary">My third-year doctoral research focuses on heat conduction across imperfect interfaces in composite materials. Building on my earlier work on Kapitza contact resistance, I am connecting one-dimensional model analysis with two-dimensional finite element studies.</p>
+          <p class="year-summary">The current work explores how nonlinear interface behavior influences temperature distributions and the reliability of numerical solutions, with particular attention to stability and the relationship between mathematical analysis and computational observations.</p>
+
+          <div class="research-figures">
+            <figure class="research-figure">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280" role="img" aria-labelledby="year3-1d-title year3-1d-desc">
+                <title id="year3-1d-title">One-dimensional materials and contact interfaces</title>
+                <desc id="year3-1d-desc">Conceptual configurations: two adjacent materials with one contact, and a three-layer sandwich with two contacts. The marked contacts have no positive-width gap. These are separate model geometries, not numerical results.</desc>
+                <rect x="0" y="0" width="440" height="280" rx="8" fill="#f8faf9"/>
+                <text x="24" y="31" fill="#1a1a1a" font-size="18" font-weight="600">Two materials · one contact</text>
+                <rect x="32" y="69" width="188" height="48" fill="#dcefe8"/>
+                <rect x="220" y="69" width="188" height="48" fill="#e3edf8"/>
+                <path d="M32 69H408V117H32Z" fill="none" stroke="#6a6a6a" stroke-width="1.4"/>
+                <line x1="220" y1="59" x2="220" y2="127" stroke="#b15b1c" stroke-width="3"/>
+                <text x="126" y="99" text-anchor="middle" fill="#075b42" font-size="18" font-weight="600">Material I</text>
+                <text x="314" y="99" text-anchor="middle" fill="#1a5490" font-size="18" font-weight="600">Material E</text>
+                <text x="220" y="149" text-anchor="middle" fill="#92501e" font-size="16">Contact interface</text>
+                <text x="24" y="189" fill="#1a1a1a" font-size="18" font-weight="600">Three layers · two contacts</text>
+                <rect x="32" y="211" width="116" height="40" fill="#e3edf8"/>
+                <rect x="148" y="211" width="144" height="40" fill="#dcefe8"/>
+                <rect x="292" y="211" width="116" height="40" fill="#e3edf8"/>
+                <path d="M32 211H408V251H32Z" fill="none" stroke="#6a6a6a" stroke-width="1.4"/>
+                <line x1="148" y1="203" x2="148" y2="259" stroke="#b15b1c" stroke-width="3"/>
+                <line x1="292" y1="203" x2="292" y2="259" stroke="#b15b1c" stroke-width="3"/>
+                <text x="90" y="237" text-anchor="middle" fill="#1a5490" font-size="18" font-weight="600">E</text>
+                <text x="220" y="237" text-anchor="middle" fill="#075b42" font-size="18" font-weight="600">I</text>
+                <text x="350" y="237" text-anchor="middle" fill="#1a5490" font-size="18" font-weight="600">E</text>
+              </svg>
+              <figcaption>
+                <strong>One-dimensional contact configurations</strong>
+                Layered materials provide a starting point for studying imperfect thermal contact. Different configurations are considered as separate models.
+              </figcaption>
+            </figure>
+
+            <figure class="research-figure">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280" role="img" aria-labelledby="year3-2d-title year3-2d-desc">
+                <title id="year3-2d-title">Two-dimensional composite geometry with a contact interface</title>
+                <desc id="year3-2d-desc">Two adjacent rectangular material domains meet along a single contact interface. Solid outer vertical lines mark prescribed-temperature boundaries, and dashed top and bottom lines mark homogeneous natural boundaries. Interface temperatures may differ on the two sides without a physical gap.</desc>
+                <rect x="0" y="0" width="440" height="280" rx="8" fill="#f8faf9"/>
+                <text x="220" y="30" text-anchor="middle" fill="#1a1a1a" font-size="18" font-weight="600">Two-dimensional composite</text>
+                <text x="220" y="59" text-anchor="middle" fill="#92501e" font-size="16">Contact interface</text>
+                <line x1="220" y1="65" x2="220" y2="85" stroke="#b15b1c" stroke-width="1.5"/>
+                <rect x="48" y="85" width="172" height="125" fill="#dcefe8"/>
+                <rect x="220" y="85" width="172" height="125" fill="#e3edf8"/>
+                <path d="M48 85H392M48 210H392" fill="none" stroke="#6a6a6a" stroke-width="2" stroke-dasharray="7 5"/>
+                <path d="M48 85V210M392 85V210" fill="none" stroke="#374151" stroke-width="3"/>
+                <line x1="220" y1="85" x2="220" y2="210" stroke="#b15b1c" stroke-width="3"/>
+                <text x="134" y="143" text-anchor="middle" fill="#075b42" font-size="18" font-weight="600">Material I</text>
+                <text x="134" y="168" text-anchor="middle" fill="#4a4a4a" font-size="16">Domain 1</text>
+                <text x="306" y="143" text-anchor="middle" fill="#1a5490" font-size="18" font-weight="600">Material E</text>
+                <text x="306" y="168" text-anchor="middle" fill="#4a4a4a" font-size="16">Domain 2</text>
+                <text x="220" y="243" text-anchor="middle" fill="#4a4a4a" font-size="16">Shared interface, independent</text>
+                <text x="220" y="265" text-anchor="middle" fill="#4a4a4a" font-size="16">temperatures on its two sides</text>
+              </svg>
+              <figcaption>
+                <strong>Two-dimensional composite interface</strong>
+                Adjacent material domains are coupled through a contact interface. Solid outer edges indicate prescribed temperatures; dashed edges indicate homogeneous natural boundaries.
+              </figcaption>
+            </figure>
+          </div>
+          <p class="figure-note">Conceptual schematics adapted from the geometries described in my current doctoral manuscript. Not to scale; no numerical results are shown.</p>
         </div>
       </div>
 
