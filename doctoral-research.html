@@ -110,15 +110,15 @@
       <div class="hero-inner">
         <div class="eyebrow">UTC · LMAC · Doctoral Research</div>
         <h1>Doctoral Research Journey</h1>
-        <p>A detailed account of how my work developed from thermal-energy modeling and computational foundations toward nonlinear Kapitza interface problems, finite-element analysis, and reliable scientific computation.</p>
+        <p>A detailed account of my doctoral research, from nonlinear Kapitza foundations and numerical experiments to finite elements, continuation, thermal optimization, and scientific machine learning. The timeline follows the academic years in which the research was carried out; publication dates are stated separately.</p>
       </div>
     </section>
 
     <div class="layout">
       <nav class="toc" aria-label="Doctoral research years">
         <div class="toc-label">Research stages</div>
-        <a href="#year-1">Year 1 · Foundations</a>
-        <a href="#year-2">Year 2 · Consolidation</a>
+        <a href="#year-1">Year 1 · 2024–2025</a>
+        <a href="#year-2">Year 2 · 2025–2026</a>
         <a href="#year-3">Year 3 · Ongoing</a>
         <a href="#reports">Progress reports</a>
       </nav>
@@ -128,29 +128,32 @@
           <div class="year-head">
             <div class="number">01</div>
             <div>
-              <div class="phase">Year 1 · Foundations</div>
-              <h2>From thermal-energy models to interface-aware computation</h2>
-              <p class="lead">The first year established the physical, mathematical, and computational foundation of the PhD project.</p>
+              <div class="phase">Year 1 · 2024–2025 · Foundations</div>
+              <h2>Nonlinear Kapitza foundations and numerical experiments</h2>
+              <p class="lead">The first year included the collaborative nonlinear Kapitza study later published in 2026, alongside thermal modeling, FreeFEM computation, and early topological-derivative work.</p>
             </div>
           </div>
           <div class="narrative">
             <div class="route" aria-label="Year 1 research route">
-              <div class="route-card"><small>MODEL</small><strong>Thermal systems</strong><span>Steady and transient heat conduction</span></div>
-              <div class="route-card"><small>INTERFACE</small><strong>Kapitza contact</strong><span>Temperature jumps and nonlinear laws</span></div>
+              <div class="route-card"><small>INTERFACE</small><strong>Kapitza contact</strong><span>Fixed points and non-uniqueness</span></div>
+              <div class="route-card"><small>COMPUTATION</small><strong>Thermal systems</strong><span>Steady and transient heat conduction</span></div>
               <div class="route-card"><small>DESIGN</small><strong>Inverse design</strong><span>Topology optimization and sensitivity</span></div>
             </div>
+
+            <h3>Nonlinear Kapitza contact: research begun in Year 1</h3>
+            <p>A central first-year theme was steady conduction in layered media with nonlinear Kapitza contact resistance. Imperfect contact permits a temperature jump across the interface and can produce non-unique steady states. In the collaborative study, one-dimensional models with power-law contact conductance were used to investigate fixed points, parameter sensitivity, and bifurcations of Picard iteration. The stability discussed here concerns the iteration map, not the physical stability of a time-dependent heat equation.</p>
+            <p>I carried out the numerical experiments and validation for this work. The theoretical proofs were developed by Eya Bejaoui, Faker Ben Belgacem, and Faten Jelassi. This division of contributions also applies to our subsequent HAL preprint on semilinear elliptic problems.</p>
+
+            <div class="output"><strong>Research year and publication year.</strong> The first-year study led to <a href="https://doi.org/10.1016/j.matcom.2026.04.010" target="_blank" rel="noopener"><em>Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</em></a>, by E. Bejaoui, F. Ben Belgacem, F. Jelassi, and J. Ma. The manuscript was first submitted on 9 July 2025 and published online on 12 April 2026 in <em>Mathematics and Computers in Simulation</em>, 248: 311–324. Its publication is a Year 2 milestone for research begun in Year 1.</div>
 
             <h3>Thermal modeling and computation</h3>
             <p>The work began with steady and transient heat-conduction models for hybrid thermal-energy-storage systems. Analytical derivations and numerical experiments were used together to understand temperature fields, heat-flux evolution, and the role of material parameters. One- and two-dimensional FreeFEM++ simulations provided a computational basis for the later finite-element and optimization studies.</p>
             <p>Radiative effects and other nonlinear thermal mechanisms motivated a gradual shift from classical conduction models toward nonlinear partial differential equations. This stage clarified how modeling assumptions, interface behavior, and numerical implementation interact in composite thermal systems.</p>
 
-            <h3>Nonlinear contact at material interfaces</h3>
-            <p>A central theme emerged from steady conduction in layered media with nonlinear Kapitza contact resistance. Imperfect contact permits a temperature jump across the interface and can produce non-unique steady states. Simple one-dimensional models were used to study fixed points, parameter sensitivity, and bifurcation-type behavior before moving to more geometrically demanding problems.</p>
-
             <h3>Topology optimization and research formation</h3>
             <p>In parallel, I studied topological derivatives and implemented an inverse-design procedure for two-dimensional transient heat conduction. This connected thermal sensitivity analysis with the placement of conductive material. Doctoral schools, FreeFEM meetings, and research workshops in optimization and scientific computing supported the formation of a broader methodological framework.</p>
 
-            <div class="output"><strong>Year 1 outcome.</strong> A common foundation was established for thermal modeling, nonlinear interface problems, finite-element computation, and optimization-driven material design.</div>
+            <p>The <a href="assets/phd-progress-report-year-1.pdf" target="_blank" rel="noopener">Year 1 report</a> records these research activities before the journal publication. The homepage also uses a later illustration from my <a href="/thoughts/2026/07/21/nonlinear-kapitza-fixed-point-bifurcation/">21 July 2026 research note</a> on an exponential contact law; that figure illustrates the broader fixed-point theme and is not a figure from the MATCOM article.</p>
           </div>
         </section>
 
@@ -158,9 +161,9 @@
           <div class="year-head">
             <div class="number">02</div>
             <div>
-              <div class="phase">Year 2 · Consolidation</div>
-              <h2>A focused framework for nonlinear interfaces and heterogeneous media</h2>
-              <p class="lead">The second year organized the thesis around three connected lines of work.</p>
+              <div class="phase">Year 2 · 2025–2026 · Consolidation</div>
+              <h2>Finite elements, continuation, thermal optimization, and XPINN</h2>
+              <p class="lead">The second year developed the numerical methods and linear finite-element framework, while the earlier collaborative Kapitza study reached publication.</p>
             </div>
           </div>
           <div class="narrative">
@@ -171,15 +174,20 @@
             </div>
 
             <h3>Finite elements for Kapitza interface problems</h3>
-            <p>The thesis framework became more focused on heterogeneous media, material interfaces, and imperfect thermal contact. Kapitza-type conditions were treated as the central mechanism for coupling subdomains while allowing separate temperature traces. Theoretical work on weak formulations and interface terms was developed alongside FreeFEM and Matlab implementations.</p>
+            <p>I developed FreeFEM and MATLAB tools for linear and nonlinear thermal contact laws and began consolidating the linear Kapitza finite-element framework: weak formulation, separate temperature traces, interface terms, and discretization. These activities connected the continuous model to the numerical schemes and prepared further analysis of nonlinear solvability and branch behavior.</p>
 
             <h3>Nonlinear branches and robust computation</h3>
             <p>Numerical experiments showed that standard Newton iteration and direct parameter continuation can become sensitive when several solution branches or turning points are present. Pseudo-arclength continuation was therefore explored as a more robust way to follow branches through folds. The emphasis was not only on producing solutions, but also on understanding branch selection, dependence on initial guesses, and the distinction between computational observations and mathematical conclusions.</p>
+            <p>The homepage's S-curve comes from my <a href="/thoughts/2026/07/23/source-controlled-nonlinear-kapitza-model/">23 July 2026 research note</a> on a source-controlled model with exponential contact conductance. It is a later model investigation; attraction and repulsion in that figure refer specifically to Picard iteration.</p>
+
+            <h3>Topological derivatives and thermal optimization</h3>
+            <p>Building on the first-year foundations, I implemented and numerically checked topological-derivative criteria for material modification. These experiments linked thermal sensitivity analysis to the placement of conductive inclusions and provided a basis for further optimization studies.</p>
 
             <h3>Scientific machine learning as a complementary tool</h3>
-            <p>XPINN solvers were developed for steady and time-dependent heat equations with variable coefficients. Domain decomposition made these experiments naturally relevant to composite media. PINN and XPINN methods were positioned as complementary tools for surrogate modeling and repeated simulations, rather than replacements for finite-element analysis.</p>
+            <p>I implemented preliminary XPINN solvers for steady and time-dependent heat conduction with spatially varying conductivity. These domain-decomposition experiments form a starting point for interface learning. The homepage's Kapitza-aware architecture illustrates a proposed extension; full nonlinear Kapitza and phase-change validation remain research directions. PINN and XPINN methods are being explored as complementary tools for repeated simulations and optimization.</p>
+            <p><a href="assets/kapitza-xpinn-architecture.svg" target="_blank" rel="noopener">View the proposed XPINN architecture</a> · <a href="assets/kapitza-xpinn-architecture.tex" target="_blank" rel="noopener">LaTeX/TikZ source</a>.</p>
 
-            <div class="output"><strong>Selected scientific outputs.</strong> This stage includes the 2026 work on steady conduction with nonlinear Kapitza contact resistance in <em>Mathematics and Computers in Simulation</em>, together with the HAL preprint on semilinear elliptic problems with nonlinear contact resistance in composite domains.</div>
+            <div class="output"><strong>Publication milestones in 2026.</strong> The <a href="https://doi.org/10.1016/j.matcom.2026.04.010" target="_blank" rel="noopener">MATCOM article</a> reports the collaborative research <a href="#year-1">begun in Year 1</a>. The separate <a href="https://hal.science/hal-05659943/" target="_blank" rel="noopener"><em>Semilinear Elliptic Problems with Nonlinear Contact Resistance in Composite Domains</em></a> is a HAL preprint (hal-05659943, 2026). For both papers, my contribution is numerical experimentation and validation; the theoretical proofs are the work of Eya Bejaoui, Faker Ben Belgacem, and Faten Jelassi.</div>
           </div>
         </section>
 
@@ -212,7 +220,7 @@
             <div>
               <div class="phase">Supporting documents</div>
               <h2>Progress reports and research slides</h2>
-              <p class="lead">Detailed annual records remain available separately from the concise homepage.</p>
+              <p class="lead">The annual reports document research activity by doctoral year. The Year 2 report linked here is dated 10 June 2026; publication dates and later research notes are identified separately in the narrative.</p>
             </div>
           </div>
           <div class="narrative">

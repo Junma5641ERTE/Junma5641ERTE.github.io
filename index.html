@@ -1385,7 +1385,7 @@
         <li class="pub-item">
           <div class="journal-mark">MATCOM</div>
           <div class="pub-main">
-            Bejaoui, E., Ben Belgacem, F., Jelassi, F., et al. (2026). "<a href="https://www.sciencedirect.com/science/article/abs/pii/S0378475426001412" target="_blank" rel="noopener">Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</a>." <em>Mathematics and Computers in Simulation</em>.
+            Bejaoui, E., Ben Belgacem, F., Jelassi, F., &amp; <strong>Ma, J.</strong> (2026). "<a href="https://doi.org/10.1016/j.matcom.2026.04.010" target="_blank" rel="noopener">Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</a>." <em>Mathematics and Computers in Simulation</em>, 248: 311–324.
             <div class="pub-metrics">
               <span class="metric-pill strong">Impact Factor 4.4</span>
               <span class="metric-pill strong">CiteScore 9.5</span>
@@ -1421,6 +1421,8 @@
         </li>
       </ul>
 
+      <p class="section-note">For the two joint Kapitza papers listed above (the MATCOM article and the HAL preprint), I carried out the numerical experiments and validation. The theoretical proofs were developed by Eya Bejaoui, Faker Ben Belgacem, and Faten Jelassi.</p>
+
       <div class="publication-feature">
         <div class="feature-intro">
           <div>
@@ -1440,24 +1442,24 @@
     <!-- Doctoral Experience -->
     <section id="doctoral-experience">
       <h2>Doctoral Research Journey</h2>
-      <p class="section-note doctoral-intro">A research-level synopsis of my PhD work at UTC-LMAC. The panels combine exact model equations, figures from my research notes, and clearly attributed methodological references; the detailed page contains the full narrative.</p>
+      <p class="section-note doctoral-intro">This timeline follows the academic years in which the research was carried out; publication dates are stated separately. Year 1 (2024–2025) established the nonlinear Kapitza study, which was published during Year 2 (2025–2026). Later research-note illustrations and methodological references are dated and attributed below.</p>
       <div class="doctoral-timeline">
         <article class="research-year">
           <div class="year-marker" aria-hidden="true">01</div>
           <div class="year-panel">
-            <div class="year-kicker">Year 1 · Foundations</div>
-            <h3 class="year-heading">Nonlinear Kapitza conduction: existence, stability, and non-uniqueness</h3>
-            <p class="year-lead">My first doctoral year established the nonlinear interface problem that anchors the thesis: steady conduction in a two-layer medium with temperature-dependent Kapitza resistance, analyzed through fixed points, stability, bifurcation, and non-uniqueness.</p>
+            <div class="year-kicker">Year 1 · 2024–2025 · Foundations</div>
+            <h3 class="year-heading">Nonlinear Kapitza foundations and numerical experiments</h3>
+            <p class="year-lead">My first doctoral year included the numerical experiments for our collaborative study of steady conduction with nonlinear Kapitza contact resistance: fixed points, Picard iteration stability, and non-uniqueness in a one-dimensional model. Thermal modeling, FreeFEM computation, and early topological-derivative work provided the wider foundation.</p>
             <div class="research-stack">
               <section class="research-plate" style="--plate-color:#1A5490" aria-labelledby="thermal-kapitza-heading">
                 <div class="plate-heading">
-                  <div><span class="plate-kicker">Doctoral Year 1 · published 2026</span><h4 class="plate-title" id="thermal-kapitza-heading">Fixed points, stability, and non-uniqueness in nonlinear Kapitza conduction</h4></div>
+                  <div><span class="plate-kicker">Research begun in Year 1 · published in Year 2 (2026)</span><h4 class="plate-title" id="thermal-kapitza-heading">Fixed points, iteration stability, and non-uniqueness</h4></div>
                   <span class="plate-tag">MATCOM 2026</span>
                 </div>
                 <div class="plate-body">
                   <figure class="research-figure diagram-figure">
                     <img src="assets/kapitza/fixed_point_regimes.png" alt="Fixed-point geometry across the nonlinear Kapitza bifurcation threshold, showing one- and three-solution regimes" loading="lazy">
-                    <figcaption class="figure-caption">Research visualization of the fixed-point mechanism developed in my 2026 <em>Mathematics and Computers in Simulation</em> paper. Intersections of the nonlinear response with the diagonal identify steady states; their local slopes distinguish attracting and repelling solutions.</figcaption>
+                    <figcaption class="figure-caption">Later illustration from my <a href="/thoughts/2026/07/21/nonlinear-kapitza-fixed-point-bifurcation/">21 July 2026 research note</a>, using an exponential contact law. It illustrates fixed points and their attraction or repulsion under Picard iteration. The collaborative MATCOM article linked below uses power-law contact laws; this research-note figure is a later illustration of the theme, not a figure from that article.</figcaption>
                   </figure>
                 </div>
                 <div class="equation-strip compact-math">\[
@@ -1467,7 +1469,7 @@
                   \qquad
                   q_{\Gamma}=\beta(T_I,T_E)[T]_{\Gamma}.
                 \]</div>
-                <div class="equation-strip">Published article: <a href="https://doi.org/10.1016/j.matcom.2026.04.010" target="_blank" rel="noopener"><em>Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</em></a>.</div>
+                <div class="equation-strip">Collaborative article: <a href="https://doi.org/10.1016/j.matcom.2026.04.010" target="_blank" rel="noopener"><em>Steady conduction problems with non-linear Kapitza contact resistance: Existence and non-uniqueness</em></a>. First submitted 9 July 2025; published online 12 April 2026. My contribution: numerical experiments and validation; theoretical proofs: Eya Bejaoui, Faker Ben Belgacem, and Faten Jelassi.</div>
               </section>
               <section class="research-plate" style="--plate-color:#B36A24" aria-labelledby="topology-heading">
                 <div class="plate-heading"><div><span class="plate-kicker">Inverse design · topology evolution</span><h4 class="plate-title" id="topology-heading">From a distributed design field to a connected thermal layout</h4></div><span class="plate-tag">CITED OPEN-ACCESS FIGURE</span></div>
@@ -1492,9 +1494,9 @@
         <article class="research-year">
           <div class="year-marker" aria-hidden="true">02</div>
           <div class="year-panel">
-            <div class="year-kicker">Year 2 · Consolidation</div>
-            <h3 class="year-heading">Finite elements, continuation, and domain-decomposed scientific learning</h3>
-            <p class="year-lead">The second stage consolidated the model into a precise variational formulation, explored non-unique branches, and connected interface physics with PINN/XPINN solvers.</p>
+            <div class="year-kicker">Year 2 · 2025–2026 · Consolidation</div>
+            <h3 class="year-heading">Finite elements, continuation, thermal optimization, and XPINN</h3>
+            <p class="year-lead">The second year developed FreeFEM and MATLAB computations, consolidated the linear Kapitza weak formulation, explored multiple branches with pseudo-arclength continuation, and continued topological-derivative validation. Preliminary XPINN solvers addressed steady and transient heat conduction with variable conductivity. The MATCOM publication in 2026 reports the collaborative research begun in Year 1.</p>
             <div class="research-stack">
               <div class="research-grid">
                 <section class="research-plate" style="--plate-color:#0C7C59" aria-labelledby="weak-heading">
@@ -1510,11 +1512,11 @@
                   </div>
                 </section>
                 <section class="research-plate" style="--plate-color:#B36A24" aria-labelledby="continuation-heading">
-                  <div class="plate-heading"><div><span class="plate-kicker">Continuation · non-uniqueness</span><h4 class="plate-title" id="continuation-heading">Folds, stable outer branches, and the repelling middle state</h4></div><span class="plate-tag">2026 RESEARCH FIGURE</span></div>
+                  <div class="plate-heading"><div><span class="plate-kicker">Continuation · non-uniqueness</span><h4 class="plate-title" id="continuation-heading">Folds, Picard-attracting outer branches, and the repelling middle state</h4></div><span class="plate-tag">2026 RESEARCH FIGURE</span></div>
                   <div class="plate-body">
                     <figure class="research-figure compact">
                       <img src="assets/kapitza-kappa/s_curve.png" alt="Imperfect bifurcation S-curve and equivalent heat-flux intersections from the 2026 Kapitza study" loading="lazy">
-                      <figcaption class="figure-caption">Continuation figure from my 2026 Kapitza study. The left panel resolves the S-shaped equilibrium branch; the right panel reconstructs the same states as heat-flux intersections.</figcaption>
+                      <figcaption class="figure-caption">S-curve from my <a href="/thoughts/2026/07/23/source-controlled-nonlinear-kapitza-model/">23 July 2026 research note</a> on a source-controlled model with exponential contact conductance. The panels show the equilibrium branch and equivalent heat-flux intersections. Stability here refers to Picard iteration, not time-dependent heat-flow stability.</figcaption>
                     </figure>
                   </div>
                   <div class="equation-strip">\[R(u,\lambda)=0,\qquad D_uR(u,\lambda)\,\dot u+D_\lambda R(u,\lambda)\,\dot\lambda=0.\]</div>
@@ -1522,13 +1524,13 @@
               </div>
               <section class="research-plate" style="--plate-color:#1A5490" aria-labelledby="xpinn-heading">
                 <div class="plate-heading">
-                  <div><span class="plate-kicker">PINN / XPINN · interface learning</span><h4 class="plate-title" id="xpinn-heading">A Kapitza-aware XPINN built around two independent thermal traces</h4></div>
-                  <span class="plate-tag">CUSTOM RESEARCH ARCHITECTURE</span>
+                  <div><span class="plate-kicker">PINN / XPINN · interface learning</span><h4 class="plate-title" id="xpinn-heading">Proposed Kapitza-aware XPINN with two independent thermal traces</h4></div>
+                  <span class="plate-tag">RESEARCH EXTENSION</span>
                 </div>
                 <div class="plate-body">
                   <figure class="research-figure diagram-figure">
                     <a href="assets/kapitza-xpinn-architecture.svg" target="_blank" rel="noopener" aria-label="Open the full-resolution Kapitza-aware XPINN architecture"><img src="assets/kapitza-xpinn-architecture.svg" alt="Complete Kapitza-aware XPINN architecture with two neural subnetworks, automatic differentiation, PDE and interface residuals, and a weighted training objective" loading="lazy"></a>
-                    <figcaption class="figure-caption">Architecture designed specifically for this project. Two subdomain networks approximate \(T_I\) and \(T_E\); automatic differentiation constructs bulk, boundary, flux-balance, and nonlinear Kapitza residuals. The temperature jump is learned rather than artificially penalized to zero. <a href="assets/kapitza-xpinn-architecture.svg" target="_blank" rel="noopener">Open the full-resolution architecture.</a></figcaption>
+                    <figcaption class="figure-caption">Proposed extension of the Year 2 variable-conductivity heat solvers. Two subdomain networks represent \(T_I\) and \(T_E\), with bulk, boundary, flux-balance, and Kapitza residuals that allow a temperature jump. Full nonlinear Kapitza and phase-change validation remain research directions. <a href="assets/kapitza-xpinn-architecture.svg" target="_blank" rel="noopener">Full-resolution architecture</a> · <a href="assets/kapitza-xpinn-architecture.tex" target="_blank" rel="noopener">LaTeX/TikZ source</a>.</figcaption>
                   </figure>
                 </div>
               </section>
@@ -1589,7 +1591,7 @@
       </div>
       <div class="journey-footer">
         <a class="btn" href="doctoral-research.html">Explore the Full PhD Journey</a>
-        <a class="btn btn-secondary" href="assets/phd-progress-report-year-2.pdf" target="_blank" rel="noopener">Latest Progress Report</a>
+        <a class="btn btn-secondary" href="assets/phd-progress-report-year-2.pdf" target="_blank" rel="noopener">Year 2 Progress Report</a>
       </div>
     </section>
 
